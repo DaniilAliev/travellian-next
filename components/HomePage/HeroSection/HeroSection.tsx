@@ -2,9 +2,9 @@ import Nav from "./Nav/Nav";
 import Form from "./Form/Form";
 import styles from './HeroSection.module.scss';
 
-const HeroSection = () => 
-  <Nav>
-    <div className={styles["text-section"]}>
+const HeroSection = ({ settings }: { settings: boolean }) => 
+  <Nav settings={settings}>
+    {settings && <div className={styles["text-section"]}>
       <div className={styles.container}>
         <div className={styles["text-hero"]}>
           <div>
@@ -14,7 +14,7 @@ const HeroSection = () =>
         </div>
         <Form />
       </div>
-    </div>
+    </div>}
   </Nav>
 
 export default HeroSection;

@@ -15,14 +15,13 @@ const HomePage = () => {
   return (
     <ClientStateProvider>
       <div className="container">
-        <HeroSection />
+        {/* <HeroSection /> */}
         <Discover isMobile={isMobile}/>
         <SpecialOffer isMobile={isMobile}/>
         <OurBlog />
         <TripPlanners isMobile={isMobile}/>
         <DestinationGallery isMobile={isMobile}/>
         <Experience/>
-        {/* <Footer /> */}
       </div>
     </ClientStateProvider>
   )

@@ -1,3 +1,7 @@
-const LogIn = () => (<h1>Hello</h1>)
+import LoginPage from "@/components/LoginPage/LoginPage";
+
+const LogIn = () => (
+    <LoginPage type={'login'}/>
+)
 
 export default LogIn;

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Logo from '../../../../public/Logo.svg'
 import Burger from '../../../../public/hamburger.svg';
 import styles from './Nav.module.scss';
-// import { useMemo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const NavList = () => (
   <ul>
@@ -15,7 +15,7 @@ const NavList = () => (
   </ul>
   );
 
-const Nav = ({ children }) => {
+const Nav = ({ children, settings }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -27,9 +27,16 @@ const Nav = ({ children }) => {
     }, 200); // 200 миллисекунд - время анимации fadeOut
   };
 
+  console.log(settings)
+
+  const navStyles = {
+    height: settings ? 'initial' : 'auto',
+  };
+
+
   return (
   <header>
-    <div className={styles["hero-section"]}>
+    <div className={styles["hero-section"]} style={navStyles}>
       <nav className={styles.navigation}>
       <div>
         <div className={styles.logo}>
@@ -41,8 +48,8 @@ const Nav = ({ children }) => {
         </div>
 
         <div className={styles['login-buttons']}>
-          <a href='#' className={styles['nav-link']}>Login</a>
-          <a className={`${styles['signup-btn']} ${styles['nav-link']}`} href='#'>Signup</a>
+          <Link href='/login' className={styles['nav-link']}>Login</Link>
+          <Link className={`${styles['signup-btn']} ${styles['nav-link']}`} href='/signup'>Signup</Link>
         </div>
 
         <div className={styles['burger-button']} onClick={toggleMenu}>
