@@ -1,0 +1,72 @@
+@import '../variables.scss';
+
+.experiences-container {
+  @include headers;
+  @include container-size;
+  @include playfair;
+  width: 100%;
+  padding: 140px 0 260px 0;
+
+  .swipers {
+    margin-top: 100px;
+    .experience-swiper {
+      height: auto;
+
+      .experience-slide {
+        max-width: 663px;
+        width: 100%;
+      }
+    }
+  }
+
+  .buttons{
+    margin-top: 160px;
+    display: flex;
+    justify-content: end;
+    gap: 40px;
+
+    button {
+      border: none;
+      background: none;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop1440) {
+  .experiences-container {
+    .swipers {
+      .experience-swiper {
+        .experience-slide {
+          max-width: 562px;
+        }
+      }
+    }
+  }  
+}
+
+@media screen and (max-width: $desktop1152) {
+  .experiences-container {
+    .swipers {
+      .experience-swiper {
+        .experience-slide {
+          max-width: 500px;
+        }
+      }
+    }
+  }  
+}
+
+@media screen and (max-width: $tablet) {
+  .experiences-container {
+    padding: 20px 0 160px 0;
+
+    .headers {
+      margin-top: 160px;
+    }
+
+    .buttons{
+      margin-top: 100px;
+      justify-content: center;
+    }
+  }  
+}

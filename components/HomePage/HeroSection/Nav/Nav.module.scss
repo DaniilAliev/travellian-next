@@ -1,0 +1,176 @@
+@import '../../variables.scss';
+
+.hero-section {
+  background-image: url(../../../../public/background.jpeg);
+  background-size: cover;
+  height: 1194px;
+
+  box-sizing: border-box;
+
+  .nav-link {
+    text-decoration: none;
+    color: $white-color;
+    font-family: 'Rubik';
+    font-size: 20px;
+    font-weight: 200;
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 32px;
+
+    div {
+      max-width: 1560px;
+      width: 100%;
+
+      display: grid;
+      align-items: center;
+
+      grid-template-columns: repeat(3, auto);
+      grid-gap: 35px;
+
+      .logo {
+        display: block;
+      }
+
+      .burger-button {
+        display: none;
+      }
+
+      .nav-bar {
+        display: flex;
+        justify-content: center;
+        max-width: 420px;
+        width: 100%;
+
+        
+        ul {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          list-style: none;
+
+          
+          .active {
+            a {
+              border-bottom: 3px solid $active-color;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      
+
+      .login-buttons {
+        display: flex;
+        justify-content: end;
+
+        .signup-btn {
+          background-color: $active-color;
+          padding: 20px 32px;
+          border-radius: 12px;
+        }
+      }
+    }
+
+    .nav-bar-dropdown {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: $active-color;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 30px 32px;
+
+      &.open {
+        animation: fadeIn 0.2s ease forwards;
+      }
+    
+      &.closed {
+        animation: fadeOut 0.2s ease forwards;
+      }
+    
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          visibility: hidden;
+        }
+        100% {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+          visibility: visible;
+        }
+        100% {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      .nav {
+        ul {
+          list-style: none;
+
+          li{
+            padding-top: 20px;
+          }
+
+          .active {
+            a {
+              border-bottom: 3px solid $muted-color;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $desktop1152) {
+  .hero-section {
+    height: 880px;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .hero-section {
+    .navigation {
+      div {
+        grid-template-columns: repeat(2, auto);
+  
+        .logo {
+          img {
+            width: 55%;
+          }
+        }
+  
+        .burger-button {
+          display: flex;
+          justify-content: end;
+        }
+  
+        .nav-bar,
+        .login-buttons {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .hero-section {
+    height: 1210px;  
+  }
+}

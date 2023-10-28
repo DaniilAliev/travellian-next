@@ -1,0 +1,37 @@
+@import '../../variables.scss';
+
+.slide-container {
+    background-color: $background-card-color;
+    padding: 60px 40px 40px 40px;
+    border-radius: 12px;
+    margin-top: 70px;
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        margin-top: -125px;
+    }
+
+    p {
+        color: $muted-color;
+        font-size: 18px;
+    }
+
+    .stars {
+        padding: 20px 0;
+
+        img {
+            padding-left: 4px;
+        }
+    }
+
+    h3 {
+        font-size: 24px;
+        color: $muted-color;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}

@@ -1,0 +1,76 @@
+@import '../variables.scss';
+
+.buttons-container {
+  @include buttons;
+}
+
+
+  .headers-and-buttons-container {
+    @include container-size;
+    width: 100%;
+    margin-top: 140px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    @include headers;
+
+    @include buttons;
+  }
+
+  .swipers {
+    padding: 100px 0;
+    @include container-size;
+    min-width: 0;
+    max-height: 800px;
+    height: 100%;
+
+    .slide {
+      width: 497px;
+      height: 100%;
+    }
+  }
+
+
+@media screen and (max-width: $desktop1152) {
+    .headers-and-buttons-container {
+      margin-top: 100px;
+    }
+  }
+
+@media screen and (max-width: $tablet) {
+    .buttons {
+      justify-content: center;
+    }
+      .headers-and-buttons-container {
+        margin-top: 80px;
+
+        .headers {
+          h1 {
+            font-size: 54px;
+          }
+        }
+      }
+
+    .swipers {
+      .slide {
+        width: 100%;
+      } 
+    }
+  }
+
+
+@media screen and (max-width: $mobile) {
+  .swipers {
+    max-height: 850px;
+    .swiper {
+      height: 100%;
+      .swiper-wrapper {
+        .swiper-slide {
+          height: auto;
+        }
+      }
+    }
+  }
+}

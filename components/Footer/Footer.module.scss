@@ -1,0 +1,65 @@
+@import '../HomePage/variables.scss';
+
+footer {
+  .info {
+    padding: 240px 0 140px 0;
+    background-color: $footer-color;
+  }
+  
+  section {    
+    .container {
+      @include container-size;
+      width: 100%;
+      
+      display: flex;
+      justify-content: space-between;
+            
+      div {        
+        a {    
+          text-decoration: none;      
+          p {
+            color: $white-color;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 300;
+            padding-bottom: 12px;
+          }
+        }      
+        
+        .bold-p {
+          color: $white-color;
+          font-size: 24px;
+          font-weight: 500;
+          padding-bottom: 12px;
+        }
+
+        .rights-reserved {
+          padding-top: 16px;
+          color: $white-color;
+          font-size: 14px;
+        }
+
+        .socials {
+          display: flex;
+          gap: 24px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  footer {
+    .info {
+      padding-top: 100px;
+    }
+
+    section {
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+      }
+    }
+  }
+}

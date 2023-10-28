@@ -1,0 +1,148 @@
+@import '../../HomePage/variables.scss';
+
+.newsletter-form-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 36px;
+  position: relative;
+
+  .newsletter-form {
+    max-width: 1262px;
+    width: 100%;
+    padding: 60px 80px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
+    border-radius: 26px;
+    position: absolute;
+    box-sizing: border-box;
+
+    display: flex;
+    gap: 32px;
+    justify-content: space-between;
+    align-items: center;
+    @include rubik;
+    background-color: $white-color;
+    margin-top: -118px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    h1 {
+      color: $muted-color;
+      font-size: 64px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      flex-shrink: 0;
+    }
+
+    form {
+      width: 100%;
+
+      p {
+        color: $muted-color;
+        padding-bottom: 16px;
+      }
+
+      .inputs {
+        display: flex;
+        gap: 32px;
+
+        input {
+          width: 100%;
+          padding: 24px 0 24px 40px;
+          background-color: $input-color;
+          border: none;
+          border-radius: 12px;
+          font-family: 'Rubik';
+          font-size: 20px;
+          box-sizing: border-box;
+
+          &::placeholder {
+            color: $active-color;
+            font-size: 20px;
+            font-family: 'Rubik';
+          }
+        }
+
+        button {
+          padding: 22px 40px;
+          color: #FFF;
+          font-family: Rubik;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          border: none;
+          border-radius: 12px;
+          background-color: $active-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $desktop1440) {
+  .newsletter-form-wrapper {
+    .newsletter-form {
+      padding: 60px 40px;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop1152) {
+  .newsletter-form-wrapper {
+    .newsletter-form {
+      h1 {
+        font-size: 54px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .newsletter-form-wrapper {
+    padding: 0;
+
+    .newsletter-form {
+      display: block;
+      position: static;
+      margin: 0;
+
+      h1 {
+        padding-bottom: 60px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .newsletter-form-wrapper {
+    .newsletter-form {
+      padding: 60px 40px 40px 40px;
+
+      form {
+        .inputs {
+          display: block;
+
+          input {
+            margin-bottom: 32px;
+            // padding-left: 0;
+            // width: 100%;
+
+            &::placeholder {
+              // text-align: center;
+              // padding-left: 0;
+            }
+          }
+
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

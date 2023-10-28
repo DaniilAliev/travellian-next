@@ -1,0 +1,89 @@
+@import '../variables.scss';
+
+
+  .text-section {
+    display: flex;
+    justify-content: center;
+    @include padding-32;
+    
+    .container {
+      @include container-size;
+      width: 100%;
+
+      .text-hero {
+        max-width: 1560px;
+        width: 100%;
+        margin-top: 142px;
+    
+        div {
+          h1 {
+            color: $white-color;
+            align-self: stretch;
+            font-family: 'Playfair';
+            font-size: 84px;
+            font-weight: lighter;
+            line-height: normal;
+          }
+  
+          p {
+            font-size: 24px;
+            color: $white-color;
+            font-family: 'Rubik';
+            margin-top: 16px;
+          }
+        }
+      }
+    }
+  }  
+
+
+@media screen and (max-width: $desktop1152) {
+
+  .text-section {
+    .container {
+      .text-hero {
+        margin-top: 72px;
+
+        div {
+          h1 {
+            font-size: 64px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+@media screen and (max-width: $tablet) {
+    .text-section {
+      .container {
+        .text-hero {
+          margin-top: 72px;
+  
+          div {
+            h1 {
+              font-size: 54px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+@media screen and (max-width: $mobile) {
+    .text-section {
+      .container {
+        .text-hero {
+          margin-top: 72px;
+  
+          div {
+            h1 {
+              font-size: 40px;
+              }
+            }
+          }
+        }
+      }
+    }

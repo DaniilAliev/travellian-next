@@ -1,0 +1,53 @@
+@import '../../variables.scss';
+
+@include playfair;
+
+.item {
+    height: 100%;
+    width: 497px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 26px;
+    
+
+    h3 {
+        font-family: 'Playfair';
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding: 539px 0 19px 24px;
+    }
+
+    h3, p {
+        color: $white-color;
+    }
+
+    div {
+        display: flex;
+        gap: 16px;
+        padding-left: 24px;
+    }
+}
+
+@media screen and (max-width: $tablet) {
+    .item {
+        width: 100%;
+        h3 {
+            padding-top: #{padding-in-card($tablet)};
+        }
+    }
+  }
+
+@media screen and (max-width: $mobile) {
+    .item {
+        h3 {
+            padding-top: #{padding-in-card($mobile)};
+            font-size: 24px;
+        }
+
+        // p {
+        //     padding-bottom: 20px;
+        // }
+    }
+}

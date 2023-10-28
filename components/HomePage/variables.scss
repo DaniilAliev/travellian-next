@@ -1,0 +1,111 @@
+$white-color: #FFF;
+$active-color: #FF7757;
+$muted-color: #767E86;
+$card-color: #FFF8F1;
+$black-color: #172432;
+$background-card-color: #F5F6F7;
+$input-color: #FFE8D4;
+$footer-color: #172432;
+
+$desktop1440: 1440px;
+$desktop1152: 1149px;
+$tablet: 860px;
+$mobile: 540px;
+
+@mixin container-size {
+    max-width: 1560px;
+  }
+
+@mixin playfair {
+    @font-face {
+        font-family: 'Playfair';
+        src: url(/public/fonts/PlayfairDisplay-Regular.ttf);
+      }
+}
+
+@mixin mulish {
+  @font-face {
+    font-family: 'Mulish';
+    src: url(/public/fonts/Mulish-Regular.ttf);
+  }
+}
+
+@mixin rubik {
+  @font-face {
+    font-family: 'Rubik';
+    src: url(/fonts/Rubik-Regular.ttf);
+  }
+}
+
+@mixin padding-32 {
+    padding: 0 32px;
+}
+
+@mixin headers {
+  .headers {
+    h1 {
+        font-size: 64px;
+        line-height: normal;
+        font-family: 'Playfair';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    .orange-border {
+        max-width: 365px;
+        height: 3px;
+        background-color: $active-color;
+        margin: 20px 0 32px 0;
+    }
+
+    p {
+        color: $muted-color;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    .headers {
+      h1 {
+        font-size: 54px;
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile) {
+    .headers {
+      h1 {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+@function padding-in-card($size) {
+  @if $size == $tablet {
+    @return 330px;
+  } 
+  @else if $size == $mobile {
+    @return 207px;
+  }
+}
+
+@mixin buttons {
+  .buttons {
+    display: flex;
+    gap: 40px;
+
+    .prevBtn,
+    .nextBtn {
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    .buttons {
+      padding-bottom: 80px;
+    }
+  }
+  
+}

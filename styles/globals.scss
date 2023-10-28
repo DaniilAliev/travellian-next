@@ -1,0 +1,38 @@
+@import "/components/HomePage/variables.scss";
+
+@font-face {
+  font-family: 'Playfair';
+  src: url(/public/fonts/PlayfairDisplay-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url(/fonts/Rubik-Regular.ttf);
+}
+
+section {
+  display: flex;
+	justify-content: center;
+	@include padding-32;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-family: 'Rubik';
+  font-size: 24px;
+}
+
+@media screen and (max-width: $mobile) {
+  p {
+    font-size: 18px;
+  }
+}

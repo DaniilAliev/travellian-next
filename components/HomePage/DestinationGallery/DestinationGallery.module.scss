@@ -1,0 +1,79 @@
+@import "../variables.scss";
+
+  .headers-and-buttons-container {
+    @include container-size;
+    width: 100%;
+    margin-top: 140px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    @include headers;
+
+    @include buttons;
+  }
+
+  .swipers {
+    padding: 100px 0 140px 0;
+    @include container-size;
+    min-width: 0;
+
+    .destination-gallery {
+      .slide {
+        width: 365px;
+
+        .image {
+          padding-top: 50px;
+          width: 365px;
+          height: 570px;
+          transition: 0.5s;
+
+          &:hover {
+            transform: translateY(-7%);
+            transition: 0.5s;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 26px;
+          }
+        }
+      }
+    }
+  }
+
+
+@media screen and (max-width: $tablet) {
+  .container{
+    display: block;
+
+    .headers-and-buttons-container {
+      margin-top: 80px;
+      padding-bottom: 100px;
+    }
+
+    .image {
+      width: 100%;
+      height: 351px;
+      padding-top: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        border-radius: 26px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+    .image {
+      height: 320px;
+    }
+}
