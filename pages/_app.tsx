@@ -6,6 +6,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   const layOutSettings: boolean = router.pathname === '/';
 
   return (
+    
     <Layout settings={layOutSettings}>
       <Component {...pageProps} />
     </Layout>

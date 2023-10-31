@@ -3,7 +3,7 @@ import Arrow from '../../../../public/Arrow1.svg';
 import Image from "next/image";
 
 const Button = () => 
-  <button className={styles.button}>
+  <button className={styles.button} type="submit">
       <div>
         <p>Book Now!</p>
         <Image src={Arrow} alt="arrow"/>
