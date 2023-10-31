@@ -64,7 +64,7 @@ const Form = () => {
   };
 
   
-  const {control, register, handleSubmit } = useForm<MyForm>({
+  const {control, register, handleSubmit, formState: { errors } } = useForm<MyForm>({
     defaultValues: {},
   })
 
@@ -73,8 +73,8 @@ const Form = () => {
   }
 
   useEffect(() => {
-    register('checkOut');
-  }, [register]);
+    console.log(errors);
+  }, []);
 
   return (
     <div className={styles["search-form-container"]}>
@@ -83,11 +83,20 @@ const Form = () => {
           <div className={styles['form-container']}>
             <div>
               <label><p>Destination</p></label>
-              <Controller 
+              <Controller
                 control={control}
                 name="destination"
                 render={({ field }) => (
-                  <Select {...field} onChange={handleChange} options={options} className={`${styles.input} ${styles.customSelect}`} styles={customStyles}/>
+                  <Select 
+                    onChange={(option) => {
+                      handleChange(option);
+                      field.onChange(option.value);
+                      }
+                    } 
+                    options={options} 
+                    className={`${styles.input} ${styles.customSelect}`} 
+                    styles={customStyles}
+                  />
                 )}
               />
               
@@ -111,9 +120,11 @@ const Form = () => {
                   name="checkIn"
                   render={({ field }) => (
                     <DatePicker
-                      {...field}
                       selected={startDate}
-                      onChange={(date) => setStartDate(date)}
+                      onChange={(date) => {
+                        field.onChange(date?.toLocaleString());
+                        setStartDate(date);
+                      }}
                       className={styles.datepicker}
                     />
                   )}
@@ -130,7 +141,7 @@ const Form = () => {
                   render={({ field }) => (
                     <DatePicker
                       onChange={(date) => {
-                        field.onChange(date);
+                        field.onChange(date?.toLocaleString());
                         setLeaveDate(date);
                       }}
                       selected={leaveDate}
