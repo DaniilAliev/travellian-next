@@ -1,4 +1,4 @@
-export type Option = {
+type Option = {
   value: string;
   label: string;
 };

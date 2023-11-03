@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,8 +7,7 @@ import styles from './Form.module.scss';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { orderActions } from '@/slices';
-import { Option, MyForm, options, customStyles } from './settings';
-
+import { MyForm, options, customStyles } from './settings';
 
 const Form = () => {
   const [startDate, setStartDate] = useState(new Date());
