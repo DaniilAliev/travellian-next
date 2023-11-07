@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSession, signOut } from 'next-auth/react';
 import Logo from '../../../../public/Logo.svg'
 import Burger from '../../../../public/hamburger.svg';
 import styles from './Nav.module.scss';
@@ -18,6 +19,8 @@ const NavList = () => (
 const Nav = ({ children, settings }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
+  const {data} = useSession();
 
   const toggleMenu = () => {
     setIsClosing(true);
@@ -47,10 +50,10 @@ const Nav = ({ children, settings }) => {
           <NavList />
         </div>
 
-        <div className={styles['login-buttons']}>
+        {data ? <button className={styles['login-buttons']} onClick={() => signOut()}>Sign Out</button> : <div className={styles['login-buttons']}>
           <Link href='/login' className={styles['nav-link']}>Login</Link>
           <Link className={`${styles['signup-btn']} ${styles['nav-link']}`} href='/signup'>Signup</Link>
-        </div>
+        </div>}
 
         <div className={styles['burger-button']} onClick={toggleMenu}>
           <Image src={Burger} alt="menu" />

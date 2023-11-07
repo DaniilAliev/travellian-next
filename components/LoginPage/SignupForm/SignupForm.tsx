@@ -1,11 +1,11 @@
-import axios from 'axios';
 import styles from './SignupForm.module.scss';
 import { useForm } from 'react-hook-form';
-import API_ROUTES from '@/routes/apiRoutes';
 import { useState } from "react";
 import schema from './validation';
 import { yupResolver } from "@hookform/resolvers/yup";
 import errorStyles from '../errorStyles';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/dist/client/router';
 
 interface MyForm {
   email: string,
@@ -15,6 +15,9 @@ interface MyForm {
 
 const SignupForm = () => {
   const [customError, setError] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+
+  const router = useRouter()
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<MyForm>({
     defaultValues: {},
@@ -23,22 +26,25 @@ const SignupForm = () => {
   })
 
   const submit = async (data) => {
+    console.log('submitted')
     try {
       setError(null);
+      setLoading(true);
+  
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+        action: 'signup',
+      });
 
-      const dataToSignUp = {
-      name: data.email,
-      email: data.email,
-      password: data.password,
-      };
-
-    console.log(dataToSignUp);
-
-    const response = await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2${API_ROUTES.SIGNUP}`, dataToSignUp);
-
-    console.log(response);
-
-    reset()
+      if (!result.error) {
+        router.push('/');
+      } else if (result?.status) {
+        console.log(result.error)
+        setError(result.error);
+        setLoading(false);
+      }
     } catch (e) {
       if (e.response && e.response.data && e.response.data.message) {
         console.log(e.response.data.message);
@@ -73,7 +79,7 @@ const SignupForm = () => {
         <p style={errorStyles}>{errors.confirm?.message}</p>
       </div>
       {customError && <p style={errorStyles}>{customError}</p>}
-      <button type="submit">Signup</button>
+      <button type="submit">{ isLoading ? 'Loading...' : 'Signup'}</button>
     </form>
   );
 }

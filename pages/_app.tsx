@@ -3,15 +3,18 @@ import store from '@/slices/store';
 import '@/styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux';
+import { SessionProvider } from 'next-auth/react';
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps: { session, ...pageProps }, router }: AppProps) {
   const layOutSettings: boolean = router.pathname === '/';
 
   return (
     <Provider store={store}>
-      <Layout settings={layOutSettings}>
-        <Component {...pageProps} />
-      </Layout>
+      <SessionProvider session={session}>
+        <Layout settings={layOutSettings}>
+          <Component {...pageProps} />
+        </Layout>
+      </SessionProvider>
     </Provider>
   )
 }

@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import styles from './LoginForm.module.scss';
 import { useState } from 'react';
-import axios from 'axios';
-import API_ROUTES from '@/routes/apiRoutes';
 import errorStyles from '../errorStyles';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/dist/client/router';
 
 interface MyForm {
   email: string,
@@ -11,7 +11,10 @@ interface MyForm {
 }
 
 const LoginForm = () => {
+  const router = useRouter();
+
   const [customError, setError] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   const { register, handleSubmit } = useForm<MyForm>({
     defaultValues: {},
@@ -20,19 +23,24 @@ const LoginForm = () => {
   const submit = async (data) => {
     try {
       setError(null);
+      setLoading(true);
 
-      const dataToSignUp = {
+      const result = await signIn('credentials', {
+        redirect: false,
         email: data.email,
         password: data.password,
-      };
+        action: 'login',
+      });
 
-      console.log(dataToSignUp);
-
-      const response = await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2${API_ROUTES.LOGIN}`, dataToSignUp);
-
-      console.log(response);
+      if (!result.error) {
+        router.push('/');
+      } else if (result?.status) {
+        setError('Wrong email or password or user does not exist')
+        setLoading(false)
+      }
 
     } catch (e) {
+      setLoading(false)
       if (e.response && e.response.data && e.response.data.message) {
         console.log(e.response.data.message);
         setError(e.response.data.message);
@@ -57,7 +65,7 @@ const LoginForm = () => {
         <input type="password" id="password" placeholder="Your password" {...register('password')} />
       </div>
       {customError && <p style={errorStyles}>{customError}</p>}
-      <button>Login</button>
+      <button>{isLoading ? `Loading...` : `Login`}</button>
     </form>
   )
 }
