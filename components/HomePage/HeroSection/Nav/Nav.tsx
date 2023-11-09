@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useState, FC, ReactNode } from 'react';
 import { useSession, signOut } from 'next-auth/react';
+import { Session } from 'next-auth';
 import Logo from '../../../../public/Logo.svg'
 import Burger from '../../../../public/hamburger.svg';
 import styles from './Nav.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
+import User from './User/User';
+import Menu from './AuthorizedMenu/Menu';
 
+interface Buttons {
+  data: Session | null,
+};
+
+interface Nav {
+  children: ReactNode,
+  settings: boolean,
+}
+ 
 const NavList = () => (
   <ul>
     <li className={styles.active}><a href='#' className={styles['nav-link']}>Home</a></li>
@@ -16,7 +28,27 @@ const NavList = () => (
   </ul>
   );
 
-const Nav = ({ children, settings }) => {
+const Buttons: FC<Buttons> = ({data}) => {
+  const [isOpen, setOpen] = useState(false)
+
+  return (
+    data ? 
+    <>
+      <div className={styles['icon-container']} onClick={() => setOpen(!isOpen)}>
+        <User />
+      </div>
+      {isOpen && <Menu />}
+    </>
+    : 
+    <div className={styles['login-buttons']}>
+      <Link href='/login' className={styles['nav-link']}>Login</Link>
+      <Link className={`${styles['signup-btn']} ${styles['nav-link']}`} href='/signup'>Signup</Link>
+    </div>
+    )
+  }
+
+
+const Nav: FC<Nav> = ({ children, settings }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -30,8 +62,6 @@ const Nav = ({ children, settings }) => {
     }, 200); // 200 миллисекунд - время анимации fadeOut
   };
 
-  console.log(settings)
-
   const navStyles = {
     height: settings ? 'initial' : 'auto',
   };
@@ -41,7 +71,7 @@ const Nav = ({ children, settings }) => {
   <header>
     <div className={styles["hero-section"]} style={navStyles}>
       <nav className={styles.navigation}>
-      <div>
+      <div className={styles.container}>
         <div className={styles.logo}>
           <Image src={Logo} alt='logo'/>
         </div>
@@ -50,10 +80,7 @@ const Nav = ({ children, settings }) => {
           <NavList />
         </div>
 
-        {data ? <button className={styles['login-buttons']} onClick={() => signOut()}>Sign Out</button> : <div className={styles['login-buttons']}>
-          <Link href='/login' className={styles['nav-link']}>Login</Link>
-          <Link className={`${styles['signup-btn']} ${styles['nav-link']}`} href='/signup'>Signup</Link>
-        </div>}
+        <Buttons data={data} />
 
         <div className={styles['burger-button']} onClick={toggleMenu}>
           <Image src={Burger} alt="menu" />

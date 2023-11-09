@@ -1,8 +1,13 @@
 import Nav from "./Nav/Nav";
 import Form from "./Form/Form";
 import styles from './HeroSection.module.scss';
+import { FC } from 'react';
 
-const HeroSection = ({ settings }: { settings: boolean }) => 
+interface Props {
+  settings: boolean,
+}
+
+const HeroSection: FC<Props> = ({ settings }) => 
   <Nav settings={settings}>
     {settings && <div className={styles["text-section"]}>
       <div className={styles.container}>

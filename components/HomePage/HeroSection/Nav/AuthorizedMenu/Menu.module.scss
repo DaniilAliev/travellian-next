@@ -1,0 +1,33 @@
+@import '../../../variables.scss';
+
+@include playfair;
+
+.menu {
+  position: absolute;
+  top: 110px;
+  padding: 40px;
+  border-radius: 26px;
+  background-color: $white-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  right: 32px;
+
+  h1 {
+    font-family: 'Playfair';
+    font-size: 40px;
+    padding-bottom: 20px;
+    font-weight: 500;
+  }
+
+  a {
+    text-decoration: none;
+    color: $black-color;
+    padding-bottom: 10px;
+  }
+
+  .logout {
+    padding-top: 10px;
+    color: red;
+  }
+}

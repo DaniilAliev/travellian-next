@@ -12,10 +12,10 @@ const login = async (credentials) => {
 
 	if ( response ) {
 		const user = { email: credentials.email,  authToken: response.data.authToken};
-		return Promise.resolve(user)
+		return user
 	}
 
-	return Promise.resolve(null);
+	return null;
 	} catch (error) {
 		console.log(error)
 		// throw Error(error)
