@@ -11,8 +11,8 @@ import { useRef } from 'react';
 import Image from 'next/image';
 
 const Experience = () => {
-  const swiperNextRef = useRef();
-  const swiperPrevRef = useRef();
+  const swiperNextRef: any = useRef();
+  const swiperPrevRef: any = useRef();
 
   return (
     <section>

@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, ReactNode, FC } from "react"
 import { stateContext } from "@/context"
 
-const ClientStateProvider = ({ children }) => {
-    const [isClient, setIsClient] = useState(false)
- 
-    useEffect(() => {
-      setIsClient(true)
-    }, [])
+interface ClientStateProviderProps {
+  children: ReactNode;
+};
 
-    return (
-        <stateContext.Provider value={isClient}>
-            {children}
-        </stateContext.Provider>
-    )
+const ClientStateProvider: FC<ClientStateProviderProps> = ({ children }) => {
+  const [isClient, setIsClient] = useState(false)
+ 
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  return (
+    <stateContext.Provider value={isClient}>
+      {children}
+    </stateContext.Provider>
+  )
 };
 
 export default ClientStateProvider

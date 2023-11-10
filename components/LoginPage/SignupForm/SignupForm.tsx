@@ -13,39 +13,44 @@ interface MyForm {
   confirm: string,
 }
 
+type SignInResult = {
+  error: string | null;
+  status: number;
+};
+
 const SignupForm = () => {
-  const [customError, setError] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const [customError, setError] = useState<null | string>(null);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const router = useRouter()
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<MyForm>({
     defaultValues: {},
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema) as any,
     mode: "onSubmit",
   })
 
-  const submit = async (data) => {
+  const submit = async (data: MyForm) => {
     console.log('submitted')
     try {
       setError(null);
       setLoading(true);
-  
-      const result = await signIn('credentials', {
+
+      const result: SignInResult = await signIn('credentials', {
         redirect: false,
         email: data.email,
         password: data.password,
         action: 'signup',
-      });
+      }) ?? { error: null, status: 0 };
 
       if (!result.error) {
         router.push('/');
-      } else if (result?.status) {
+      } else if (result.status) {
         console.log(result.error)
         setError(result.error);
         setLoading(false);
       }
-    } catch (e) {
+    } catch (e: any) {
       if (e.response && e.response.data && e.response.data.message) {
         console.log(e.response.data.message);
         setError(e.response.data.message);
@@ -79,7 +84,7 @@ const SignupForm = () => {
         <p style={errorStyles}>{errors.confirm?.message}</p>
       </div>
       {customError && <p style={errorStyles}>{customError}</p>}
-      <button type="submit">{ isLoading ? 'Loading...' : 'Signup'}</button>
+      <button type="submit">{isLoading ? 'Loading...' : 'Signup'}</button>
     </form>
   );
 }

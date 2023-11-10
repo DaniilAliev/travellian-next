@@ -12,8 +12,8 @@ import Image from 'next/image';
 import { useStateContext } from '@/context';
 
 const SpecialOffer = ({ isMobile } : {isMobile: boolean}) => {
-  const swiperNextRef = useRef();
-  const swiperPrevRef = useRef();
+  const swiperNextRef: any = useRef();
+  const swiperPrevRef: any = useRef();
 
   const isClient = useStateContext();
 

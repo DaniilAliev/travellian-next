@@ -1,9 +1,14 @@
+import { FC } from 'react';
 import styles from './ItemSpecialOffer.module.scss';
 import Star from '../../../../public/star.svg';
 import { SpecialOfferData } from '../data';
 import Image from 'next/image';
 
-const Item = ({ item } : { item: SpecialOfferData}) => {
+interface Item {
+  item: SpecialOfferData,
+}
+
+const Item: FC<Item> = ({ item }) => {
   return (
   <div className={styles.card}>
     <div className={styles['image-container']}>

@@ -1,8 +1,14 @@
+import { FC, ReactNode } from "react";
 import Footer from "../Footer/Footer"
 import HeroSection from "../HomePage/HeroSection/HeroSection";
-import styles from './Layout.module.scss'
+import styles from './Layout.module.scss';
 
-const Layout = ({ children, settings }) => {
+interface Layout {
+  children: ReactNode,
+  settings: boolean,
+}
+
+const Layout: FC<Layout> = ({ children, settings }) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>

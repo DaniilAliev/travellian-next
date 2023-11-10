@@ -5,14 +5,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
+import _ from 'lodash';
 import images from './images';
 import { useRef } from 'react';
 import { useStateContext } from '@/context';
 import Image from 'next/image';
 
 const DestinationGallery = ({ isMobile }: { isMobile: boolean }) => {
-  const swiperNextRef = useRef();
-  const swiperPrevRef = useRef();
+  const swiperNextRef: any = useRef();
+  const swiperPrevRef: any = useRef();
 
   const isClient = useStateContext();
 
@@ -54,7 +55,7 @@ const DestinationGallery = ({ isMobile }: { isMobile: boolean }) => {
           className={`${styles.mySwiper} ${styles["destination-gallery"]}`}
         >
           {images.map((image) => (
-            <SwiperSlide key={image} className={styles.slide}>
+            <SwiperSlide key={_.uniqueId()} className={styles.slide}>
               <div className={styles.image}>
                 <Image src={image} alt="" />
               </div>
@@ -64,7 +65,7 @@ const DestinationGallery = ({ isMobile }: { isMobile: boolean }) => {
         </div>}
       {isMobile && isClient && 
         images.map((image) => (
-          <div className={styles.image} key={image}>
+          <div className={styles.image} key={_.uniqueId()}>
             <Image src={image} alt="" />
           </div>
         ))

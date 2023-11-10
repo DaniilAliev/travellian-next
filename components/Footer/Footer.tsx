@@ -6,8 +6,13 @@ import Pinterest from '../../public/pinterest.svg';
 import Insta from '../../public/instagram.svg';
 import Twitter from '../../public/twitter.svg';
 import Image from 'next/image';
+import { FC } from 'react';
 
-const Footer = ({ settings }: { settings: boolean }) => {
+interface Footer {
+  settings: boolean,
+}
+
+const Footer: FC<Footer> = ({ settings }) => {
   return (
     <footer>
       {settings && <section>

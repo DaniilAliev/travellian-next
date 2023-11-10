@@ -10,27 +10,32 @@ interface MyForm {
   password: string,
 }
 
+type LoginResult = {
+  error: string | null;
+  status: number;
+};
+
 const LoginForm = () => {
   const router = useRouter();
 
-  const [customError, setError] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const [customError, setError] = useState<string | null>(null);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const { register, handleSubmit } = useForm<MyForm>({
     defaultValues: {},
   })
 
-  const submit = async (data) => {
+  const submit = async (data: MyForm) => {
     try {
       setError(null);
       setLoading(true);
 
-      const result = await signIn('credentials', {
+      const result: LoginResult = await signIn('credentials', {
         redirect: false,
         email: data.email,
         password: data.password,
         action: 'login',
-      });
+      }) ?? { error: null, status: 0 };
 
       if (!result.error) {
         router.push('/');
@@ -39,7 +44,7 @@ const LoginForm = () => {
         setLoading(false)
       }
 
-    } catch (e) {
+    } catch (e: any) {
       setLoading(false)
       if (e.response && e.response.data && e.response.data.message) {
         console.log(e.response.data.message);

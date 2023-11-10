@@ -19,7 +19,6 @@ const HomePage = () => {
   return (
     <ClientStateProvider>
       <div className="container">
-        {/* <HeroSection /> */}
         <Discover isMobile={isMobile}/>
         <SpecialOffer isMobile={isMobile}/>
         <OurBlog />

@@ -4,6 +4,6 @@ type ErrorStyles = {
 	fontSize: string,
 };
 
-const errorStyles: ErrorStyles = {color: 'red', width: '200px', fontSize: '14px'};
+const errorStyles: ErrorStyles = { color: 'red', width: '200px', fontSize: '14px' };
 
 export default errorStyles;

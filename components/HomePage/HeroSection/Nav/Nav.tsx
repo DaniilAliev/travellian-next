@@ -59,7 +59,7 @@ const Nav: FC<Nav> = ({ children, settings }) => {
     setTimeout(() => {
       setIsMenuOpen(!isMenuOpen);
       setIsClosing(false);
-    }, 200); // 200 миллисекунд - время анимации fadeOut
+    }, 200);
   };
 
   const navStyles = {

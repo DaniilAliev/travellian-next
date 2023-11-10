@@ -1,4 +1,4 @@
-type Option = {
+export type Option = {
   value: string;
   label: string;
 };
@@ -15,6 +15,13 @@ const options: Option[] = [
   { value: 'Barcelona', label: 'Barcelona'},
   { value: 'Budapest', label: 'Budapest'},
 ];
+
+export type Data = {
+  guestsNumber: string, 
+  destination: string, 
+  checkIn: Date, 
+  checkOut: Date,
+};
 
 const customStyles = {
   control: (provided: any, state: any) => ({
@@ -39,7 +46,7 @@ const customStyles = {
 
 export interface MyForm {
   destination: string,
-  guestsNumber: number,
+  guestsNumber: string,
   checkIn: any,
   checkOut:any,
 };

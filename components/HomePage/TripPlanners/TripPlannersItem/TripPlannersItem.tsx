@@ -1,10 +1,15 @@
 import styles from'./TripPlannersItem.module.scss';
 import Star from '../../../../public/star.svg';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { TripPlanners } from '../data';
 import Image from 'next/image';
 
-const Item = ({ item, isMobile }: {item: TripPlanners, isMobile: boolean}) => {
+interface Item {
+  item: TripPlanners, 
+  isMobile: boolean,
+}
+
+const Item: FC<Item> = ({ item, isMobile }) => {
   const [isHovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {

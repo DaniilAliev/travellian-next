@@ -2,8 +2,13 @@ import Image from 'next/image';
 import Star from '../../../../public/star.svg';
 import styles from './ExperienceItem.module.scss';
 import { ExperienseData } from '../experienseData';
+import { FC } from 'react';
 
-const ExperienseItem = ({ item }: { item: ExperienseData }) => 
+interface Item {
+  item: ExperienseData,
+}
+
+const ExperienseItem: FC<Item> = ({ item }) => 
   <div className={styles['slide-container']}>
     <Image src={item.avatar} alt={item.name} className={styles.avatar}/>
     <p>{item.review}

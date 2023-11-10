@@ -1,8 +1,13 @@
+import { FC } from 'react';
 import LoginForm from './LoginForm/LoginForm';
 import styles from './LoginPage.module.scss'
 import SignupForm from './SignupForm/SignupForm';
 
-const LoginPage = ({type}: {type: string}) => {
+interface LoginPage {
+  type: string,
+}
+
+const LoginPage: FC<LoginPage> = ({type}) => {
   return(
     <section>
       <div className={styles.container}>

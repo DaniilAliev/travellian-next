@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Select from 'react-select';
+import Select, { SingleValue } from 'react-select';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Button from '../Button/Button';
@@ -7,17 +7,18 @@ import styles from './Form.module.scss';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { orderActions } from '@/slices';
-import { MyForm, options, customStyles } from './settings';
+import { MyForm, options, customStyles, Option, Data } from './settings';
 
 const Form = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [leaveDate, setLeaveDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [leaveDate, setLeaveDate] = useState<Date | null>(new Date());
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   const dispatch = useDispatch();
 
-  const handleChange = (option) => {
+  const handleChange = (option: Option) => {
+    console.log(option)
     setSelectedOption(option);
   };
 
@@ -25,8 +26,7 @@ const Form = () => {
     defaultValues: {},
   })
 
-  const submit = (data) => {
-    console.log(data);
+  const submit = (data: Data) => {
     dispatch(orderActions.addOrder(data))
   }
 
@@ -42,11 +42,11 @@ const Form = () => {
                 name="destination"
                 render={({ field }) => (
                   <Select
-                    onChange={(option) => {
+                    onChange={(newValue: SingleValue<Option>) => {
+                      const option: Option | null = newValue as Option;
                       handleChange(option);
-                      field.onChange(option.value);
-                    }
-                    }
+                      field.onChange(option?.value);
+                    }}
                     options={options}
                     className={`${styles.input} ${styles.customSelect}`}
                     styles={customStyles}

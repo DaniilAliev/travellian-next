@@ -37,7 +37,7 @@ const Discover = ({ isMobile }: { isMobile: boolean }) => {
       </section>
 
       <section>
-        {isClient ? <div className={styles.swipers}>
+        {isClient && <div className={styles.swipers}>
           <Swiper
             slidesPerView='auto'
             spaceBetween={32}
@@ -55,7 +55,7 @@ const Discover = ({ isMobile }: { isMobile: boolean }) => {
               </SwiperSlide>))
             }
           </Swiper>
-        </div> : <></>}
+        </div>}
         
       </section>
 
