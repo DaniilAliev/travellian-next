@@ -4,9 +4,9 @@ export const orderAdapter = createEntityAdapter();
 
 type InitialState = {
 	destination: string | null,
-  guestsNumber: number| null,
-  checkIn: number | null,
-  checkOut: number | null,
+  guestsNumber: string | null,
+  checkIn: Date | null,
+  checkOut: Date | null,
 }
 
 const initialState: InitialState = {
@@ -31,5 +31,5 @@ const orderSlice = createSlice({
 });
 
 export const { actions } = orderSlice;
-export const selectors = orderAdapter.getSelectors((state) => state.order);
+export const selectors = orderAdapter.getSelectors((state: any ) => state.order);
 export default orderSlice.reducer;
