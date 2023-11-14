@@ -10,10 +10,13 @@ import specialOfferData, { SpecialOfferData } from './data';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useStateContext } from '@/context';
+import { useSelector } from 'react-redux';
 
-const SpecialOffer = ({ isMobile } : {isMobile: boolean}) => {
+const SpecialOffer = () => {
   const swiperNextRef: any = useRef();
   const swiperPrevRef: any = useRef();
+
+  const isMobile = useSelector((state: any) => state.general.isMobile);
 
   const isClient = useStateContext();
 

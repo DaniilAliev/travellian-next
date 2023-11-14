@@ -1,6 +1,8 @@
-import { useState, FC, ReactNode } from 'react';
-import { useSession, signOut } from 'next-auth/react';
+import { useState, FC, ReactNode, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 import { Session } from 'next-auth';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import Logo from '../../../../public/Logo.svg'
 import Burger from '../../../../public/hamburger.svg';
 import styles from './Nav.module.scss';
@@ -52,6 +54,12 @@ const Nav: FC<Nav> = ({ children, settings }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
+  const isMobile = useSelector((state: any) => state.general.isMobile);
+ 
+  const router = useRouter();
+
+  console.log(router.pathname)
+
   const {data} = useSession();
 
   const toggleMenu = () => {
@@ -66,6 +74,11 @@ const Nav: FC<Nav> = ({ children, settings }) => {
     height: settings ? 'initial' : 'auto',
   };
 
+  useEffect(() => {
+    if (router.pathname !== '/') {
+      setIsMenuOpen(false);
+    }
+  }, [router.pathname])
 
   return (
   <header>
@@ -80,7 +93,7 @@ const Nav: FC<Nav> = ({ children, settings }) => {
           <NavList />
         </div>
 
-        <Buttons data={data} />
+        {!isMobile && <Buttons data={data} />}
 
         <div className={styles['burger-button']} onClick={toggleMenu}>
           <Image src={Burger} alt="menu" />
@@ -97,6 +110,8 @@ const Nav: FC<Nav> = ({ children, settings }) => {
             <div className={styles.nav}>
               <NavList />
             </div>
+
+            {isMobile && <Buttons data={data} />}
           </div>
         )}
     </nav>

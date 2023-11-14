@@ -10,7 +10,7 @@ const Menu = () => {
   return (
     <div className={styles.menu}>
       <h1>{username}</h1>
-      <Link href='#'><p>My orders</p></Link>
+      <Link href='#'><p>My Orders</p></Link>
       <Link href='#'><p>My Favorites</p></Link>
       <p className={styles.logout} onClick={() => signOut()}>Logout</p>
     </div>

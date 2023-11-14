@@ -10,10 +10,13 @@ import images from './images';
 import { useRef } from 'react';
 import { useStateContext } from '@/context';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
-const DestinationGallery = ({ isMobile }: { isMobile: boolean }) => {
+const DestinationGallery = () => {
   const swiperNextRef: any = useRef();
   const swiperPrevRef: any = useRef();
+
+  const isMobile = useSelector((state: any) => state.general.isMobile);
 
   const isClient = useStateContext();
 

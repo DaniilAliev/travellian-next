@@ -1,19 +1,23 @@
 "use client"
 import { useEffect, useState } from "react";
+import { actions as generalActions } from "@/slices/generalSlice";
+import { useDispatch } from "react-redux";
 
 let mobileSize: number = 860;
 
-const useMobile = (): boolean => {
-    const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+const useMobile = () => {
+  const dispatch = useDispatch();
+
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
 
   useEffect(() => {
     const handleResize = (event: any) => {
       setWidth(event.target.innerWidth);
     };
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize);
   }, []);
 
-  return (width < mobileSize);
+  dispatch(generalActions.setMobile(width < mobileSize));
 };
 
 export default useMobile;

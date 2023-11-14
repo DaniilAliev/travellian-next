@@ -6,6 +6,7 @@ import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { useStateContext } from '@/context';
+import { useSelector } from 'react-redux';
 
 const SliderContainer = () => 
   <div className={styles['sliders-container']}>
@@ -33,7 +34,9 @@ const NoSwiperContainer = ({ isMobile }: { isMobile : boolean } ) =>
     </div>
   </section>;
 
-const TripPlanners = ({ isMobile }: { isMobile : boolean }) => {
+const TripPlanners = () => {
+
+  const isMobile = useSelector((state: any) => state.general.isMobile);
 
   const isClient = useStateContext();
 

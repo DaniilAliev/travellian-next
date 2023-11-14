@@ -10,20 +10,20 @@ import ClientStateProvider from "../clientStateProvider";
 import { useSession } from 'next-auth/react';
 
 const HomePage = () => {
-  let isMobile: boolean = useMobile();
-
   const { data } = useSession();
+
+  useMobile();
 
   console.log(data)
 
   return (
     <ClientStateProvider>
       <div className="container">
-        <Discover isMobile={isMobile}/>
-        <SpecialOffer isMobile={isMobile}/>
+        <Discover />
+        <SpecialOffer />
         <OurBlog />
-        <TripPlanners isMobile={isMobile}/>
-        <DestinationGallery isMobile={isMobile}/>
+        <TripPlanners />
+        <DestinationGallery />
         <Experience/>
       </div>
     </ClientStateProvider>

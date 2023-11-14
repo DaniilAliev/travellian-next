@@ -22,17 +22,16 @@
   }
 
   form {
-    margin-bottom: 270px;
     display: flex;
     .form-container {
       max-width: 1050px;
       width: 100%;
       background-color: $white-color;
       padding: 74px 100px 74px 0;
-      // padding-left: calc(152px - (0.3167px * (100vw - 1440px)));
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 225px));
       grid-gap: 40px;
+      margin-bottom: 270px;
       
 
       div {
