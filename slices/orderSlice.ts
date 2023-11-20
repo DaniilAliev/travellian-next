@@ -16,8 +16,8 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 const initialState: InitialState = {
   destination: 'Berlin',
   guestsNumber: '1',
-  checkIn: today.toISOString(),
-  checkOut: tomorrow.toISOString(),
+  checkIn: today,
+  checkOut: tomorrow,
 };
   
 const orderSlice = createSlice({

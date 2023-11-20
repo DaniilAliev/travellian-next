@@ -1,20 +1,32 @@
-import { useState } from 'react';
-import Select, { SingleValue } from 'react-select';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Button from '../Button/Button';
 import styles from './Form.module.scss';
 import { Controller, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { orderActions } from '@/slices';
 import { MyForm, options, customStyles, Option, Data } from './settings';
 import { useRouter } from 'next/dist/client/router';
+import { selectOrder } from '@/slices/orderSlice';
 
 const Form = () => {
+  const orderState = useSelector(selectOrder);
+
+  // const guests = orderState.guestsNumber;
+  // const checkIn = orderState.checkIn;
+  // const checkOut = orderState.checkOut;
+
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [leaveDate, setLeaveDate] = useState<Date | null>(new Date());
 
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+
+  // useEffect(() => {
+  //   setStartDate(checkIn);
+  //   setLeaveDate(checkOut);
+  // }, [])
 
   const dispatch = useDispatch();
 
@@ -46,7 +58,7 @@ const Form = () => {
                 name="destination"
                 render={({ field }) => (
                   <Select
-                    onChange={(newValue: SingleValue<Option>) => {
+                    onChange={(newValue) => {
                       const option: Option | null = newValue as Option;
                       handleChange(option);
                       field.onChange(option?.value);
