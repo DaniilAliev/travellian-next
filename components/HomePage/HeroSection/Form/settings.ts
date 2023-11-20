@@ -10,7 +10,6 @@ const options: Option[] = [
   { value: 'Lisbon', label: 'Lisbon'},
   { value: 'Athens', label: 'Athens'},
   { value: 'Rome', label: 'Rome'},
-  { value: 'Venice', label: 'Venice'},
   { value: 'Paris', label: 'Paris'},
   { value: 'Barcelona', label: 'Barcelona'},
   { value: 'Budapest', label: 'Budapest'},

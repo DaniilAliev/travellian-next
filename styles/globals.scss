@@ -15,7 +15,8 @@ section {
 	justify-content: center;
   align-items: center;
   height: 100%;
-	@include padding-32;
+	padding: 0 32px;
+
 }
 
 html,
@@ -34,6 +35,10 @@ p {
 }
 
 @media screen and (max-width: $mobile) {
+  section {
+    padding: 0 20px;
+  }
+
   p {
     font-size: 18px;
   }

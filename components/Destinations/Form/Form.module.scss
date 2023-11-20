@@ -1,0 +1,55 @@
+@import '../../HomePage/variables.scss';
+
+.destination-form {
+  background-color: $active-color;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 50px;
+  height: 490px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  div {
+    label {
+      p {
+        padding-bottom: 10px;
+        color: $white-color;
+      }
+    }
+
+    .customSelect {
+      z-index: 0;
+    }
+
+    select,
+    input {
+      width: 100%;
+      border: none;
+      height: 40px;
+      box-sizing: border-box;
+      padding-left: 10px;
+      font-size: 16px;
+      @include playfair;
+      font-family: 'Playfair';
+      font-weight: 500;
+    }
+
+    input {
+      &::placeholder {
+        font-size: 20px;
+      }
+    }
+  }
+
+  button {
+    border: none;
+    height: 50px;
+    font-size: 16px;
+    @include playfair;
+    cursor: pointer;
+    background-color: $card-color;
+    margin-top: 20px;
+  }
+}

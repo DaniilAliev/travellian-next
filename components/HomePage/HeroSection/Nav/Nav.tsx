@@ -10,6 +10,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import User from './User/User';
 import Menu from './AuthorizedMenu/Menu';
+import useMobile from '@/hooks/useMobile';
+import { useStateContext } from '@/context';
 
 interface Buttons {
   data: Session | null,
@@ -31,7 +33,7 @@ const NavList = () => (
   );
 
 const Buttons: FC<Buttons> = ({data}) => {
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setOpen] = useState(false);
 
   return (
     data ? 
@@ -53,6 +55,10 @@ const Buttons: FC<Buttons> = ({data}) => {
 const Nav: FC<Nav> = ({ children, settings }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
+  const isClient = useStateContext();
+
+  useMobile();
 
   const isMobile = useSelector((state: any) => state.general.isMobile);
  
@@ -80,7 +86,7 @@ const Nav: FC<Nav> = ({ children, settings }) => {
     }
   }, [router.pathname])
 
-  return (
+  return ( isClient &&
   <header>
     <div className={styles["hero-section"]} style={navStyles}>
       <nav className={styles.navigation}>

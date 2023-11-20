@@ -8,6 +8,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { orderActions } from '@/slices';
 import { MyForm, options, customStyles, Option, Data } from './settings';
+import { useRouter } from 'next/dist/client/router';
 
 const Form = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -16,6 +17,8 @@ const Form = () => {
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   const dispatch = useDispatch();
+
+  const router = useRouter();
 
   const handleChange = (option: Option) => {
     console.log(option)
@@ -27,7 +30,8 @@ const Form = () => {
   })
 
   const submit = (data: Data) => {
-    dispatch(orderActions.addOrder(data))
+    dispatch(orderActions.addOrder(data));
+    router.push('/destinations');
   }
 
   return (
@@ -53,7 +57,6 @@ const Form = () => {
                   />
                 )}
               />
-
             </div>
 
             <div>

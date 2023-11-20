@@ -5,15 +5,19 @@ export const orderAdapter = createEntityAdapter();
 type InitialState = {
 	destination: string | null,
   guestsNumber: string | null,
-  checkIn: Date | null,
-  checkOut: Date | null,
+  checkIn: any,
+  checkOut: any,
 }
 
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1);
+
 const initialState: InitialState = {
-  destination: null,
-  guestsNumber: null,
-  checkIn: null,
-  checkOut: null,
+  destination: 'Berlin',
+  guestsNumber: '1',
+  checkIn: today.toISOString(),
+  checkOut: tomorrow.toISOString(),
 };
   
 const orderSlice = createSlice({
@@ -31,5 +35,6 @@ const orderSlice = createSlice({
 });
 
 export const { actions } = orderSlice;
-export const selectors = orderAdapter.getSelectors((state: any ) => state.order);
+// export const selectors = orderAdapter.getSelectors((state: any ) => state.order);
+export const selectOrder = (state: any) => state.order;
 export default orderSlice.reducer;

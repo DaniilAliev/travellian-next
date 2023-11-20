@@ -22,7 +22,7 @@ const SliderContainer = () =>
         <Item item={item} isMobile={false}/>
       </SwiperSlide>
     ))}
-    </Swiper>;
+    </Swiper>
   </div>
   
 const NoSwiperContainer = ({ isMobile }: { isMobile : boolean } ) => 
@@ -32,7 +32,7 @@ const NoSwiperContainer = ({ isMobile }: { isMobile : boolean } ) =>
         <Item item={item} key={item.city} isMobile={isMobile}/>
     ))}
     </div>
-  </section>;
+  </section>
 
 const TripPlanners = () => {
 

@@ -90,6 +90,7 @@
       overflow: hidden;
       box-sizing: border-box;
       padding: 30px 32px;
+      z-index: 100;
 
       &.open {
         animation: fadeIn 0.2s ease forwards;
