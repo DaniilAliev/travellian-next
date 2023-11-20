@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { actions as otelsActions } from '@/slices/otelsSlice';
 import { selectors as otelsSelectors } from '@/slices/otelsSlice';
 
-type Hotel = {
+export type Hotel = {
   adress: string,
   city: string,
   created_at: number,
@@ -30,7 +30,7 @@ const Main = () => {
       const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations`);
       if (res.data) {
         console.log(true)
-        const filtered = res.data.filter((item) => item.city === orderState.destination);
+        const filtered = res.data.filter((item: Hotel) => item.city === orderState.destination);
         console.log(filtered);
         dispatch(otelsActions.addOtels(filtered));
       } 
@@ -39,7 +39,7 @@ const Main = () => {
     fetchData();
   }, [orderState, dispatch])
 
-  const hotels = useSelector(otelsSelectors.selectAll);
+  const hotels: Hotel[] = useSelector(otelsSelectors.selectAll) as Hotel[];
   console.log(hotels);
 
   return (
@@ -57,13 +57,10 @@ const Main = () => {
             </select>
           </div>
 
-          {hotels.map((hotel => (
+          {hotels.map(((hotel : Hotel) => (
             <Item key={hotel.id} hotel={hotel}/>
           )))}
 
-          {/* <Item />
-          <Item />
-          <Item /> */}
         </div>
       </div>
     </section>
