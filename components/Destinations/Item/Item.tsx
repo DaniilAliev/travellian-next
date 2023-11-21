@@ -4,39 +4,13 @@ import { FC } from 'react';
 import { Hotel as Item } from '../Main';
 import { useSelector } from 'react-redux';
 import { selectOrder } from '@/slices/orderSlice';
-import moment from 'moment';
-
-const getPrice = (guestsNumber: string, price: number, checkIn: string, checkOut: string ) : number => {
-  const guestsNumberNum = Number(guestsNumber);
-
-  console.log(typeof checkIn, checkOut)
-
-  const checkInDate = moment(checkIn, 'DD.MM.YYYY, HH:mm:ss');
-  const checkOutDate = moment(checkOut, 'DD.MM.YYYY, HH:mm:ss');
-  
-  const daysDiff = checkOutDate.diff(checkInDate, 'days');
-  console.log(daysDiff);
-
-  if (guestsNumberNum === 1) {
-    return price * daysDiff;
-  } else {
-    return (price / 2 * guestsNumberNum * daysDiff);
-  }
-}
+import getPrice from '../getPrice';
 
 const Item: FC<{ hotel: Item }> = ({ hotel }) => {
   const orderState = useSelector(selectOrder);
 
   const guests = orderState.guestsNumber;
-  const checkIn = orderState.checkIn;
-  const checkOut = orderState.checkOut;
-
-  const checkInDate = moment(checkIn, 'DD.MM.YYYY, HH:mm:ss');
-  const checkOutDate = moment(checkOut, 'DD.MM.YYYY, HH:mm:ss');
-  
-  const daysDiff = checkOutDate.diff(checkInDate, 'days');
-
-  // console.log(checkIn, checkOut)
+  const daysDiff = orderState.daysDiff;
 
   return (
     <div className={styles.card}>
@@ -56,7 +30,7 @@ const Item: FC<{ hotel: Item }> = ({ hotel }) => {
           </div>
           <div>
             <p className={styles.nights}>{`${daysDiff} nights, ${orderState.guestsNumber} adults`}</p>
-            <p><span>{`€${getPrice(guests, hotel.price, checkIn, checkOut)}`}</span></p>
+            <p><span>{`€${getPrice(guests, hotel.price, daysDiff)}`}</span></p>
             <button><p>See availability</p></button>
           </div>
         </div>

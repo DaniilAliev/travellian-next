@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { actions as otelsActions } from '@/slices/otelsSlice';
 import { selectors as otelsSelectors } from '@/slices/otelsSlice';
 import Select from 'react-select';
+import getPrice from './getPrice';
 
 export type Hotel = {
   adress: string,
@@ -24,20 +25,42 @@ export type Hotel = {
 
 const Main = () => {
   const orderState = useSelector(selectOrder);
+  const minPrice = orderState.minPrice;
+  const maxPrice = orderState.maxPrice;
+  const guests = orderState.guestsNumber;
+  const daysDiff = orderState.daysDiff;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations`);
       if (res.data) {
-        console.log(true)
         const filtered = res.data.filter((item: Hotel) => item.city === orderState.destination);
         dispatch(otelsActions.addOtels(filtered));
+
+        if (minPrice) {
+          const filteredByMinPrice = filtered.filter((item: Hotel) => getPrice(guests, item.price, daysDiff) > minPrice);
+          dispatch(otelsActions.addOtels(filteredByMinPrice));
+        }
+
+        if (maxPrice) {
+          const filteredByMaxPrice = filtered.filter((item: Hotel) => getPrice(guests, item.price, daysDiff)  < maxPrice);
+          dispatch(otelsActions.addOtels(filteredByMaxPrice));
+        }
+
+        if (minPrice && maxPrice) {
+          const filteredByPriceRange = filtered.filter((item: Hotel) => {
+            const price = getPrice(guests, item.price, daysDiff);
+            return price >= minPrice && price <= maxPrice;
+          });
+          dispatch(otelsActions.addOtels(filteredByPriceRange));
+        }
       } 
     }
 
     fetchData();
-  }, [orderState, dispatch])
+  }, [orderState, dispatch, minPrice, maxPrice, daysDiff, guests])
 
   const hotels: Hotel[] = useSelector(otelsSelectors.selectAll) as Hotel[];
 
@@ -90,7 +113,7 @@ const Main = () => {
               options={options}
               onChange={handleSortChange}
               placeholder="Select an option"
-              // isClearable={true}
+              isSearchable={false}
             />
           </div>
 

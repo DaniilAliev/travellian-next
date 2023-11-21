@@ -5,8 +5,9 @@ export const orderAdapter = createEntityAdapter();
 type InitialState = {
 	destination: string | null,
   guestsNumber: string | null,
-  checkIn: any,
-  checkOut: any,
+  daysDiff: number | null,
+  minPrice: number | null,
+  maxPrice: number | null,
 }
 
 const today = new Date();
@@ -16,21 +17,35 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 const initialState: InitialState = {
   destination: 'Berlin',
   guestsNumber: '1',
-  checkIn: today,
-  checkOut: tomorrow,
+  daysDiff: 1,
+  minPrice: null,
+  maxPrice: null,
 };
   
 const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-   addOrder: (state, { payload }) => ({
-    ...state,
-    destination: payload.destination,
-    guestsNumber: payload.guestsNumber,
-    checkIn: payload.checkIn,
-    checkOut: payload.checkOut,
-   })
+    addOrder: (state, { payload }) => ({
+      ...state,
+      destination: payload.destination,
+      guestsNumber: payload.guestsNumber,
+      daysDiff: payload.daysDiff,
+      minPrice: null,
+      maxPrice: null,
+    }),
+    changeCity: (state, { payload }) => ({
+      ...state, destination: payload,
+    }),
+    changeGuestNumber: (state, { payload }) => ({
+      ...state, guestsNumber: payload,
+    }),
+    setMinPrice: (state, { payload }) => ({
+      ...state, minPrice: payload,
+    }),
+    setMaxPrice: (state, { payload }) => ({
+      ...state, maxPrice: payload,
+    }),
   },
 });
 

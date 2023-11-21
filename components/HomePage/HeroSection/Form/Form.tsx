@@ -10,6 +10,7 @@ import { orderActions } from '@/slices';
 import { MyForm, options, customStyles, Option, Data } from './settings';
 import { useRouter } from 'next/dist/client/router';
 import { selectOrder } from '@/slices/orderSlice';
+import moment from 'moment';
 
 const Form = () => {
   const orderState = useSelector(selectOrder);
@@ -42,7 +43,18 @@ const Form = () => {
   })
 
   const submit = (data: Data) => {
-    dispatch(orderActions.addOrder(data));
+    const checkInDate = moment(data.checkIn, 'DD.MM.YYYY, HH:mm:ss');
+    const checkOutDate = moment(data.checkOut, 'DD.MM.YYYY, HH:mm:ss');
+    
+    const daysDiff = checkOutDate.diff(checkInDate, 'days');
+
+    const dataToDispatch = {
+      destination: data.destination,
+      guestsNumber: data.guestsNumber,
+      daysDiff,
+    }
+
+    dispatch(orderActions.addOrder(dataToDispatch));
     router.push('/destinations');
   }
 
