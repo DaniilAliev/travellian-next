@@ -3,8 +3,7 @@ import { selectOrder } from '@/slices/orderSlice';
 import { useSelector } from 'react-redux';
 import Form from './Form/Form';
 import Item from './Item/Item';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions as otelsActions } from '@/slices/otelsSlice';
 import { selectors as otelsSelectors } from '@/slices/otelsSlice';
@@ -23,20 +22,25 @@ export type Hotel = {
   rating: number,
 };
 
-const Main = () => {
+interface DestinationsProps {
+  response: Hotel[];
+}
+
+const Main: FC<DestinationsProps> = ({ response }) => {
   const orderState = useSelector(selectOrder);
   const minPrice = orderState.minPrice;
   const maxPrice = orderState.maxPrice;
   const guests = orderState.guestsNumber;
   const daysDiff = orderState.daysDiff;
 
+  console.log(response)
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations`);
-      if (res.data) {
-        const filtered = res.data.filter((item: Hotel) => item.city === orderState.destination);
+ 
+      if (response) {
+        const filtered = response.filter((item: Hotel) => item.city === orderState.destination);
         dispatch(otelsActions.addOtels(filtered));
 
         if (minPrice) {
@@ -45,7 +49,7 @@ const Main = () => {
         }
 
         if (maxPrice) {
-          const filteredByMaxPrice = filtered.filter((item: Hotel) => getPrice(guests, item.price, daysDiff)  < maxPrice);
+          const filteredByMaxPrice = filtered.filter((item: Hotel) => getPrice(guests, item.price, daysDiff) < maxPrice);
           dispatch(otelsActions.addOtels(filteredByMaxPrice));
         }
 
@@ -56,11 +60,10 @@ const Main = () => {
           });
           dispatch(otelsActions.addOtels(filteredByPriceRange));
         }
-      } 
+      
     }
 
-    fetchData();
-  }, [orderState, dispatch, minPrice, maxPrice, daysDiff, guests])
+  }, [orderState, dispatch, minPrice, maxPrice, daysDiff, guests, response])
 
   const hotels: Hotel[] = useSelector(otelsSelectors.selectAll) as Hotel[];
 
@@ -77,7 +80,7 @@ const Main = () => {
       sortHotels(hotels, selectedSortOrder);
     }
   };
-  
+
   const sortHotels = (hotels: Hotel[], sortOrder: string) => {
     let sorted: Hotel[];
     switch (sortOrder) {
@@ -117,8 +120,8 @@ const Main = () => {
             />
           </div>
 
-          {hotels.map(((hotel : Hotel) => (
-            <Item key={hotel.id} hotel={hotel}/>
+          {hotels.map(((hotel: Hotel) => (
+            <Item key={hotel.id} hotel={hotel} />
           )))}
         </div>
       </div>

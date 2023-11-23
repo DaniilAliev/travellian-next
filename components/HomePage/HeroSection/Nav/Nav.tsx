@@ -64,8 +64,6 @@ const Nav: FC<Nav> = ({ children, settings }) => {
  
   const router = useRouter();
 
-  console.log(router.pathname)
-
   const {data} = useSession();
 
   const toggleMenu = () => {

@@ -5,6 +5,7 @@ import { Hotel as Item } from '../Main';
 import { useSelector } from 'react-redux';
 import { selectOrder } from '@/slices/orderSlice';
 import getPrice from '../getPrice';
+import Link from 'next/link';
 
 const Item: FC<{ hotel: Item }> = ({ hotel }) => {
   const orderState = useSelector(selectOrder);
@@ -20,7 +21,7 @@ const Item: FC<{ hotel: Item }> = ({ hotel }) => {
 
       <div className={styles['info-container']}>
         <div className={styles.names}>
-          <a href=""><p>{hotel.name}</p></a>
+          <Link href={`/destinations/${hotel.id}`}><p>{hotel.name}</p></Link>
           <p className={styles.adress}>{hotel.adress}</p>
         </div>
 
@@ -31,7 +32,7 @@ const Item: FC<{ hotel: Item }> = ({ hotel }) => {
           <div>
             <p className={styles.nights}>{`${daysDiff} nights, ${orderState.guestsNumber} adults`}</p>
             <p><span>{`€${getPrice(guests, hotel.price, daysDiff)}`}</span></p>
-            <button><p>See availability</p></button>
+            <Link href={`/destinations/${hotel.id}`}><button><p>See availability</p></button></Link>
           </div>
         </div>
       </div>
