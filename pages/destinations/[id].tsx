@@ -15,21 +15,11 @@ type Hotel = {
 };
 
 export const getStaticPaths = async () => {
-	const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations`);
-  const response = res.data || [];
-
-	const paths = response.map((item: Hotel) => {
-		return {
-			params: {id: item.id.toString()}
-		}
-	})
-
-	return {
-		paths,
-		fallback: true,
-	}
-
-}
+  return {
+    paths: [],
+    fallback: true,
+  };
+};
 
 export const getStaticProps = async (context: any) => {
 	try {
@@ -41,7 +31,8 @@ export const getStaticProps = async (context: any) => {
 		return {
 			props: {
 				hotel
-			}
+			},
+			revalidate: 60, // Обновить данные каждые 60 секунд
 		}
 	} catch(e) {
 		console.log(e)
