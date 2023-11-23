@@ -32,15 +32,19 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context: any) => {
-	const id = context.params.id;
+	try {
+		const id = context.params.id;
 
-	const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations/${id}`);
-  const hotel = res.data || null;
+		const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations/${id}`);
+		const hotel = res.data || null;
 
-	return {
-		props: {
-			hotel
+		return {
+			props: {
+				hotel
+			}
 		}
+	} catch(e) {
+		console.log(e)
 	}
 }
 
