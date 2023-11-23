@@ -40,9 +40,10 @@ export const getStaticProps = async (context: any) => {
 }
 
 const Hotel: FC<{hotel: Hotel}> = ({hotel}) => {
-
-	// console.log(hotel)
-  return <HotelItem hotel={hotel} />
+	if (hotel) {
+		return <HotelItem hotel={hotel} />
+	};
+  return;
 }
 
 export default Hotel

@@ -19,7 +19,6 @@ interface DestinationsProps {
 }
 
 const Destinations: FC<DestinationsProps> = ({response}) => {
-  console.log(response)
   return (<Main response={response}/>)
 }
 
