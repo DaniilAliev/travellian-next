@@ -41,7 +41,7 @@ export const getStaticProps = async (context: any) => {
 
 const Hotel: FC<{hotel: Hotel}> = ({hotel}) => {
 
-	console.log(hotel)
+	// console.log(hotel)
   return <HotelItem hotel={hotel} />
 }
 
