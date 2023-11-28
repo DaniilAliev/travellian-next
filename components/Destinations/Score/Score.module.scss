@@ -1,0 +1,13 @@
+@import '../../HomePage/variables.scss'; 
+
+.score {
+  background-color: $score-color;
+  color: $white-color;
+  padding: 7px;
+  border-radius: 7px;
+  width: 35px;
+
+  .rating {
+    text-align: center !important;
+  }
+}

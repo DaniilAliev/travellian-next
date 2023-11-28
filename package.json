@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@pbe/react-yandex-maps": "^1.2.5",
+    "@react-google-maps/api": "^2.19.2",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.0",
     "lodash": "^4.17.21",
@@ -19,6 +21,7 @@
     "react": "^18",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18",
+    "react-google-maps": "^9.4.5",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.3",

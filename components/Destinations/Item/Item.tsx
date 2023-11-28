@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectOrder } from '@/slices/orderSlice';
 import getPrice from '../getPrice';
 import Link from 'next/link';
+import Score from '../Score/Score';
 
 const Item: FC<{ hotel: Item }> = ({ hotel }) => {
   const orderState = useSelector(selectOrder);
@@ -26,9 +27,7 @@ const Item: FC<{ hotel: Item }> = ({ hotel }) => {
         </div>
 
         <div className={styles.rating}>
-          <div className={styles.score}>
-            <p>{hotel.rating}</p>
-          </div>
+        <Score rating={hotel.rating} />
           <div>
             <p className={styles.nights}>{`${daysDiff} nights, ${orderState.guestsNumber} adults`}</p>
             <p><span>{`€${getPrice(guests, hotel.price, daysDiff)}`}</span></p>
@@ -36,7 +35,6 @@ const Item: FC<{ hotel: Item }> = ({ hotel }) => {
           </div>
         </div>
       </div>
-
     </div>
   )
 };

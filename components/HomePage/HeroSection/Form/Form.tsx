@@ -52,6 +52,8 @@ const Form = () => {
       destination: data.destination,
       guestsNumber: data.guestsNumber,
       daysDiff,
+      checkIn: checkInDate,
+      checkOut: checkOutDate,
     }
 
     dispatch(orderActions.addOrder(dataToDispatch));

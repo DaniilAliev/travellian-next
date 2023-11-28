@@ -41,7 +41,7 @@ const Buttons: FC<Buttons> = ({data}) => {
       <div className={styles['icon-container']} onClick={() => setOpen(!isOpen)}>
         <User />
       </div>
-      {isOpen && <Menu />}
+      {isOpen && <Menu setOpen={setOpen}/>}
     </>
     : 
     <div className={styles['login-buttons']}>

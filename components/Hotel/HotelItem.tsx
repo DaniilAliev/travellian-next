@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from './HotelItem.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import _ from "lodash";
@@ -11,6 +11,10 @@ import { selectOrder } from "@/slices/orderSlice";
 import getPrice from "../Destinations/getPrice";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Score from "../Destinations/Score/Score";
+import { useSession } from 'next-auth/react';
+// import MapComponent from "../Destinations/Map/Map";
+import Modal from "./Modal/Modal";
 
 type Hotel = {
   adress: string,
@@ -25,12 +29,24 @@ type Hotel = {
 };
 
 const HotelItem = () => {
+
+  const orderState = useSelector(selectOrder);
+
+  const guests = orderState.guestsNumber;
+  const daysDiff = orderState.daysDiff;
+  const checkIn = orderState.checkIn;
+  const checkOut = orderState.checkOut;
+
+  const {data} = useSession();
+
   const [hotel, setHotel] = useState<Hotel>();
-  const [idPage, setId] = useState();
+
+  const [modalState, setModalState] = useState<'opened' | 'closed'>('closed');
+
+  const [isOrderd, setIsOrdered] = useState<boolean>(false)
 
   const router = useRouter();
 
-  const pathname = router.pathname;
   const { id } = router.query;
 
   useEffect(() => {
@@ -45,15 +61,37 @@ const HotelItem = () => {
     }
    
 
-  }, [idPage, router.query, id])
+  }, [router.query, id]);
+
+  const handleClick = async () => {
+    console.log(data)
+    if (!data) {
+      setModalState('opened');
+    };
+
+    if (hotel) {
+      const dataToFetch = {
+        user: data?.user?.email,
+        name: hotel.name,
+        adress: hotel.adress,
+        price: getPrice(guests, hotel.price, daysDiff),
+        guests,
+        daysDiff,
+        checkIn: checkIn,
+        checkOut: checkOut,
+      }
+
+      const post = await axios.post('https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/order', dataToFetch);
+
+      if (post) {
+        setIsOrdered(true);
+      }
+    }
+    
+  }
 
   const swiperNextRef: any = useRef();
   const swiperPrevRef: any = useRef();
-
-  const orderState = useSelector(selectOrder);
-
-  const guests = orderState.guestsNumber;
-  const daysDiff = orderState.daysDiff;
 
   const buttons =
     <div className={styles.buttons}>
@@ -62,16 +100,21 @@ const HotelItem = () => {
     </div>;
 
   return ( hotel && 
+    <>
     <section>
       <div className={styles['hotel-container']}>
         <div className={styles.info}>
           <div>
-            <h1>{hotel?.name}</h1>
-            <p>{hotel?.adress}</p>
+            <h1>{hotel.name}</h1>
+            <p>{hotel.adress}</p>
           </div>
           <div className={styles['buttons-and-score']}>
-            <div className={styles.score}><p>{hotel?.rating}</p></div>
-            <button><p>Book now!</p></button>
+            <Score rating={hotel.rating} />
+            {
+              isOrderd ? 
+              <button disabled className={styles.booked}><p>Booked</p></button> : 
+              <button onClick={() => handleClick()}><p>Book now!</p></button>
+            }
           </div>
 
         </div>
@@ -84,7 +127,7 @@ const HotelItem = () => {
             swiperPrevRef.current = swiper;
           }}
         >
-          {hotel?.pictures.map(picture =>
+          {hotel.pictures.map(picture =>
             <SwiperSlide key={_.uniqueId()} className={styles.slide}>
               <Image src={picture} width={10000} height={10000} alt="Hotel imge" />
             </SwiperSlide>
@@ -95,12 +138,17 @@ const HotelItem = () => {
         </div>
         <p className={styles.description}>{hotel?.description}</p>
         <div className={styles['price-container']}>
-
           <p><span>{`Your price: €${getPrice(guests, hotel.price, daysDiff)}`}</span></p>
           <p className={styles.nights}>{`${daysDiff} nights, ${orderState.guestsNumber} adults`}</p>
         </div>
+        {/* <MapComponent address={hotel.adress}/> */}
       </div>
     </section>
+    {
+      <Modal setModalState={setModalState} modalState={modalState}/>
+    }
+    </>
+
   )
 }
 

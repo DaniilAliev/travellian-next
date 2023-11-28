@@ -8,6 +8,8 @@ type InitialState = {
   daysDiff: number | null,
   minPrice: number | null,
   maxPrice: number | null,
+  checkIn: any,
+  checkOut: any,
 }
 
 const today = new Date();
@@ -20,6 +22,8 @@ const initialState: InitialState = {
   daysDiff: 1,
   minPrice: null,
   maxPrice: null,
+  checkIn: today,
+  checkOut: tomorrow,
 };
   
 const orderSlice = createSlice({
@@ -33,6 +37,8 @@ const orderSlice = createSlice({
       daysDiff: payload.daysDiff,
       minPrice: null,
       maxPrice: null,
+      checkIn: payload.checkIn._i,
+      checkOut: payload.checkOut._i,
     }),
     changeCity: (state, { payload }) => ({
       ...state, destination: payload,

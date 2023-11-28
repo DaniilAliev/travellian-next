@@ -41,6 +41,14 @@
         }
       }
 
+      .booked {
+        background-color: gray;
+        
+        &:hover {
+          background-color: gray;
+          cursor: default;
+        }
+      }
       .score {
         background-color: $score-color;
         color: $white-color;

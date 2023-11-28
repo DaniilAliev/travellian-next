@@ -33,8 +33,6 @@ const Main: FC<DestinationsProps> = ({ response }) => {
   const guests = orderState.guestsNumber;
   const daysDiff = orderState.daysDiff;
 
-  // console.log(response)
-
   const dispatch = useDispatch();
 
   useEffect(() => {

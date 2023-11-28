@@ -43,7 +43,7 @@ const authOptions = {
   //   async session(session, token) {
   //     // Сохраняем email пользователя в сессии
   //     if (token && token.email) {
-  //       session.user.email = token.email;
+  //       session.user = token.email;
   //     }
   //     return session;
   //   },
