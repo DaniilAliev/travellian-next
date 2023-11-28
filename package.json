@@ -11,7 +11,6 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
     "@pbe/react-yandex-maps": "^1.2.5",
-    "@react-google-maps/api": "^2.19.2",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.0",
     "lodash": "^4.17.21",
