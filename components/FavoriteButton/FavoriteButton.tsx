@@ -80,11 +80,13 @@ const FavoriteButton: FC<ItemProps>= ({ hotel, data }) => {
   }
 
   return (
-    <div style={styles} onClick={handleClick}>
-      <IconContext.Provider value={{ size: '30' }}>
-        {isLiked ? <FcLike /> : <FcLikePlaceholder />}
-      </IconContext.Provider>
-    </div>
+    <>
+      {data?.user?.email && <div style={styles} onClick={handleClick}>
+        <IconContext.Provider value={{ size: '30' }}>
+          {isLiked ? <FcLike /> : <FcLikePlaceholder />}
+        </IconContext.Provider>
+      </div>}
+    </>
   )
 }
 
