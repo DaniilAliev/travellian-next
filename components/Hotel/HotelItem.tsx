@@ -15,17 +15,23 @@ import Score from "../Destinations/Score/Score";
 import { useSession } from 'next-auth/react';
 // import MapComponent from "../Destinations/Map/Map";
 import Modal from "./Modal/Modal";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
-type Hotel = {
+type HotelFavInfo = {
+  user: string,
+  name: string,
+  hotelId: number,
   adress: string,
+  rating: number,
+}
+
+export type Hotel = HotelFavInfo & {
   city: string,
   created_at: number,
   description: string,
   id: number,
-  name: string,
   pictures: string[],
   price: number,
-  rating: number,
 };
 
 const HotelItem = () => {
@@ -109,7 +115,11 @@ const HotelItem = () => {
             <p>{hotel.adress}</p>
           </div>
           <div className={styles['buttons-and-score']}>
-            <Score rating={hotel.rating} />
+            <div className={styles['fav-and-score']}>
+              <Score rating={hotel.rating} />
+              <FavoriteButton hotel={hotel} data={data}/>
+            </div>
+            
             {
               isOrderd ? 
               <button disabled className={styles.booked}><p>Booked</p></button> : 

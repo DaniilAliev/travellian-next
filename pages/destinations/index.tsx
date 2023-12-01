@@ -12,6 +12,8 @@ type Hotel = {
   pictures: string[],
   price: number,
   rating: number,
+  user: string,
+  hotelId: number,
 };
 
 interface DestinationsProps {

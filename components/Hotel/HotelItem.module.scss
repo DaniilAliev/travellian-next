@@ -25,6 +25,12 @@
       align-items: end;
       gap: 20px;
 
+      .fav-and-score {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
       button {
         background-color: $blue-color;
         border: none;

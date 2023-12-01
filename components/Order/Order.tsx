@@ -39,9 +39,6 @@ const Order = () => {
           console.log(e)
         }
       } 
-      // else {
-      //   router.push('/');
-      // }
     };
 
     fetchData()

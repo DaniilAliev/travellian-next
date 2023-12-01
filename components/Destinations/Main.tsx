@@ -6,20 +6,29 @@ import Item from './Item/Item';
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions as otelsActions } from '@/slices/otelsSlice';
+import { actions as favActions, selectors } from '@/slices/favouriteSlice';
 import { selectors as otelsSelectors } from '@/slices/otelsSlice';
+import { useSession } from 'next-auth/react';
+import { Session } from 'next-auth';
 import Select from 'react-select';
 import getPrice from './getPrice';
+import axios from 'axios';
 
-export type Hotel = {
+type HotelFavInfo = {
+  user: string,
+  name: string,
+  hotelId: number,
   adress: string,
+  rating: number,
+}
+
+export type Hotel = HotelFavInfo & {
   city: string,
   created_at: number,
   description: string,
   id: number,
-  name: string,
   pictures: string[],
   price: number,
-  rating: number,
 };
 
 interface DestinationsProps {
@@ -33,9 +42,21 @@ const Main: FC<DestinationsProps> = ({ response }) => {
   const guests = orderState.guestsNumber;
   const daysDiff = orderState.daysDiff;
 
+  const favState = useSelector(selectors.selectAll)
+
   const dispatch = useDispatch();
 
+  const {data} = useSession();
+
   useEffect(() => {
+
+    const fetchFav = async () => {
+      const resFav = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/favourite`);
+      const filtered = resFav.data.filter((item: HotelFavInfo) => item.user === data?.user?.email)
+      dispatch(favActions.addFavs(filtered));
+    }
+
+    fetchFav();
  
       if (response) {
         const filtered = response.filter((item: Hotel) => item.city === orderState.destination);
@@ -61,7 +82,7 @@ const Main: FC<DestinationsProps> = ({ response }) => {
       
     }
 
-  }, [orderState, dispatch, minPrice, maxPrice, daysDiff, guests, response])
+  }, [orderState, dispatch, minPrice, maxPrice, daysDiff, guests, response, data?.user?.email])
 
   const hotels: Hotel[] = useSelector(otelsSelectors.selectAll) as Hotel[];
 
@@ -119,7 +140,7 @@ const Main: FC<DestinationsProps> = ({ response }) => {
           </div>
 
           {hotels.map(((hotel: Hotel) => (
-            <Item key={hotel.id} hotel={hotel} />
+            <Item key={hotel.id} hotel={hotel} data={data}/>
           )))}
         </div>
       </div>

@@ -4,11 +4,19 @@ import { FC } from 'react';
 import { Hotel as Item } from '../Main';
 import { useSelector } from 'react-redux';
 import { selectOrder } from '@/slices/orderSlice';
+import { Session } from 'next-auth';
 import getPrice from '../getPrice';
 import Link from 'next/link';
 import Score from '../Score/Score';
+import FavoriteButton from '@/components/FavoriteButton/FavoriteButton';
 
-const Item: FC<{ hotel: Item }> = ({ hotel }) => {
+
+interface ItemProps {
+  hotel: Item;
+  data: Session | null;
+};
+
+const Item: FC<ItemProps> = ({ hotel, data }) => {
   const orderState = useSelector(selectOrder);
 
   const guests = orderState.guestsNumber;
@@ -28,6 +36,7 @@ const Item: FC<{ hotel: Item }> = ({ hotel }) => {
 
         <div className={styles.rating}>
         <Score rating={hotel.rating} />
+        <FavoriteButton hotel={hotel} data={data}/>
           <div>
             <p className={styles.nights}>{`${daysDiff} nights, ${orderState.guestsNumber} adults`}</p>
             <p><span>{`€${getPrice(guests, hotel.price, daysDiff)}`}</span></p>
