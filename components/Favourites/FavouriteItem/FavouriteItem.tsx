@@ -18,21 +18,23 @@ const FavouriteItem:FC<{ fav: Fav, data: Session | null }> = ({fav, data}) => {
 
   return (
     <div className={styles.favourite}>
-      <div className={styles['flex-container']}>
-        <div>
-          <h1><Link href={`/destinations/${fav.hotelId}`}>{fav.name}</Link></h1>
-          <p>{fav.adress}</p>
+      <div className={styles.container}>
+        <div className={styles['flex-container']}>
+          <div>
+            <h1><Link href={`/destinations/${fav.hotelId}`}>{fav.name}</Link></h1>
+            <p>{fav.adress}</p>
+          </div>
+          <div>
+            <Score rating={fav.rating}/>
+          </div>
         </div>
-        <div>
-          <Score rating={fav.rating}/>
-        </div>
+        {!isDeleted ? <div className={styles.delete}>
+          <button onClick={handleClick}><p>Delete</p></button>
+        </div> : 
+        <div className={styles.deleted}>
+          <button><p>Deleted</p></button>
+        </div>}
       </div>
-      {!isDeleted ? <div className={styles.delete}>
-        <button onClick={handleClick}><p>Delete</p></button>
-      </div> : 
-      <div className={styles.deleted}>
-        <button><p>Deleted</p></button>
-      </div>}
     </div>
   )
 }

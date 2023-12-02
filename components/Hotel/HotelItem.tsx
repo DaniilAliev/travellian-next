@@ -73,27 +73,26 @@ const HotelItem = () => {
     console.log(data)
     if (!data) {
       setModalState('opened');
-    };
-
-    if (hotel) {
-      const dataToFetch = {
-        user: data?.user?.email,
-        name: hotel.name,
-        adress: hotel.adress,
-        price: getPrice(guests, hotel.price, daysDiff),
-        guests,
-        daysDiff,
-        checkIn: checkIn,
-        checkOut: checkOut,
-      }
-
-      const post = await axios.post('https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/order', dataToFetch);
-
-      if (post) {
-        setIsOrdered(true);
-      }
+    } else {
+      if (hotel) {
+        const dataToFetch = {
+          user: data?.user?.email,
+          name: hotel.name,
+          adress: hotel.adress,
+          price: getPrice(guests, hotel.price, daysDiff),
+          guests,
+          daysDiff,
+          checkIn: checkIn,
+          checkOut: checkOut,
+        }
+  
+        const post = await axios.post('https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/order', dataToFetch);
+  
+        if (post) {
+          setIsOrdered(true);
+        }
+      };
     }
-    
   }
 
   const swiperNextRef: any = useRef();

@@ -2,79 +2,81 @@
 
 .favourite {
   margin: 20px 0;
-  padding: 0 32px;
   border-radius: 16px;
-  padding: 20px;
+  padding: 20px 0;
   border: 1px #d1d3e0 solid;
   box-shadow: 0px 0px 2px 0px rgb(0.26, 0.29, 0.42);
   @include rubik;
   max-width: 600px;
   width: 100%;
 
-  .flex-container {
-    display: flex;
-    justify-content: space-between;
-    h1 {
-        padding-bottom: 20px;
-        a {
-          font-family: 'Rubik';
-          font-size: 32px;
-          font-weight: 600;
-          text-decoration: none;
-          color: $blue-color;
-          
-          &:hover {
-            color: black;
+  .container {
+    padding: 0 20px;
+    .flex-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      
+      h1 {
+          padding-bottom: 20px;
+          a {
+            font-family: 'Rubik';
+            font-size: 32px;
+            font-weight: 600;
+            text-decoration: none;
+            color: $blue-color;
+            
+            &:hover {
+              color: black;
+            }
           }
         }
-      }
-    
-      p {
-        padding-bottom: 10px;
-        font-size: 16px;
-      }
-  }
-
-  
-
-  .delete {
-    display: flex;
-    justify-content: end;
-
-    button {
-      padding: 10px 20px;
-      border-radius: 10px;
-      border: none;
-      transition: 0.2s;
-      background-color: $blue-color;
-
-      &:hover {
-        background-color: red;
-        transition: 0.2s;
-        cursor: pointer;
-      }
       
-      p {
-        padding: 0;
-        color: $white-color;
+        p {
+          padding-bottom: 10px;
+          font-size: 16px;
+        }
+    }
+  
+    .delete {
+      display: flex;
+      justify-content: end;
+  
+      button {
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        transition: 0.2s;
+        background-color: $blue-color;
+  
+        &:hover {
+          background-color: red;
+          transition: 0.2s;
+          cursor: pointer;
+        }
+        
+        p {
+          padding: 0;
+          color: $white-color;
+        }
       }
     }
-  }
-
-  .deleted {
-    display: flex;
-    justify-content: end;
-
-    button {
-      padding: 10px 20px;
-      border-radius: 10px;
-      border: none;
-      transition: 0.2s;
-      background-color: gray;
-      
-      p {
-        padding: 0;
-        color: $white-color;
+  
+    .deleted {
+      display: flex;
+      justify-content: end;
+  
+      button {
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        transition: 0.2s;
+        background-color: gray;
+        
+        p {
+          padding: 0;
+          color: $white-color;
+        }
       }
     }
   }

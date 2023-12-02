@@ -26,6 +26,8 @@ const Order = () => {
 
   const [orders, setOrders] = useState([]);
 
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
+
   useEffect(() => {
     async function fetchData() {
       if (email) {
@@ -35,6 +37,7 @@ const Order = () => {
           const filtered = res.data.filter((item: HotelOrder) => item.user === email)
           console.log(filtered);
           setOrders(filtered);
+          setIsLoaded(true)
         } catch (e) {
           console.log(e)
         }
@@ -48,8 +51,8 @@ const Order = () => {
     <section>
       <div className={styles.orders}>
         <h1 className={styles.header}>Your orders:</h1>
-        {orders.length === 0 ? <p className={styles['no-orders']}>You have no orders yet</p> : orders.map((order: HotelOrder) => (
-          <OrderItem key={order.id} order={order} />
+        {isLoaded && orders.length === 0 ? <p className={styles['no-orders']}>You have no orders yet</p> : orders.map((order: HotelOrder) => (
+          <OrderItem key={order.id} order={order} isLoaded={isLoaded}/>
         ))}
       </div>
     </section>

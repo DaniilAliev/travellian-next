@@ -14,10 +14,12 @@
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.9);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
 
   &.active {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+    pointer-events: all;
   }
 
   p {

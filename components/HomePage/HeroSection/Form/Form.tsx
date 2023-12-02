@@ -15,19 +15,12 @@ import moment from 'moment';
 const Form = () => {
   const orderState = useSelector(selectOrder);
 
-  // const guests = orderState.guestsNumber;
-  // const checkIn = orderState.checkIn;
-  // const checkOut = orderState.checkOut;
-
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [leaveDate, setLeaveDate] = useState<Date | null>(new Date());
 
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false)
 
-  // useEffect(() => {
-  //   setStartDate(checkIn);
-  //   setLeaveDate(checkOut);
-  // }, [])
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   const dispatch = useDispatch();
 
@@ -43,6 +36,7 @@ const Form = () => {
   })
 
   const submit = (data: Data) => {
+    setIsSubmit(true)
     const checkInDate = moment(data.checkIn, 'DD.MM.YYYY, HH:mm:ss');
     const checkOutDate = moment(data.checkOut, 'DD.MM.YYYY, HH:mm:ss');
     
@@ -136,7 +130,7 @@ const Form = () => {
             </div>
           </div>
 
-          <Button />
+          <Button isSubmit={isSubmit}/>
         </form>
       </div>
     </div>
