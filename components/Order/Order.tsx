@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import OrderItem from "./OrderItem/OrderItem";
 import styles from './Order.module.scss';
 import { useRouter } from 'next/dist/client/router';
+import CustomSkeleton from "../CustomSkeleton/CustomSkeleton";
 
 export type HotelOrder = {
   id: number,
@@ -51,9 +52,10 @@ const Order = () => {
     <section>
       <div className={styles.orders}>
         <h1 className={styles.header}>Your orders:</h1>
-        {isLoaded && orders.length === 0 ? <p className={styles['no-orders']}>You have no orders yet</p> : orders.map((order: HotelOrder) => (
-          <OrderItem key={order.id} order={order} isLoaded={isLoaded}/>
-        ))}
+        {isLoaded ? (orders.length === 0 ? <p className={styles['no-orders']}>You have no orders yet</p> : orders.map((order: HotelOrder) => (
+          <OrderItem key={order.id} order={order}/>
+        ))) : <CustomSkeleton />
+        }
       </div>
     </section>
   )

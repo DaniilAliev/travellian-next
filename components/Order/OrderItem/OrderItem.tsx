@@ -3,16 +3,13 @@ import { HotelOrder } from "../Order";
 import styles from './OrderItem.module.scss';
 import axios from "axios";
 import Link from 'next/link';
-// import {Card, Skeleton} from "@nextui-org/react";
-import { Skeleton } from "@/components/ui/skeleton"
 
 
 interface OrderItem {
   order: HotelOrder,
-  isLoaded: boolean,
 }
 
-const OrderItem: FC<OrderItem>= ({ order, isLoaded }) => {
+const OrderItem: FC<OrderItem> = ({ order }) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(false)
   console.log(order);
 
@@ -24,31 +21,7 @@ const OrderItem: FC<OrderItem>= ({ order, isLoaded }) => {
   return (
     <div className={styles.order}>
       <div className={styles.container}>
-        {
-          isLoaded ? 
-          <>
-            <h1><Link href={`/destinations/${order.id}`}>{order.name}</Link></h1>
-            <p>{order.adress}</p>
-            <p>{`${order.guests} guests, ${order.daysDiff} nights`}</p>
-            <div className={styles['dates-and-price']}>
-              <div>
-                <p>{`Check In: ${order.checkIn.split(',')[0]}`}</p>
-                <p>{`Check Out: ${order.checkOut.split(',')[0]}`}</p>
-              </div>
-              <p className={styles.price}>{`€${order.price}`}</p>
-            </div>
-            {!isDeleted ? <div className={styles.delete}>
-              <button onClick={handleClick}><p>Delete</p></button>
-            </div> : 
-            <div className={styles.deleted}>
-              <button><p>Deleted</p></button>
-            </div>}
-          </> : 
-          <>
-            <Skeleton />
-          </>
-        }
-        {/* <h1><Link href={`/destinations/${order.id}`}>{order.name}</Link></h1>
+        <h1><Link href={`/destinations/${order.id}`}>{order.name}</Link></h1>
         <p>{order.adress}</p>
         <p>{`${order.guests} guests, ${order.daysDiff} nights`}</p>
         <div className={styles['dates-and-price']}>
@@ -60,12 +33,11 @@ const OrderItem: FC<OrderItem>= ({ order, isLoaded }) => {
         </div>
         {!isDeleted ? <div className={styles.delete}>
           <button onClick={handleClick}><p>Delete</p></button>
-        </div> : 
-        <div className={styles.deleted}>
-          <button><p>Deleted</p></button>
-        </div>} */}
+        </div> :
+          <div className={styles.deleted}>
+            <button><p>Deleted</p></button>
+          </div>}
       </div>
-      
     </div>
   )
 }
