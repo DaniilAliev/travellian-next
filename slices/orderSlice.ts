@@ -1,4 +1,5 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import moment from 'moment';
 
 export const orderAdapter = createEntityAdapter();
 
@@ -13,17 +14,19 @@ type InitialState = {
 }
 
 const today = new Date();
+const todayMoment = moment(today, 'DD.MM.YYYY, HH:mm:ss');
 const tomorrow = new Date(today);
 tomorrow.setDate(tomorrow.getDate() + 1);
+const tomorrowMoment = moment(tomorrow, 'DD.MM.YYYY, HH:mm:ss');
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
   destination: 'Berlin',
   guestsNumber: '1',
   daysDiff: 1,
   minPrice: null,
   maxPrice: null,
-  checkIn: today,
-  checkOut: tomorrow,
+  checkIn: todayMoment,
+  checkOut: tomorrowMoment,
 };
   
 const orderSlice = createSlice({

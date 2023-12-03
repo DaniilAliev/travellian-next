@@ -87,6 +87,7 @@ const HotelItem = () => {
           daysDiff,
           checkIn: checkIn,
           checkOut: checkOut,
+          hotelId: hotel.id,
         }
   
         const post = await axios.post('https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/order', dataToFetch);

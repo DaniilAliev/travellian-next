@@ -8,6 +8,7 @@ import CustomSkeleton from "../CustomSkeleton/Orders/CustomSkeleton";
 
 export type HotelOrder = {
   id: number,
+  hotelId: number,
   created_at: number,
   user: string,
   name: string,

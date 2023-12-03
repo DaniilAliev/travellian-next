@@ -21,7 +21,7 @@ const OrderItem: FC<OrderItem> = ({ order }) => {
   return (
     <div className={styles.order}>
       <div className={styles.container}>
-        <h1><Link href={`/destinations/${order.id}`}>{order.name}</Link></h1>
+        <h1><Link href={`/destinations/${order.hotelId}`}>{order.name}</Link></h1>
         <p>{order.adress}</p>
         <p>{`${order.guests} guests, ${order.daysDiff} nights`}</p>
         <div className={styles['dates-and-price']}>

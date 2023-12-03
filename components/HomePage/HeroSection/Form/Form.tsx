@@ -10,13 +10,14 @@ import { orderActions } from '@/slices';
 import { MyForm, options, customStyles, Option, Data } from './settings';
 import { useRouter } from 'next/dist/client/router';
 import { selectOrder } from '@/slices/orderSlice';
+import { initialState } from '@/slices/orderSlice';
 import moment from 'moment';
 
 const Form = () => {
   const orderState = useSelector(selectOrder);
 
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [leaveDate, setLeaveDate] = useState<Date | null>(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(new Date(initialState.checkIn));
+  const [leaveDate, setLeaveDate] = useState<Date | null>(new Date(initialState.checkOut));
 
   const [isSubmit, setIsSubmit] = useState<boolean>(false)
 
@@ -37,17 +38,25 @@ const Form = () => {
 
   const submit = (data: Data) => {
     setIsSubmit(true)
-    const checkInDate = moment(data.checkIn, 'DD.MM.YYYY, HH:mm:ss');
-    const checkOutDate = moment(data.checkOut, 'DD.MM.YYYY, HH:mm:ss');
+
+    const destination = data.destination ? data.destination : orderState.destination;
     
-    const daysDiff = checkOutDate.diff(checkInDate, 'days');
+    const checkInDate = data.checkIn ? data.checkIn : orderState.checkIn;
+    
+    const checkOutDate = data.checkOut ? data.checkOut : orderState.checkOut;
+    
+
+    const checkInDateMoment = moment(checkInDate, 'DD.MM.YYYY, HH:mm:ss');
+    const checkOutDateMoment = moment(checkOutDate, 'DD.MM.YYYY, HH:mm:ss');
+    
+    const daysDiff = checkOutDateMoment.diff(checkInDateMoment, 'days');
 
     const dataToDispatch = {
-      destination: data.destination,
+      destination,
       guestsNumber: data.guestsNumber,
       daysDiff,
-      checkIn: checkInDate,
-      checkOut: checkOutDate,
+      checkIn: checkInDateMoment,
+      checkOut: checkOutDateMoment,
     }
 
     dispatch(orderActions.addOrder(dataToDispatch));
@@ -74,6 +83,7 @@ const Form = () => {
                     options={options}
                     className={`${styles.input} ${styles.customSelect}`}
                     styles={customStyles}
+                    defaultInputValue={options[0].value}
                   />
                 )}
               />
