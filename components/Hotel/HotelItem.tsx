@@ -16,6 +16,7 @@ import { useSession } from 'next-auth/react';
 // import MapComponent from "../Destinations/Map/Map";
 import Modal from "./Modal/Modal";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import HotelSkeleton from "../CustomSkeleton/Hotel/HotelSkeleton";
 
 type HotelFavInfo = {
   user: string,
@@ -46,6 +47,7 @@ const HotelItem = () => {
   const {data} = useSession();
 
   const [hotel, setHotel] = useState<Hotel>();
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
   const [modalState, setModalState] = useState<'opened' | 'closed'>('closed');
 
@@ -61,6 +63,7 @@ const HotelItem = () => {
         const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations/${id}`);
         console.log(res.data)
         setHotel(res.data)
+        setIsLoaded(true)
       }
   
       fetchData()
@@ -104,7 +107,7 @@ const HotelItem = () => {
       <button className={styles.nextBtn} onClick={() => swiperNextRef.current.slideNext()}><Image src={nextButton} alt="next" /></button>
     </div>;
 
-  return ( hotel && 
+  return ( isLoaded ? (hotel && 
     <>
     <section>
       <div className={styles['hotel-container']}>
@@ -156,8 +159,7 @@ const HotelItem = () => {
     {
       <Modal setModalState={setModalState} modalState={modalState}/>
     }
-    </>
-
+    </>) : <HotelSkeleton />
   )
 }
 

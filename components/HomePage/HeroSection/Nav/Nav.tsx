@@ -90,7 +90,9 @@ const Nav: FC<Nav> = ({ children, settings }) => {
       <nav className={styles.navigation}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <Image src={Logo} alt='logo'/>
+          <Link href='/'>
+            <Image src={Logo} alt='logo'/>
+          </Link>
         </div>
 
         <div className={styles['nav-bar']}>

@@ -1,4 +1,4 @@
-import styles from './CustomSkeleton.module.scss'
+import styles from './CustomSkeleton.module.scss';
 import Skeleton from '@mui/material/Skeleton';
 
 const CustomSkeleton = () => {
@@ -20,7 +20,6 @@ const CustomSkeleton = () => {
 				<div style={{'maxWidth' : 220, 'paddingTop': 10}}>
 					<Skeleton variant="rounded"  height={15}/>
 				</div>
-
 			</div>
 		</div>
 	)
