@@ -2,6 +2,7 @@ import axios from "axios";
 import API_ROUTES from "../../../routes/apiRoutes";
 
 const login = async (credentials) => {
+
   const dataToLogin = {
 		email: credentials.email,
 		password: credentials.password,

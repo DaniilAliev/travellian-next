@@ -4,6 +4,8 @@ import { useState } from 'react';
 import errorStyles from '../errorStyles';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/dist/client/router';
+import { useDispatch } from 'react-redux';
+import { actions } from '@/slices/generalSlice';
 
 interface MyForm {
   email: string,
@@ -36,6 +38,8 @@ const LoginForm = () => {
         password: data.password,
         action: 'login',
       }) ?? { error: null, status: 0 };
+
+      console.log(result)
 
       if (!result.error) {
         router.push('/');

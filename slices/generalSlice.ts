@@ -2,8 +2,14 @@ import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 export const generalAdapter = createEntityAdapter();
 
-const initialState = {
+type InitialState = {
+  isMobile: boolean | null,
+  authToken: string | null
+}
+
+const initialState: InitialState = {
   isMobile: null,
+  authToken: null,
 };
 
 const generalSlice = createSlice({
@@ -12,6 +18,9 @@ const generalSlice = createSlice({
   reducers: {
     setMobile: (state, { payload }) => {
       state.isMobile = payload;
+    },
+    setAuthToken: (state, { payload }) => {
+      state.authToken = payload;
     }
   }
 });

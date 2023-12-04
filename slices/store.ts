@@ -10,7 +10,7 @@ import favReducer from './favouriteSlice';
 const persistConfig = {
   key: 'root', // Ключ для сохранения данных в localStorage
   storage, // Используемый механизм сохранения (в данном случае localStorage)
-  whitelist: ['order'], // Указываем, какие слайсы хотим сохранить (в данном случае только "order")
+  whitelist: ['order', 'general'], // Указываем, какие слайсы хотим сохранить (в данном случае только "order")
 };
 
 const rootReducer = combineReducers({

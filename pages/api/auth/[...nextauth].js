@@ -12,8 +12,6 @@ const authOptions = {
         password: { label: 'Password', type: 'password' },
       },
       authorize: async (credentials) => {
-        console.log({credentials})
-
         if (credentials.action === 'login') {
           const user = await login(credentials);
           console.log(user)
@@ -32,22 +30,23 @@ const authOptions = {
   session: {
     strategy: 'jwt',
   },
-  // callbacks: {
-  //   async jwt(token, user) {
-  //     // Сохраняем email пользователя в токене
-  //     if (user) {
-  //       token.email = user.email;
-  //     }
-  //     return token;
-  //   },
-  //   async session(session, token) {
-  //     // Сохраняем email пользователя в сессии
-  //     if (token && token.email) {
-  //       session.user = token.email;
-  //     }
-  //     return session;
-  //   },
-  // },
+  callbacks: {
+    async jwt({token, user}) {
+      // Сохраняем email пользователя в токене
+      if (user) {
+        token.email = user.email
+        token.authToken = user.authToken
+      }
+      return token;
+    },
+    async session({session, token}) {
+      // Сохраняем email пользователя в сессии
+      if (token) {
+        session.user = token;
+      }
+      return session;
+    },
+  },
 };
 
 export default (req, res) => NextAuth(req, res, authOptions);

@@ -21,6 +21,13 @@ interface Nav {
   children: ReactNode,
   settings: boolean,
 }
+
+type State = {
+  general: {
+    isMobile: boolean | null,
+    authToken: string | null,
+  }
+}
  
 const NavList = () => (
   <ul>
@@ -35,8 +42,10 @@ const NavList = () => (
 const Buttons: FC<Buttons> = ({data}) => {
   const [isOpen, setOpen] = useState(false);
 
+  const authToken = useSelector((state: State) => state.general.authToken);
+
   return (
-    data ? 
+    authToken ? 
     <>
       <div className={styles['icon-container']} onClick={() => setOpen(!isOpen)}>
         <User />
@@ -60,7 +69,7 @@ const Nav: FC<Nav> = ({ children, settings }) => {
 
   useMobile();
 
-  const isMobile = useSelector((state: any) => state.general.isMobile);
+  const isMobile = useSelector((state: State) => state.general.isMobile);
  
   const router = useRouter();
 
