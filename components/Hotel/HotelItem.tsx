@@ -17,6 +17,7 @@ import { useSession } from 'next-auth/react';
 import Modal from "./Modal/Modal";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import HotelSkeleton from "../CustomSkeleton/Hotel/HotelSkeleton";
+import BookButton from "./Button/Button";
 
 type HotelFavInfo = {
   user: string,
@@ -36,7 +37,6 @@ export type Hotel = HotelFavInfo & {
 };
 
 const HotelItem = () => {
-
   const orderState = useSelector(selectOrder);
 
   const guests = orderState.guestsNumber;
@@ -51,7 +51,7 @@ const HotelItem = () => {
 
   const [modalState, setModalState] = useState<'opened' | 'closed'>('closed');
 
-  const [isOrderd, setIsOrdered] = useState<boolean>(false)
+  const [isOrdered, setIsOrdered] = useState<boolean>(false)
 
   const router = useRouter();
 
@@ -122,14 +122,8 @@ const HotelItem = () => {
               <Score rating={hotel.rating} />
               <FavoriteButton hotel={hotel} data={data}/>
             </div>
-            
-            {
-              isOrderd ? 
-              <button disabled className={styles.booked}><p>Booked</p></button> : 
-              <button onClick={() => handleClick()}><p>Book now!</p></button>
-            }
+            <BookButton isOrdered={isOrdered} handleClick={handleClick} />
           </div>
-
         </div>
 
         <Swiper

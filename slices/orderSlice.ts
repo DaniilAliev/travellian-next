@@ -59,6 +59,5 @@ const orderSlice = createSlice({
 });
 
 export const { actions } = orderSlice;
-// export const selectors = orderAdapter.getSelectors((state: any ) => state.order);
 export const selectOrder = (state: any) => state.order;
 export default orderSlice.reducer;
