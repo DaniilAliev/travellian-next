@@ -67,8 +67,6 @@
         }
       }
     }
-
-
   }
 
   .swiper {
@@ -106,23 +104,34 @@
       margin-top: 30px;
     }
 
-    p {
-      span {
-        text-align: center;
-        font-weight: 500;
-        font-size: 36px;
-        padding: 10px;
-        border: 3px $blue-color solid;
-        border-radius: 10px;
+    div {
+      border: 3px $blue-color solid;
+      border-radius: 10px;
+      padding: 10px;
+      display: inline-block;
+
+      p {
+        span {
+          text-align: center;
+          font-weight: 500;
+          font-size: 36px;
+        }
       }
     }
-
   }
 }
 
 @media screen and (max-width: $tablet) {
   .hotel-container {
     padding: 50px 0;
+
+    .description {
+      margin-top: 0;
+    }
+
+    .price-container {
+      margin-top: 50px;
+    }  
 
     .info {
       gap: 20px;

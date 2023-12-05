@@ -21,7 +21,11 @@ const generalSlice = createSlice({
     },
     setAuthToken: (state, { payload }) => {
       state.authToken = payload;
+    },
+    removeAuthToken: (state) => {
+      state.authToken = null;
     }
+
   }
 });
 

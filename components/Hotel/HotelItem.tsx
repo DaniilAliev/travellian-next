@@ -13,11 +13,12 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Score from "../Destinations/Score/Score";
 import { useSession } from 'next-auth/react';
-// import MapComponent from "../Destinations/Map/Map";
+import MapComponent from "../Destinations/Map/Map";
 import Modal from "./Modal/Modal";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import HotelSkeleton from "../CustomSkeleton/Hotel/HotelSkeleton";
 import BookButton from "./Button/Button";
+import { YMaps } from "@pbe/react-yandex-maps";
 
 type HotelFavInfo = {
   user: string,
@@ -145,10 +146,19 @@ const HotelItem = () => {
         </div>
         <p className={styles.description}>{hotel?.description}</p>
         <div className={styles['price-container']}>
-          <p><span>{`Your price: €${getPrice(guests, hotel.price, daysDiff)}`}</span></p>
+          <div>
+            <p><span>{`Your price: €${getPrice(guests, hotel.price, daysDiff)}`}</span></p>
+          </div>
           <p className={styles.nights}>{`${daysDiff} nights, ${orderState.guestsNumber} adults`}</p>
         </div>
-        {/* <MapComponent address={hotel.adress}/> */}
+        <YMaps
+          query={{
+            apikey: '2d5c8c9d-bc56-4a60-9db0-41ced8408eed'
+          }}
+        >
+          <MapComponent address={hotel.adress}/>
+        </YMaps>
+        
       </div>
     </section>
     {

@@ -8,9 +8,9 @@ import otelsReducer from './otelsSlice';
 import favReducer from './favouriteSlice';
 
 const persistConfig = {
-  key: 'root', // Ключ для сохранения данных в localStorage
-  storage, // Используемый механизм сохранения (в данном случае localStorage)
-  whitelist: ['order', 'general'], // Указываем, какие слайсы хотим сохранить (в данном случае только "order")
+  key: 'root', 
+  storage,
+  whitelist: ['order', 'general'],
 };
 
 const rootReducer = combineReducers({

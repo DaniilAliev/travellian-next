@@ -1,43 +1,49 @@
-// import React, { useEffect, useRef, useState } from 'react';
-// import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { useYMaps } from '@pbe/react-yandex-maps';
 
-// const MapComponent = ({ address }) => {
-//   const [mapState, setMapState] = useState({ center: [55.75, 37.57], zoom: 13 });
-//   const [ymaps, setYmaps] = useState(null);
+const MapComponent: FC<{address: string}> = ({ address }) => {
+  const [mapState, setMapState] = useState({ center: [], zoom: 15 });
 
-//   const geocode = async () => {
-//     try {
-//       const response = await ymaps.geocode(address);
-//       console.log(response);
-//       const coordinates = response.geoObjects.get(0).geometry.getCoordinates();
-//       setMapState((prevState) => ({ ...prevState, center: coordinates }));
-//     } catch (error) {
-//       console.error('Error geocoding address:', error);
-//     }
-//   };
+  const mapRef = useRef(null);
+  const ymaps = useYMaps(['Map', 'Placemark', 'geocode', 'GeocodeResult']);
 
-//   useEffect(() => {
-//     if (ymaps) {
-//       geocode();
-//     }
-//   }, [address, ymaps]);
+  useEffect(() => {
+    if (!ymaps || !mapRef.current) {
+      return;
+    }
 
-//   return (
-//     <YMaps
-//       query={{
-//         apikey: '2d5c8c9d-bc56-4a60-9db0-41ced8408eed'
-//       }}
-//       onLoad={(ymaps) => {
-//         setYmaps(ymaps);
-//       }}
-//     >
-//       <div>
-//         <Map defaultState={mapState} modules={['geocode']}>
-//           <Placemark geometry={mapState.center} />
-//         </Map>
-//       </div>
-//     </YMaps>
-//   );
-// };
+    const myMap = new ymaps.Map(mapRef.current, {
+      center: mapState.center,
+      zoom: mapState.zoom,
+    });
 
-// export default MapComponent;
+    ymaps.ready(() => {
+      ymaps
+        .geocode(address)
+        .then((res: any) => {
+          if (res !== null && res?.geoObjects) {
+            const coordinates = res.geoObjects.get(0).geometry.getCoordinates();
+            myMap.setCenter(coordinates);
+            myMap.geoObjects.add(
+              new ymaps.Placemark(coordinates, {
+                balloonContent: 'Адрес 1',
+              })
+            );
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+
+
+  }, [ymaps, address]);
+
+  return (
+    <div style={{display: 'flex', justifyContent: 'center', paddingTop: '40px'}}>
+     <div ref={mapRef} style={{ maxWidth: '1000px', width: '100%', height: '300px' }} />
+    </div>
+  );
+};
+
+export default MapComponent;
