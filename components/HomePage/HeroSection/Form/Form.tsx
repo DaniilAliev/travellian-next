@@ -17,8 +17,12 @@ import moment from 'moment';
 const Form = () => {
   const orderState = useSelector(selectOrder);
 
-  const [startDate, setStartDate] = useState<Date | null>(new Date(moment(orderState.checkIn).format('DD.MM.YYYY, HH:mm:ss')));
-  const [leaveDate, setLeaveDate] = useState<Date | null>(new Date(moment(orderState.checkOut).format('DD.MM.YYYY, HH:mm:ss')));
+  const [startDate, setStartDate] = useState<Date | null>(
+    // new Date(moment(orderState.checkIn).format('DD.MM.YYYY, HH:mm:ss'))
+    );
+  const [leaveDate, setLeaveDate] = useState<Date | null>(
+    // new Date(moment(orderState.checkOut).format('DD.MM.YYYY, HH:mm:ss'))
+    );
 
   const [isSubmit, setIsSubmit] = useState<boolean>(false)
 
