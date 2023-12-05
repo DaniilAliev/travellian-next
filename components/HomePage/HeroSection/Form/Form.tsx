@@ -18,10 +18,10 @@ const Form = () => {
   const orderState = useSelector(selectOrder);
 
   const [startDate, setStartDate] = useState<Date | null>(
-    // new Date(moment(orderState.checkIn).format('DD.MM.YYYY, HH:mm:ss'))
+    new Date(moment(orderState.checkIn, 'DD/MM/YYYY').toDate())
     );
   const [leaveDate, setLeaveDate] = useState<Date | null>(
-    // new Date(moment(orderState.checkOut).format('DD.MM.YYYY, HH:mm:ss'))
+    new Date(moment(orderState.checkOut, 'DD/MM/YYYY').toDate())
     );
 
   const [isSubmit, setIsSubmit] = useState<boolean>(false)
