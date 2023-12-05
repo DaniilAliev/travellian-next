@@ -13,11 +13,12 @@ import { selectOrder } from '@/slices/orderSlice';
 import { initialState } from '@/slices/orderSlice';
 import moment from 'moment';
 
+
 const Form = () => {
   const orderState = useSelector(selectOrder);
 
-  const [startDate, setStartDate] = useState<Date | null>(new Date(initialState.checkIn));
-  const [leaveDate, setLeaveDate] = useState<Date | null>(new Date(initialState.checkOut));
+  const [startDate, setStartDate] = useState<Date | null>(new Date(moment(orderState.checkIn).format('DD.MM.YYYY, HH:mm:ss')));
+  const [leaveDate, setLeaveDate] = useState<Date | null>(new Date(moment(orderState.checkOut).format('DD.MM.YYYY, HH:mm:ss')));
 
   const [isSubmit, setIsSubmit] = useState<boolean>(false)
 
@@ -45,15 +46,10 @@ const Form = () => {
     
     const checkOutDate = data.checkOut ? data.checkOut : orderState.checkOut;
 
-    console.log(checkInDate, checkOutDate)
-    
-
     const checkInDateMoment = moment(checkInDate, 'DD.MM.YYYY, HH:mm:ss');
     const checkOutDateMoment = moment(checkOutDate, 'DD.MM.YYYY, HH:mm:ss');
     
     const daysDiff = checkOutDateMoment.diff(checkInDateMoment, 'days');
-
-    console.log(daysDiff)
 
     const dataToDispatch = {
       destination,
@@ -62,8 +58,6 @@ const Form = () => {
       checkIn: checkInDateMoment,
       checkOut: checkOutDateMoment,
     }
-
-    console.log(dataToDispatch)
 
     dispatch(orderActions.addOrder(dataToDispatch));
     router.push('/destinations');
@@ -113,9 +107,11 @@ const Form = () => {
                   name="checkIn"
                   render={({ field }) => (
                     <DatePicker
+                      dateFormat="dd/MM/yyyy"
                       selected={startDate}
                       onChange={(date) => {
                         field.onChange(date?.toLocaleString());
+                        console.log(date)
                         setStartDate(date);
                       }}
                       className={styles.datepicker}
@@ -133,6 +129,7 @@ const Form = () => {
                   name="checkOut"
                   render={({ field }) => (
                     <DatePicker
+                      dateFormat="dd/MM/yyyy"
                       onChange={(date) => {
                         field.onChange(date?.toLocaleString());
                         setLeaveDate(date);
