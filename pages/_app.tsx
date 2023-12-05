@@ -15,7 +15,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, r
 
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor} >
+      {/* <PersistGate loading={null} persistor={persistor} > */}
         <SessionProvider session={session}>
           <ClientStateProvider>
             <Layout settings={layOutSettings}>
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, r
             </Layout>
           </ClientStateProvider>
         </SessionProvider>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
   )
 }

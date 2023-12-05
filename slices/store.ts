@@ -7,11 +7,11 @@ import generalReducer from './generalSlice';
 import otelsReducer from './otelsSlice';
 import favReducer from './favouriteSlice';
 
-const persistConfig = {
-  key: 'root', 
-  storage,
-  whitelist: ['order', 'general'],
-};
+// const persistConfig = {
+//   key: 'root', 
+//   storage,
+//   whitelist: ['order', 'general'],
+// };
 
 const rootReducer = combineReducers({
   order: orderReducer,
@@ -21,8 +21,8 @@ const rootReducer = combineReducers({
   // Другие редюсеры
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
 });

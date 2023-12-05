@@ -26,7 +26,7 @@ export const initialState: InitialState = {
   minPrice: null,
   maxPrice: null,
   checkIn: todayMoment,
-  checkOut: tomorrowMoment,
+  checkOut: tomorrow,
 };
   
 const orderSlice = createSlice({

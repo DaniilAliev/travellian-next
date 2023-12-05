@@ -44,12 +44,16 @@ const Form = () => {
     const checkInDate = data.checkIn ? data.checkIn : orderState.checkIn;
     
     const checkOutDate = data.checkOut ? data.checkOut : orderState.checkOut;
+
+    console.log(checkInDate, checkOutDate)
     
 
     const checkInDateMoment = moment(checkInDate, 'DD.MM.YYYY, HH:mm:ss');
     const checkOutDateMoment = moment(checkOutDate, 'DD.MM.YYYY, HH:mm:ss');
     
     const daysDiff = checkOutDateMoment.diff(checkInDateMoment, 'days');
+
+    console.log(daysDiff)
 
     const dataToDispatch = {
       destination,
@@ -58,6 +62,8 @@ const Form = () => {
       checkIn: checkInDateMoment,
       checkOut: checkOutDateMoment,
     }
+
+    console.log(dataToDispatch)
 
     dispatch(orderActions.addOrder(dataToDispatch));
     router.push('/destinations');
