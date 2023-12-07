@@ -37,6 +37,59 @@
       flex-shrink: 0;
     }
 
+    div {
+      width: 100%;
+
+      form {
+        width: 100%;
+  
+        p {
+          color: $muted-color;
+          padding-bottom: 16px;
+        }
+  
+        .inputs {
+          display: flex;
+          gap: 32px;
+  
+          input {
+            width: 100%;
+            padding: 24px 0 24px 40px;
+            background-color: $input-color;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Rubik';
+            font-size: 20px;
+            box-sizing: border-box;
+  
+            &::placeholder {
+              color: $active-color;
+              font-size: 20px;
+              font-family: 'Rubik';
+            }
+          }
+  
+          button {
+            padding: 22px 40px;
+            color: #FFF;
+            font-family: Rubik;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            border: none;
+            border-radius: 12px;
+            background-color: $active-color;
+            cursor: pointer;
+  
+            &:hover {
+              background-color: $hover-color;
+            }
+          }
+        }
+      }
+    }
+
     form {
       width: 100%;
 
@@ -78,8 +131,18 @@
           border-radius: 12px;
           background-color: $active-color;
           cursor: pointer;
+
+          &:hover {
+            background-color: $hover-color;
+          }
         }
       }
+    }
+
+    .error {
+      font-size: 16px;
+      padding-top: 10px;
+      color: red;
     }
   }
 }
@@ -122,17 +185,18 @@
   .newsletter-form-wrapper {
     .newsletter-form {
       padding: 60px 40px 40px 40px;
-
-      form {
-        .inputs {
-          display: block;
-
-          input {
-            margin-bottom: 32px;
-          }
-
-          button {
-            width: 100%;
+      div {
+        form {
+          .inputs {
+            display: block;
+  
+            input {
+              margin-bottom: 32px;
+            }
+  
+            button {
+              width: 100%;
+            }
           }
         }
       }

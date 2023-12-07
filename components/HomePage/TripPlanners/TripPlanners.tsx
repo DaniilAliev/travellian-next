@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import { useStateContext } from '@/context';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 const SliderContainer = () => 
   <div className={styles['sliders-container']}>
@@ -54,7 +55,7 @@ const TripPlanners = () => {
             </div>
             <div className={styles['button-decoration']}>
               <div className={styles['black-rectangle']}></div>
-              <button><p>View all trip plans</p></button>
+              <button><Link href={'/destinations'}><p>View all trip plans</p></Link></button>
               <div className={styles['grey-rectangle']}></div>
             </div>
           </div>

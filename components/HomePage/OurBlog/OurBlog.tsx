@@ -2,9 +2,11 @@ import styles from './OurBlog.module.scss';
 import BlogImage from '../../../public/BlogImage.jpeg';
 import Arrow from '../../../public/ArrowOrange.svg'
 import Image from 'next/image';
+import Link from 'next/link';
 
-const OurBlog = () => 
-  <section>
+const OurBlog = () => {
+  return (
+  <section id='blog'>
     <div className={styles['blog-container']}>
       <div className={styles.headers}>
         <h1>Our Blog</h1>
@@ -28,14 +30,14 @@ const OurBlog = () =>
             encounter consequences that are extremly painful. Nor again is there 
             anyone who loves or pursues.</p>
             <div>
-              <a href="#">
+              <Link href="https://www.google.com" target="_blank">
                 <p>Read more</p>
                 <Image src={Arrow} alt="Arrow" />
-              </a>
+              </Link>
             </div>
         </article>
       </div>
     </div>
-  </section>
+  </section>)}
 
 export default OurBlog;

@@ -56,12 +56,14 @@
           justify-content: space-between;
           list-style: none;
 
-          
-          .active {
+          li {
             a {
-              border-bottom: 3px solid $active-color;
-              font-weight: bold;
+              &:hover {
+                box-shadow: 0px -3px 0px $active-color inset;
+                font-weight: bold;
+              }
             }
+            
           }
         }
       }

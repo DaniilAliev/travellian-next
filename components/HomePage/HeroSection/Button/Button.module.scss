@@ -1,61 +1,65 @@
 @import '../../variables.scss';
 
 .button {
-	@include playfair;
-	height: 216px;
-	width: 170px;
-	border-radius: 0 20px 20px 0;
-	border: none;
-	background-color: $active-color;
-	color: $white-color;
-	flex-shrink: 0;
-	cursor: pointer;
+  @include playfair;
+  height: 216px;
+  width: 170px;
+  border-radius: 0 20px 20px 0;
+  border: none;
+  background-color: $active-color;
+  color: $white-color;
+  flex-shrink: 0;
+  cursor: pointer;
 
-	.container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-		left: -10px;
-		
-		.spinner-container {
-			display: flex;
-			justify-content: center;
-		}
+  &:hover {
+    background-color: $hover-color;
+  }
 
-		p {
-			padding: 0;
-			position: relative;
-			margin-block-start: 0;
-			margin-block-end: 0;
-			font-family: 'Playfair';
-			font-size: 36px;
-		}
-	}
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: -10px;
+
+    .spinner-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    p {
+      padding: 0;
+      position: relative;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      font-family: 'Playfair';
+      font-size: 36px;
+    }
+  }
 }
 
 @media screen and (max-width: $tablet) {
-	.button {
-		height: 312px;
-	}
+  .button {
+    height: 312px;
+  }
 }
 
 @media screen and (max-width: $mobile) {
-	.button {
-		width: 100%;
-		height: 128px;
-		border-radius: 0 0 16px 16px;
-		padding: 0 30px;
+  .button {
+    width: 100%;
+    height: 128px;
+    border-radius: 0 0 16px 16px;
+    padding: 0 30px;
 
-		.container {
-			left: -5px;
-			justify-content: space-between;
+    .container {
+      left: -5px;
+      justify-content: space-between;
 
-			.spinner-container {
-				width: 100%;
-				display: flex;
-				justify-content: center; 
-			}
-		}
-	}
+      .spinner-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
 }

@@ -29,17 +29,18 @@ type State = {
   }
 }
  
-const NavList = () => (
+const NavList = () => {
+  return (
   <ul>
-    <li className={styles.active}><a href='#' className={styles['nav-link']}>Home</a></li>
-    <li><a href='#' className={styles['nav-link']}>Explore</a></li>
-    <li><a href='#' className={styles['nav-link']}>Travel</a></li>
-    <li><a href='#' className={styles['nav-link']}>Blog</a></li>
-    <li><a href='#' className={styles['nav-link']}>Pricing</a></li>
+    <li><Link href='/' className={styles['nav-link']}>Home</Link></li>
+    <li><Link href='/explore' className={styles['nav-link']}>Explore</Link></li>
+    <li><Link href='/travel' className={styles['nav-link']}>Travel</Link></li>
+    <li><Link href='/blog' className={styles['nav-link']}>Blog</Link></li>
+    <li><Link href='https://www.google.com' target="_blank" className={styles['nav-link']}>Pricing</Link></li>
   </ul>
-  );
+  )};
 
-const Buttons: FC<Buttons> = ({data}) => {
+const Buttons: FC<Buttons> = () => {
   const [isOpen, setOpen] = useState(false);
 
   const authToken = useSelector((state: State) => state.general.authToken);

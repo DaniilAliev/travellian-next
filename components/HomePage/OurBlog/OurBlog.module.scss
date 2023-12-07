@@ -64,10 +64,16 @@
 					align-items: center;
 					gap: 20px;
           text-decoration: none;
+
+          
           
 					p {
             color: $active-color;
 						padding: 0;
+
+            &:hover {
+              color: $hover-color;
+            }
           }
     
           img {

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import Experience from "./Experience/Experience";
 import { useSession } from 'next-auth/react';
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 interface User {
   email?: string | null;

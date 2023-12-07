@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import { DestinationsData, destinationsData } from './data';
 import Item from './Item/Item';
-import { useRef} from 'react';
+import { useEffect, useRef} from 'react';
 import Image from 'next/image';
 import { useStateContext } from '@/context';
 import { useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 const Discover = () => {
   const swiperNextRef: any = useRef();
   const swiperPrevRef: any = useRef();
+
 
   const isMobile = useSelector((state: any) => state.general.isMobile);
 
@@ -28,7 +29,8 @@ const Discover = () => {
 
   return (
     <>
-      <section>
+      
+      <section id='discover'>
         <div className={styles['headers-and-buttons-container']}>
           <div className={styles.headers}>
             <h1>Popular Destinations</h1>

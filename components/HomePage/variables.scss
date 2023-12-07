@@ -1,5 +1,6 @@
 $white-color: #FFF;
 $active-color: #FF7757;
+$hover-color: #db5a3d;
 $muted-color: #767E86;
 $card-color: #FFF8F1;
 $black-color: #172432;
@@ -95,6 +96,8 @@ $mobile: 540px;
   .buttons {
     display: flex;
     gap: 40px;
+
+    
 
     .prevBtn,
     .nextBtn {

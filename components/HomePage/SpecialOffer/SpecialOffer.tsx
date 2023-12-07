@@ -28,7 +28,7 @@ const SpecialOffer = () => {
 
   return (
     <>
-      <section>
+      <section id='special-offer'>
         <div className={styles['headers-and-buttons-container']}>
           {(!isMobile && isClient) && buttons}
           <div className={styles.headers}>
