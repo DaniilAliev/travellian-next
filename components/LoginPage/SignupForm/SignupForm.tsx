@@ -45,9 +45,10 @@ const SignupForm = () => {
 
       if (!result.error) {
         router.push('/');
-      } else if (result.status) {
-        console.log(result.error)
-        setError(result.error);
+      } 
+      else if (result.status) {
+        console.log(result)
+        setError('User with this email is already exists');
         setLoading(false);
       }
     } catch (e: any) {
