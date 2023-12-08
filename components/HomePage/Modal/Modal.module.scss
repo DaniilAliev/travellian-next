@@ -1,0 +1,73 @@
+@import '../variables.scss';
+
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  z-index: 10000;
+
+  &.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: all;
+  }
+
+  .modal {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 30px; /* Добавленные отступы */
+    padding: 20px;
+    flex-grow: 1;
+
+    background-color: $card-color;
+    border-radius: 16px;
+  
+    @include rubik;
+    @include playfair;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
+
+    h1 {
+      font-family: 'Playfair';
+      font-size: 50px;
+      font-weight: 400;
+      text-align: center;
+      padding-bottom: 30px;
+    }
+  
+    .buttons {
+      padding-top: 30px;
+  
+      button {
+        padding: 20px 40px;
+        border: none;
+        border-radius: 16px;
+        background-color: $active-color;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: $hover-color;
+        }
+  
+        p {
+          color: $white-color;
+        }
+      }
+    }
+  }
+} 
+
+
+

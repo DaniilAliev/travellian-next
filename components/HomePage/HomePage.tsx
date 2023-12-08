@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import Experience from "./Experience/Experience";
 import { useSession } from 'next-auth/react';
 import { useEffect } from "react";
+import { Modal } from "./Modal";
 import { useRouter } from "next/router";
 
 interface User {
@@ -42,6 +43,7 @@ const HomePage = () => {
       <TripPlanners />
       <DestinationGallery />
       <Experience/>
+      <Modal />
     </div>
   )
 }

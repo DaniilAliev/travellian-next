@@ -3,12 +3,16 @@ import styles from './ItemSpecialOffer.module.scss';
 import Star from '../../../../public/star.svg';
 import { SpecialOfferData } from '../data';
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import { actions as modalActions } from '@/slices/modalSlice';
 
 interface Item {
   item: SpecialOfferData,
 }
 
 const Item: FC<Item> = ({ item }) => {
+  const dispatch = useDispatch()
+
   return (
   <div className={styles.card}>
     <div className={styles['image-container']}>
@@ -28,7 +32,10 @@ const Item: FC<Item> = ({ item }) => {
       </p>
       <div className={styles.details}>
         <h3>From <span>{`€${item.price}`}</span></h3>
-        <button>DETAILS</button>
+        <button onClick={() => {dispatch(modalActions.openModal({
+          type: 'item',
+          info: item,
+        }))}}>DETAILS</button>
       </div>
     </div>
   </div>

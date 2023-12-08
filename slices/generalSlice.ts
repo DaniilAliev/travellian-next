@@ -25,7 +25,6 @@ const generalSlice = createSlice({
     removeAuthToken: (state) => {
       state.authToken = null;
     }
-
   }
 });
 

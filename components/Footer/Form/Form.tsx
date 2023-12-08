@@ -2,14 +2,16 @@ import { useState } from 'react';
 import styles from './Form.module.scss';
 import schema from './validation';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'; 
+import { useDispatch } from 'react-redux';
+import { actions as modalActions } from '@/slices/modalSlice';
 
 interface Form {
   email: string,
 }
 
 const Form = () => {
-  const [error, setError] = useState<string>('')
+  const dispatch = useDispatch()
   
   const { register, handleSubmit, formState: { errors }, reset } = useForm<Form>({
     defaultValues: {},
@@ -18,7 +20,11 @@ const Form = () => {
   })
 
   const submit = (data: Form) => {
-    console.log(data)
+    console.log(data);
+    dispatch(modalActions.openModal({
+      type: 'newsletter',
+      info: null,
+    }))
   }
 
   return (

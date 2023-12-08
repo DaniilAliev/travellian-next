@@ -6,6 +6,7 @@ import orderReducer from './orderSlice';
 import generalReducer from './generalSlice';
 import otelsReducer from './otelsSlice';
 import favReducer from './favouriteSlice';
+import modalReducer from './modalSlice';
 
 const persistConfig = {
   key: 'root', 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   general: generalReducer,
   otels: otelsReducer,
   favourite: favReducer,
+  modal: modalReducer,
   // Другие редюсеры
 });
 
