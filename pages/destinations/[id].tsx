@@ -1,4 +1,4 @@
-import HotelItem from "@/components/Hotel/HotelItem";
+import { HotelItem } from "@/components/Hotel";
 
 const Hotel = () => {
   return <HotelItem />

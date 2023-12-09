@@ -1,4 +1,4 @@
-import Main from "@/components/Destinations/Main";
+import { Main } from "@/components/Destinations/Main";
 import axios from "axios";
 import { FC } from "react";
 

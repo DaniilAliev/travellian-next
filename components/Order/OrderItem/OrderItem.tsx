@@ -4,7 +4,6 @@ import styles from './OrderItem.module.scss';
 import axios from "axios";
 import Link from 'next/link';
 
-
 interface OrderItem {
   order: HotelOrder,
 }
@@ -42,4 +41,4 @@ const OrderItem: FC<OrderItem> = ({ order }) => {
   )
 }
 
-export default OrderItem;
+export { OrderItem };

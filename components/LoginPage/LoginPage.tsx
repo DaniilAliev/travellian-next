@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import LoginForm from './LoginForm/LoginForm';
+import { LoginForm } from './LoginForm';
 import styles from './LoginPage.module.scss'
-import SignupForm from './SignupForm/SignupForm';
+import { SignupForm } from './SignupForm';
 
 interface LoginPage {
   type: string,
@@ -18,4 +18,4 @@ const LoginPage: FC<LoginPage> = ({type}) => {
   )
 }
 
-export default LoginPage;
+export { LoginPage };

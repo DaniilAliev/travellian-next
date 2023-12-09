@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout/Layout'
+import { Layout } from '@/components/Layout'
 import store from '@/slices/store';
 import '@/styles/globals.scss'
 import type { AppProps } from 'next/app'

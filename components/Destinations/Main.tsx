@@ -145,4 +145,4 @@ const Main: FC<DestinationsProps> = ({ response }) => {
   )
 }
 
-export default Main;
+export { Main };

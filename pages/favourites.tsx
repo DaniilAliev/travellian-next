@@ -1,12 +1,4 @@
-import Favourites from "@/components/Favourites/Favourites";
-
-interface HotelFavInfo {
-  user: string,
-  name: string,
-  hotelId: number,
-  adress: string,
-  rating: number,
-}
+import { Favourites } from "@/components/Favourites";
 
 const FavouritePage = () => {
   return <Favourites />

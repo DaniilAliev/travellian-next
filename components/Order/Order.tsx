@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSession } from 'next-auth/react';
-import OrderItem from "./OrderItem/OrderItem";
+import { OrderItem } from "./OrderItem";
 import styles from './Order.module.scss';
 import { useRouter } from 'next/dist/client/router';
-import CustomSkeleton from "../CustomSkeleton/Orders/CustomSkeleton";
+import { CustomSkeleton } from "../CustomSkeleton/Orders";
 
 export type HotelOrder = {
   id: number,
@@ -56,14 +56,11 @@ const Order = () => {
         {isLoaded ? (orders.length === 0 ? <p className={styles['no-orders']}>You have no orders yet</p> : orders.map((order: HotelOrder) => (
           <OrderItem key={order.id} order={order} />
         ))) :
-          <>
-            <CustomSkeleton />
-          </>
-
+          <CustomSkeleton />
         }
       </div>
     </section>
   )
 };
 
-export default Order;
+export { Order };

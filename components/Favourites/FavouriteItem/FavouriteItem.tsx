@@ -38,4 +38,4 @@ const FavouriteItem:FC<{ fav: Fav, data: Session | null }> = ({fav, data}) => {
   )
 }
 
-export default FavouriteItem;
+export { FavouriteItem };

@@ -90,4 +90,4 @@ const SignupForm = () => {
   );
 }
 
-export default SignupForm;
+export { SignupForm };

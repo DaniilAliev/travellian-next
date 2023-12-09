@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { useSession } from 'next-auth/react';
 import styles from './Favoutites.module.scss';
 import { useRouter } from 'next/dist/client/router';
-import FavouriteItem from "./FavouriteItem/FavouriteItem";
+import { FavouriteItem } from "./FavouriteItem";
 import { useDispatch, useSelector } from "react-redux";
 import { actions as favActions } from "@/slices/favouriteSlice";
 import { selectors } from "@/slices/favouriteSlice";
-import CustomFavSkeleton from "../CustomSkeleton/Favourites/CustomFavSeketon";
+import { CustomFavSkeleton } from "../CustomSkeleton/Favourites";
 
 export type Fav = {
   id: number,
@@ -63,4 +63,4 @@ const Favourites = () => {
   )
 };
 
-export default Favourites;
+export { Favourites };

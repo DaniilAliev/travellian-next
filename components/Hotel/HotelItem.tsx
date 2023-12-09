@@ -165,4 +165,4 @@ const HotelItem = () => {
   )
 }
 
-export default HotelItem;
+export { HotelItem };

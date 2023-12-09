@@ -22,4 +22,4 @@ const Layout: FC<Layout> = ({ children, settings }) => {
   )
 }
 
-export default Layout;
+export { Layout };

@@ -1,4 +1,4 @@
-import LoginPage from "@/components/LoginPage/LoginPage";
+import { LoginPage } from "@/components/LoginPage";
 
 const LogIn = () => (
     <LoginPage type={'login'}/>
