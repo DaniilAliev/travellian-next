@@ -90,4 +90,4 @@ const FavoriteButton: FC<ItemProps>= ({ hotel, data }) => {
   )
 }
 
-export default FavoriteButton;
+export { FavoriteButton };

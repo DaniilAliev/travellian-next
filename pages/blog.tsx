@@ -1,4 +1,4 @@
-import OurBlog from "@/components/HomePage/OurBlog/OurBlog";
+import { OurBlog } from "@/components/HomePage/OurBlog";
 
 const Blog = () => <OurBlog />
 

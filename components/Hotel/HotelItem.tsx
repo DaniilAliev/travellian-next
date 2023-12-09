@@ -11,13 +11,13 @@ import { selectOrder } from "@/slices/orderSlice";
 import getPrice from "../Destinations/getPrice";
 import axios from "axios";
 import { useRouter } from "next/router";
-import Score from "../Destinations/Score/Score";
+import { Score } from "../Destinations/Score";
 import { useSession } from 'next-auth/react';
-import MapComponent from "../Destinations/Map/Map";
-import Modal from "./Modal/Modal";
-import FavoriteButton from "../FavoriteButton/FavoriteButton";
-import HotelSkeleton from "../CustomSkeleton/Hotel/HotelSkeleton";
-import BookButton from "./Button/Button";
+import { MapComponent } from "./Map";
+import { Modal } from "./Modal";
+import { FavoriteButton } from "../FavoriteButton";
+import { HotelSkeleton } from "../CustomSkeleton/Hotel";
+import { BookButton } from "./Button";
 import { YMaps } from "@pbe/react-yandex-maps";
 
 type HotelFavInfo = {
@@ -69,8 +69,6 @@ const HotelItem = () => {
   
       fetchData()
     }
-   
-
   }, [router.query, id]);
 
   const handleClick = async () => {
@@ -158,7 +156,6 @@ const HotelItem = () => {
         >
           <MapComponent address={hotel.adress}/>
         </YMaps>
-        
       </div>
     </section>
     {

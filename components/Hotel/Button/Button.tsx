@@ -14,4 +14,4 @@ const BookButton: FC<BookButton> = ({isOrdered, handleClick}) => {
 	)
 }
 
-export default BookButton;
+export { BookButton };

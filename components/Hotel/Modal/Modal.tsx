@@ -18,4 +18,4 @@ const Modal: FC<ModalProps> = ({ setModalState, modalState }) => {
   )
 };
 
-export default Modal;
+export { Modal };

@@ -1,4 +1,4 @@
-import Discover from "../components/HomePage/Discover/Discover"
+import { Discover } from "../components/HomePage/Discover"
 
 const Explore = () => 
   <Discover />

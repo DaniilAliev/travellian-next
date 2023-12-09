@@ -33,4 +33,4 @@ const HotelSkeleton = () => {
   )
 }
 
-export default HotelSkeleton;
+export { HotelSkeleton };

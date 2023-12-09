@@ -1,15 +1,14 @@
 import styles from './Main.module.scss';
 import { selectOrder } from '@/slices/orderSlice';
 import { useSelector } from 'react-redux';
-import Form from './Form/Form';
-import Item from './Item/Item';
+import { Form } from './Form';
+import { Item } from './Item';
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions as otelsActions } from '@/slices/otelsSlice';
-import { actions as favActions, selectors } from '@/slices/favouriteSlice';
+import { actions as favActions } from '@/slices/favouriteSlice';
 import { selectors as otelsSelectors } from '@/slices/otelsSlice';
 import { useSession } from 'next-auth/react';
-import { Session } from 'next-auth';
 import Select from 'react-select';
 import getPrice from './getPrice';
 import axios from 'axios';
@@ -41,8 +40,6 @@ const Main: FC<DestinationsProps> = ({ response }) => {
   const maxPrice = orderState.maxPrice;
   const guests = orderState.guestsNumber;
   const daysDiff = orderState.daysDiff;
-
-  const favState = useSelector(selectors.selectAll)
 
   const dispatch = useDispatch();
 

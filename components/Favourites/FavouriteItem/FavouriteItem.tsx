@@ -2,8 +2,7 @@ import { FC, useState } from "react";
 import { Fav } from "../Favourites";
 import Link from 'next/link';
 import styles from './FavouriteItem.module.scss';
-import Score from "@/components/Destinations/Score/Score";
-import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";
+import { Score } from "@/components/Destinations/Score";
 import { Session } from 'next-auth';
 import axios from "axios";
 

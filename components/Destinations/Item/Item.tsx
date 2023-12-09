@@ -7,8 +7,8 @@ import { selectOrder } from '@/slices/orderSlice';
 import { Session } from 'next-auth';
 import getPrice from '../getPrice';
 import Link from 'next/link';
-import Score from '../Score/Score';
-import FavoriteButton from '@/components/FavoriteButton/FavoriteButton';
+import { Score } from '../Score';
+import { FavoriteButton } from '@/components/FavoriteButton';
 
 
 interface ItemProps {
@@ -48,4 +48,4 @@ const Item: FC<ItemProps> = ({ hotel, data }) => {
   )
 };
 
-export default Item;
+export { Item };

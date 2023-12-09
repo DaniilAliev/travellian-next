@@ -104,4 +104,4 @@ const Form = () => {
   </form>)
 }
 
-export default Form;
+export { Form };

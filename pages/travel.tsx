@@ -1,4 +1,4 @@
-import SpecialOffer from "@/components/HomePage/SpecialOffer/SpecialOffer";
+import { SpecialOffer } from "@/components/HomePage/SpecialOffer";
 
 const Travel = () => <SpecialOffer/>
 

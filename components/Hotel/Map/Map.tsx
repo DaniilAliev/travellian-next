@@ -46,4 +46,4 @@ const MapComponent: FC<{address: string}> = ({ address }) => {
   );
 };
 
-export default MapComponent;
+export { MapComponent };
