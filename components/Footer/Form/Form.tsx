@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './Form.module.scss';
 import schema from './validation';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -44,4 +43,4 @@ const Form = () => {
   </div>
   </div>)}
 
-export default Form;
+export { Form };

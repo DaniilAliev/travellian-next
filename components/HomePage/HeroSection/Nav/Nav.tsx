@@ -8,8 +8,8 @@ import Burger from '../../../../public/hamburger.svg';
 import styles from './Nav.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import User from './User/User';
-import Menu from './AuthorizedMenu/Menu';
+import User from './User';
+import { Menu } from './AuthorizedMenu';
 import useMobile from '@/hooks/useMobile';
 import { useStateContext } from '@/context';
 
@@ -137,4 +137,4 @@ const Nav: FC<Nav> = ({ children, settings }) => {
   )
 }
 
-export default Nav;
+export { Nav };

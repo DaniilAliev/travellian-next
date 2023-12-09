@@ -28,4 +28,4 @@ const Button: FC<IsSubmit> = ({ isSubmit }) => {
   </button>
   )};
 
-export default Button;
+export { Button };

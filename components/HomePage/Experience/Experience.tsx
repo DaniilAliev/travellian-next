@@ -1,6 +1,6 @@
 import styles from './Experience.module.scss';
 import experienseData, { ExperienseData } from './experienseData';
-import ExperienseItem from './ExperienceItem/ExperienceItem';
+import { ExperienseItem } from './ExperienceItem/ExperienceItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
@@ -60,4 +60,4 @@ const Experience = () => {
   )
 };
 
-export default Experience;
+export { Experience };

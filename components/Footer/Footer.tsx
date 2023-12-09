@@ -1,5 +1,5 @@
 import styles from './Footer.module.scss';
-import Form from './Form/Form';
+import { Form } from './Form';
 import Logo from '../../public/Logo.svg';
 import Facebook from '../../public/facebook.svg';
 import Pinterest from '../../public/pinterest.svg';
@@ -66,4 +66,4 @@ const Footer: FC<Footer> = ({ settings }) => {
     </footer>)
 }
 
-export default Footer;
+export { Footer };

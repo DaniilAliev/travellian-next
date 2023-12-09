@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from './ItemSpecialOffer.module.scss';
+import styles from './SpecialOfferItem.module.scss';
 import Star from '../../../../public/star.svg';
 import { SpecialOfferData } from '../data';
 import Image from 'next/image';
@@ -42,4 +42,4 @@ const Item: FC<Item> = ({ item }) => {
   )
 };
 
-export default Item;
+export { Item };

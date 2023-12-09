@@ -1,15 +1,14 @@
-import Discover from "./Discover/Discover";
-import SpecialOffer from "./SpecialOffer/SpecialOffer";
-import OurBlog from "./OurBlog/OurBlog";
-import TripPlanners from "./TripPlanners/TripPlanners";
-import DestinationGallery from "./DestinationGallery/DestinationGallery"; 
+import { Discover } from "./Discover";
+import { SpecialOffer } from "./SpecialOffer";
+import { OurBlog } from "./OurBlog";
+import { TripPlanners } from "./TripPlanners";
+import { DestinationGallery }from "./DestinationGallery"; 
 import { actions } from "@/slices/generalSlice";
 import { useDispatch } from "react-redux";
-import Experience from "./Experience/Experience";
+import { Experience } from "./Experience";
 import { useSession } from 'next-auth/react';
 import { useEffect } from "react";
 import { Modal } from "./Modal";
-import { useRouter } from "next/router";
 
 interface User {
   email?: string | null;

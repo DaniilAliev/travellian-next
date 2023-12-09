@@ -1,5 +1,5 @@
-import Nav from "./Nav/Nav";
-import Form from "./Form/Form";
+import { Nav } from "./Nav";
+import { Form } from "./Form";
 import styles from './HeroSection.module.scss';
 import { FC } from 'react';
 
@@ -22,4 +22,4 @@ const HeroSection: FC<Props> = ({ settings }) =>
     </div>}
   </Nav>
 
-export default HeroSection;
+export { HeroSection };

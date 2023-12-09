@@ -46,4 +46,4 @@ const Item: FC<Item> = ({ item, isMobile }) => {
 	)
 }
 
-export default Item;
+export { Item };

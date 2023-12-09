@@ -6,8 +6,8 @@ import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { DestinationsData, destinationsData } from './data';
-import Item from './Item/Item';
-import { useEffect, useRef} from 'react';
+import { Item } from './Item';
+import { useRef} from 'react';
 import Image from 'next/image';
 import { useStateContext } from '@/context';
 import { useSelector } from 'react-redux';
@@ -29,7 +29,6 @@ const Discover = () => {
 
   return (
     <>
-      
       <section id='discover'>
         <div className={styles['headers-and-buttons-container']}>
           <div className={styles.headers}>
@@ -74,4 +73,4 @@ const Discover = () => {
   )
 }
 
-export default Discover;
+export { Discover };

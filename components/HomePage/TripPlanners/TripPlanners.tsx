@@ -1,5 +1,5 @@
 import styles from'./TripPlanners.module.scss';
-import Item from './TripPlannersItem/TripPlannersItem';
+import { Item } from './TripPlannersItem';
 import tripPlanners, { TripPlanners } from './data';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
@@ -71,4 +71,4 @@ const TripPlanners = () => {
   )
 }
 
-export default TripPlanners;
+export { TripPlanners };

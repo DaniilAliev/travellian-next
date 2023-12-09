@@ -40,4 +40,4 @@ const OurBlog = () => {
     </div>
   </section>)}
 
-export default OurBlog;
+export { OurBlog };

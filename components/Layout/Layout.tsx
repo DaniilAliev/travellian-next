@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
-import Footer from "../Footer/Footer"
-import HeroSection from "../HomePage/HeroSection/HeroSection";
+import { Footer } from "../Footer"
+import { HeroSection } from "../HomePage/HeroSection";
 import styles from './Layout.module.scss';
 
 interface Layout {

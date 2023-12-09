@@ -78,4 +78,4 @@ const DestinationGallery = () => {
   )
 };
 
-export default DestinationGallery;
+export { DestinationGallery };

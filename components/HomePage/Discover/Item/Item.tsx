@@ -18,4 +18,4 @@ const Item: FC<Item> = ({ item }) => (
   </div>
 );
 
-export default Item;
+export { Item };

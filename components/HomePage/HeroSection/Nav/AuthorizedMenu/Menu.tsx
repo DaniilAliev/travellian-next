@@ -31,4 +31,4 @@ const Menu: FC<Menu> = ({setOpen}) => {
   )
 }
 
-export default Menu;
+export { Menu };

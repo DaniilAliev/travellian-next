@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import Button from '../Button/Button';
+import { Button } from '../Button';
 import styles from './Form.module.scss';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,9 +10,7 @@ import { orderActions } from '@/slices';
 import { MyForm, options, customStyles, Option, Data } from './settings';
 import { useRouter } from 'next/dist/client/router';
 import { selectOrder } from '@/slices/orderSlice';
-import { initialState } from '@/slices/orderSlice';
 import moment from 'moment';
-
 
 const Form = () => {
   const orderState = useSelector(selectOrder);
@@ -154,4 +152,4 @@ const Form = () => {
   );
 }
 
-export default Form;
+export { Form };

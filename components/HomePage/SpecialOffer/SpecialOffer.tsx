@@ -3,11 +3,11 @@ import prevButton from '../../../public/chevron-down.svg';
 import nextButton from '../../../public/chevron-up.svg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
-import Item from './Item/SpecialOfferItem';
+import { Item } from './Item/SpecialOfferItem';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import specialOfferData, { SpecialOfferData } from './data';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { useStateContext } from '@/context';
 import { useSelector } from 'react-redux';
@@ -71,4 +71,4 @@ const SpecialOffer = () => {
   )
 }
 
-export default SpecialOffer;
+export { SpecialOffer };

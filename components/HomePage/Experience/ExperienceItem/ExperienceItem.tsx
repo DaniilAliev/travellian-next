@@ -22,4 +22,4 @@ const ExperienseItem: FC<Item> = ({ item }) =>
     <p>{item.profession}</p>
   </div>
 
-export default ExperienseItem;
+export { ExperienseItem };
