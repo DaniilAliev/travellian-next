@@ -1,6 +1,5 @@
-import { useState, FC, ReactNode, useEffect } from 'react';
+import { useState, FC, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { Session } from 'next-auth';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Logo from '../../../../public/Logo.svg'
@@ -12,22 +11,7 @@ import User from './User';
 import { Menu } from './AuthorizedMenu';
 import useMobile from '@/hooks/useMobile';
 import { useStateContext } from '@/context';
-
-interface Buttons {
-  data: Session | null,
-};
-
-interface Nav {
-  children: ReactNode,
-  settings: boolean,
-}
-
-type State = {
-  general: {
-    isMobile: boolean | null,
-    authToken: string | null,
-  }
-}
+import { Buttons, Nav, State } from './types';
  
 const NavList = () => {
   return (

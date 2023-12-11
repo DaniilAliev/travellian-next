@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
-import { HotelOrder } from "../Order";
 import styles from './OrderItem.module.scss';
 import axios from "axios";
 import Link from 'next/link';
+import { HotelOrder } from "../types";
 
 interface OrderItem {
   order: HotelOrder,

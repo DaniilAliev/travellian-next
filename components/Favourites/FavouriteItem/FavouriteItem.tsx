@@ -1,12 +1,12 @@
 import { FC, useState } from "react";
-import { Fav } from "../Favourites";
+import { Hotel } from "@/types/types";
 import Link from 'next/link';
 import styles from './FavouriteItem.module.scss';
 import { Score } from "@/components/Destinations/Score";
 import { Session } from 'next-auth';
 import axios from "axios";
 
-const FavouriteItem:FC<{ fav: Fav, data: Session | null }> = ({fav, data}) => {
+const FavouriteItem:FC<{ fav: Hotel, data: Session | null }> = ({fav, data}) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(false)
 
   const handleClick = async () => {

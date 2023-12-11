@@ -5,20 +5,7 @@ import { OrderItem } from "./OrderItem";
 import styles from './Order.module.scss';
 import { useRouter } from 'next/dist/client/router';
 import { CustomSkeleton } from "../CustomSkeleton/Orders";
-
-export type HotelOrder = {
-  id: number,
-  hotelId: number,
-  created_at: number,
-  user: string,
-  name: string,
-  adress: string,
-  price: number,
-  guests: string,
-  daysDiff: number,
-  checkIn: string,
-  checkOut: string,
-}
+import { HotelOrder } from "./types";
 
 const Order = () => {
   const { data } = useSession();

@@ -19,23 +19,7 @@ import { FavoriteButton } from "../FavoriteButton";
 import { HotelSkeleton } from "../CustomSkeleton/Hotel";
 import { BookButton } from "./Button";
 import { YMaps } from "@pbe/react-yandex-maps";
-
-type HotelFavInfo = {
-  user: string,
-  name: string,
-  hotelId: number,
-  adress: string,
-  rating: number,
-}
-
-export type Hotel = HotelFavInfo & {
-  city: string,
-  created_at: number,
-  description: string,
-  id: number,
-  pictures: string[],
-  price: number,
-};
+import { Hotel } from "@/types/types";
 
 const HotelItem = () => {
   const orderState = useSelector(selectOrder);

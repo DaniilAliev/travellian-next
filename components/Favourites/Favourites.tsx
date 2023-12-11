@@ -8,16 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions as favActions } from "@/slices/favouriteSlice";
 import { selectors } from "@/slices/favouriteSlice";
 import { CustomFavSkeleton } from "../CustomSkeleton/Favourites";
-
-export type Fav = {
-  id: number,
-  created_at: number,
-  user: string,
-  name: string,
-  hotelId: number,
-  adress: string,
-  rating: number,
-}
+import { Hotel } from "@/types/types";
 
 const Favourites = () => {
   const { data } = useSession();
@@ -37,7 +28,7 @@ const Favourites = () => {
         try {
           const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/favourite`)
 
-          const filtered = res.data.filter((item: Fav) => item.user === email)
+          const filtered = res.data.filter((item: Hotel) => item.user === email)
           console.log(filtered);
           dispatch(favActions.addFavs(filtered))
           setIsLoaded(true);
@@ -55,7 +46,7 @@ const Favourites = () => {
       <div className={styles.favs}>
         <h1 className={styles.header}>Your Favourites:</h1>
         {isLoaded ? (favs.length === 0 ? <p className={styles['no-orders']}>You have no favourites yet</p> : favs.map((fav: unknown) => {
-          const favItem = fav as Fav
+          const favItem = fav as Hotel
           return <FavouriteItem key={favItem.id} fav={favItem} data={data} />
         })) : <CustomFavSkeleton />}
       </div>

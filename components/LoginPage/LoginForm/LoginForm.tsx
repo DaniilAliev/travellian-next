@@ -4,16 +4,7 @@ import { useState } from 'react';
 import errorStyles from '../errorStyles';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/dist/client/router';
-
-interface MyForm {
-  email: string,
-  password: string,
-}
-
-type LoginResult = {
-  error: string | null;
-  status: number;
-};
+import { AuthResult, MyForm } from '@/types/types';
 
 const LoginForm = () => {
   const router = useRouter();
@@ -30,7 +21,7 @@ const LoginForm = () => {
       setError(null);
       setLoading(true);
 
-      const result: LoginResult = await signIn('credentials', {
+      const result: AuthResult = await signIn('credentials', {
         redirect: false,
         email: data.email,
         password: data.password,

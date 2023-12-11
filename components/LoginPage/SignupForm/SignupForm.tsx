@@ -6,17 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import errorStyles from '../errorStyles';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/dist/client/router';
-
-interface MyForm {
-  email: string,
-  password: string,
-  confirm: string,
-}
-
-type SignInResult = {
-  error: string | null;
-  status: number;
-};
+import { AuthResult, MyForm } from '@/types/types';
 
 const SignupForm = () => {
   const [customError, setError] = useState<null | string>(null);
@@ -36,7 +26,7 @@ const SignupForm = () => {
       setError(null);
       setLoading(true);
 
-      const result: SignInResult = await signIn('credentials', {
+      const result: AuthResult = await signIn('credentials', {
         redirect: false,
         email: data.email,
         password: data.password,

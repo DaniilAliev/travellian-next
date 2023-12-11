@@ -11,21 +11,22 @@ interface IsSubmit {
 const Button: FC<IsSubmit> = ({ isSubmit }) => {
 
   return (
-  <button className={styles.button} type="submit">
+    <button className={styles.button} type="submit">
       <div className={styles.container}>
         {
-          isSubmit ? 
-          <div className={styles['spinner-container']}>
-            	<ClipLoader color="white" size={50} />
-          </div>
-           : 
-          <>
-            <p>Book Now!</p>
-            <Image src={Arrow} alt="arrow"/>
-          </>
+          isSubmit ?
+            <div className={styles['spinner-container']}>
+              <ClipLoader color="white" size={50} />
+            </div>
+            :
+            <>
+              <p>Book Now!</p>
+              <Image src={Arrow} alt="arrow" />
+            </>
         }
-      </div> 
-  </button>
-  )};
+      </div>
+    </button>
+  )
+};
 
 export { Button };

@@ -2,31 +2,11 @@ import { FcLikePlaceholder } from "react-icons/fc";
 import { FcLike } from "react-icons/fc";
 import { IconContext } from 'react-icons';
 import { FC, useEffect, useState } from "react";
-import { Session } from 'next-auth';
-import { Hotel as Item } from '../Destinations/Main';
+import { HotelFavInfo, ItemProps } from '@/types/types';
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectors as favSelectors } from "@/slices/favouriteSlice";
 import { actions as favActions } from "@/slices/favouriteSlice";
-
-
-interface ItemProps {
-  hotel: Item;
-  data: Session | null;
-};
-
-type HotelFavInfo = {
-  user: string,
-  name: string,
-  hotelId: number,
-  adress: string,
-  rating: number,
-}
-
-type HotelResFavInfo = HotelFavInfo & {
-  id: number,
-  created_at: number,
-}
 
 const styles = {
   'cursor': 'pointer'
@@ -42,7 +22,7 @@ const FavoriteButton: FC<ItemProps>= ({ hotel, data }) => {
 
   useEffect(() => {
     const foundFav = favs.find((fav: unknown) => {
-      const hotelFav = fav as HotelResFavInfo;
+      const hotelFav = fav as HotelFavInfo;
       return hotelFav.hotelId === hotel.id
     }); 
     if (foundFav) {

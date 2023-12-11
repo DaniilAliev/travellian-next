@@ -12,23 +12,7 @@ import { useSession } from 'next-auth/react';
 import Select from 'react-select';
 import getPrice from './getPrice';
 import axios from 'axios';
-
-type HotelFavInfo = {
-  user: string,
-  name: string,
-  hotelId: number,
-  adress: string,
-  rating: number,
-}
-
-export type Hotel = HotelFavInfo & {
-  city: string,
-  created_at: number,
-  description: string,
-  id: number,
-  pictures: string[],
-  price: number,
-};
+import { Hotel, HotelFavInfo } from '@/types/types';
 
 interface DestinationsProps {
   response: Hotel[];

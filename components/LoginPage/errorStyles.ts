@@ -1,5 +1,5 @@
 type ErrorStyles = {
-  color: string,
+	color: string,
 	width: string,
 	fontSize: string,
 };

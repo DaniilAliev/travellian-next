@@ -1,20 +1,13 @@
 import styles from './Item.module.scss';
 import Image from 'next/image';
 import { FC } from 'react';
-import { Hotel as Item } from '../Main';
+import { ItemProps } from '@/types/types';
 import { useSelector } from 'react-redux';
 import { selectOrder } from '@/slices/orderSlice';
-import { Session } from 'next-auth';
 import getPrice from '../getPrice';
 import Link from 'next/link';
 import { Score } from '../Score';
 import { FavoriteButton } from '@/components/FavoriteButton';
-
-
-interface ItemProps {
-  hotel: Item;
-  data: Session | null;
-};
 
 const Item: FC<ItemProps> = ({ hotel, data }) => {
   const orderState = useSelector(selectOrder);
