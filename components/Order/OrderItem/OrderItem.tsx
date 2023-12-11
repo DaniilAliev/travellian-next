@@ -2,11 +2,11 @@ import { FC, useState } from "react";
 import styles from './OrderItem.module.scss';
 import axios from "axios";
 import Link from 'next/link';
-import { HotelOrder } from "../types";
 import API_ROUTES from "@/routes/apiRoutes";
+import { Hotel } from "@/types/types";
 
 interface OrderItem {
-  order: HotelOrder,
+  order: Hotel,
 }
 
 const OrderItem: FC<OrderItem> = ({ order }) => {

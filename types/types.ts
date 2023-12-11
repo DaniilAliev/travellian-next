@@ -15,6 +15,10 @@ export type Hotel = HotelFavInfo & {
 	id: number,
 	pictures: string[],
 	price: number,
+	guests: string,
+	daysDiff: number,
+	checkIn: string,
+	checkOut: string,
 };
 
 export interface ItemProps {

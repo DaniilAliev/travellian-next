@@ -5,8 +5,8 @@ import { OrderItem } from "./OrderItem";
 import styles from './Order.module.scss';
 import { useRouter } from 'next/dist/client/router';
 import { CustomSkeleton } from "../CustomSkeleton/Orders";
-import { HotelOrder } from "./types";
 import API_ROUTES from "@/routes/apiRoutes";
+import { Hotel } from "@/types/types";
 
 const Order = () => {
   const { data } = useSession();
@@ -24,7 +24,7 @@ const Order = () => {
         try {
           const res = await axios.get(`${API_ROUTES.URL}${API_ROUTES.ORDER}`)
 
-          const filtered = res.data.filter((item: HotelOrder) => item.user === email)
+          const filtered = res.data.filter((item: Hotel) => item.user === email)
           console.log(filtered);
           setOrders(filtered);
           setIsLoaded(true)
@@ -41,7 +41,7 @@ const Order = () => {
     <section>
       <div className={styles.orders}>
         <h1 className={styles.header}>Your orders:</h1>
-        {isLoaded ? (orders.length === 0 ? <p className={styles['no-orders']}>You have no orders yet</p> : orders.map((order: HotelOrder) => (
+        {isLoaded ? (orders.length === 0 ? <p className={styles['no-orders']}>You have no orders yet</p> : orders.map((order: Hotel) => (
           <OrderItem key={order.id} order={order} />
         ))) :
           <CustomSkeleton />
