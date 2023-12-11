@@ -25,8 +25,8 @@ import API_ROUTES from "@/routes/apiRoutes";
 const HotelItem = () => {
   const orderState = useSelector(selectOrder);
 
-  const guests = orderState.guestsNumber;
-  const daysDiff = orderState.daysDiff;
+  const guests = orderState.guestsNumber as string;
+  const daysDiff = orderState.daysDiff as number;
   const checkIn = orderState.checkIn;
   const checkOut = orderState.checkOut;
 
