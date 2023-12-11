@@ -9,7 +9,7 @@ const login = async (credentials) => {
 	}
 
 	try {
-		const response = await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2${API_ROUTES.LOGIN}`, dataToLogin);
+		const response = await axios.post(`${API_ROUTES.URL}${API_ROUTES.LOGIN}`, dataToLogin);
 
 	if ( response ) {
 		const user = { email: credentials.email,  authToken: response.data.authToken};

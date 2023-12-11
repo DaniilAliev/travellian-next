@@ -6,6 +6,7 @@ import styles from './Order.module.scss';
 import { useRouter } from 'next/dist/client/router';
 import { CustomSkeleton } from "../CustomSkeleton/Orders";
 import { HotelOrder } from "./types";
+import API_ROUTES from "@/routes/apiRoutes";
 
 const Order = () => {
   const { data } = useSession();
@@ -21,7 +22,7 @@ const Order = () => {
     async function fetchData() {
       if (email) {
         try {
-          const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/order`)
+          const res = await axios.get(`${API_ROUTES.URL}${API_ROUTES.ORDER}`)
 
           const filtered = res.data.filter((item: HotelOrder) => item.user === email)
           console.log(filtered);

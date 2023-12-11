@@ -20,6 +20,7 @@ import { HotelSkeleton } from "../CustomSkeleton/Hotel";
 import { BookButton } from "./Button";
 import { YMaps } from "@pbe/react-yandex-maps";
 import { Hotel } from "@/types/types";
+import API_ROUTES from "@/routes/apiRoutes";
 
 const HotelItem = () => {
   const orderState = useSelector(selectOrder);
@@ -45,7 +46,7 @@ const HotelItem = () => {
   useEffect(() => {
     if (id) {
       const fetchData = async () => {
-        const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations/${id}`);
+        const res = await axios.get(`${API_ROUTES.URL}${API_ROUTES.DESTINATIONS}/${id}`);
         console.log(res.data)
         setHotel(res.data)
         setIsLoaded(true)
@@ -73,7 +74,7 @@ const HotelItem = () => {
           hotelId: hotel.id,
         }
   
-        const post = await axios.post('https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/order', dataToFetch);
+        const post = await axios.post(`${API_ROUTES.URL}${API_ROUTES.ORDER}`, dataToFetch);
   
         if (post) {
           setIsOrdered(true);

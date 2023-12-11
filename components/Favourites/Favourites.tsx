@@ -9,6 +9,7 @@ import { actions as favActions } from "@/slices/favouriteSlice";
 import { selectors } from "@/slices/favouriteSlice";
 import { CustomFavSkeleton } from "../CustomSkeleton/Favourites";
 import { Hotel } from "@/types/types";
+import API_ROUTES from "@/routes/apiRoutes";
 
 const Favourites = () => {
   const { data } = useSession();
@@ -26,7 +27,7 @@ const Favourites = () => {
     async function fetchData() {
       if (email) {
         try {
-          const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/favourite`)
+          const res = await axios.get(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}`)
 
           const filtered = res.data.filter((item: Hotel) => item.user === email)
           console.log(filtered);

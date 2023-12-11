@@ -1,4 +1,5 @@
 import { Main } from "@/components/Destinations/Main";
+import API_ROUTES from "@/routes/apiRoutes";
 import axios from "axios";
 import { FC } from "react";
 
@@ -25,7 +26,7 @@ const Destinations: FC<DestinationsProps> = ({response}) => {
 }
 
 export async function getStaticProps() {
-  const res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/destinations`);
+  const res = await axios.get(`${API_ROUTES.URL}${API_ROUTES.DESTINATIONS}`);
   const response = res.data || [];
 
   return {

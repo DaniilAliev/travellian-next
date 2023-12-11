@@ -5,13 +5,14 @@ import styles from './FavouriteItem.module.scss';
 import { Score } from "@/components/Destinations/Score";
 import { Session } from 'next-auth';
 import axios from "axios";
+import API_ROUTES from "@/routes/apiRoutes";
 
 const FavouriteItem:FC<{ fav: Hotel, data: Session | null }> = ({fav, data}) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(false)
 
   const handleClick = async () => {
     console.log(fav.hotelId)
-    await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/favourite/${fav.id}`)
+    await axios.delete(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}/${fav.id}`)
     setIsDeleted(true)
   }
 

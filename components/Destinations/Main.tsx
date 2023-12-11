@@ -13,6 +13,7 @@ import Select from 'react-select';
 import getPrice from './getPrice';
 import axios from 'axios';
 import { Hotel, HotelFavInfo } from '@/types/types';
+import API_ROUTES from '@/routes/apiRoutes';
 
 interface DestinationsProps {
   response: Hotel[];
@@ -32,7 +33,7 @@ const Main: FC<DestinationsProps> = ({ response }) => {
   useEffect(() => {
 
     const fetchFav = async () => {
-      const resFav = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/favourite`);
+      const resFav = await axios.get(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}`);
       const filtered = resFav.data.filter((item: HotelFavInfo) => item.user === data?.user?.email)
       dispatch(favActions.addFavs(filtered));
     }

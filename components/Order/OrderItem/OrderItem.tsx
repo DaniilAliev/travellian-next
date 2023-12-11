@@ -3,6 +3,7 @@ import styles from './OrderItem.module.scss';
 import axios from "axios";
 import Link from 'next/link';
 import { HotelOrder } from "../types";
+import API_ROUTES from "@/routes/apiRoutes";
 
 interface OrderItem {
   order: HotelOrder,
@@ -13,7 +14,7 @@ const OrderItem: FC<OrderItem> = ({ order }) => {
   console.log(order);
 
   const handleClick = async () => {
-    await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:KAEwqeq2/order/${order.id}`)
+    await axios.delete(`${API_ROUTES.URL}${API_ROUTES.ORDER}/${order.id}`)
     setIsDeleted(true)
   }
 
