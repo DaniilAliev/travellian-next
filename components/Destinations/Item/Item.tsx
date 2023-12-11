@@ -12,8 +12,8 @@ import { FavoriteButton } from '@/components/FavoriteButton';
 const Item: FC<ItemProps> = ({ hotel, data }) => {
   const orderState = useSelector(selectOrder);
 
-  const guests = orderState.guestsNumber;
-  const daysDiff = orderState.daysDiff;
+  const guests = orderState.guestsNumber as string;
+  const daysDiff = orderState.daysDiff as number;
 
   return (
     <div className={styles.card}>
