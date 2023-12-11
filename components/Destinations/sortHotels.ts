@@ -1,8 +1,8 @@
 import { AppDispatch } from "@/slices/store";
 import { Hotel } from "@/types/types";
-import { YourOtelsActionsType } from ".";
+import { OtelsActionsType } from ".";
 
-const sortHotels = (hotels: Hotel[], sortOrder: string, dispatch: AppDispatch, otelsActions: YourOtelsActionsType) => {
+const sortHotels = (hotels: Hotel[], sortOrder: string, dispatch: AppDispatch, otelsActions: OtelsActionsType) => {
   let sorted: Hotel[];
   switch (sortOrder) {
     case 'price-increase':

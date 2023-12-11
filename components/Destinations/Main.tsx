@@ -10,17 +10,17 @@ import { actions as favActions } from '@/slices/favouriteSlice';
 import { selectors as otelsSelectors } from '@/slices/otelsSlice';
 import { useSession } from 'next-auth/react';
 import Select from 'react-select';
-import getPrice from './getPrice';
 import axios from 'axios';
 import { Hotel, HotelFavInfo } from '@/types/types';
 import API_ROUTES from '@/routes/apiRoutes';
 import sortHotels from './sortHotels';
+import filter from './filter';
 
 interface DestinationsProps {
   response: Hotel[];
 }
 
-export type YourOtelsActionsType = typeof otelsActions;
+export type OtelsActionsType = typeof otelsActions;
 
 const Main: FC<DestinationsProps> = ({ response }) => {
   const orderState = useSelector(selectOrder);
@@ -47,24 +47,7 @@ const Main: FC<DestinationsProps> = ({ response }) => {
         const filtered = response.filter((item: Hotel) => item.city === orderState.destination);
         dispatch(otelsActions.addOtels(filtered));
 
-        if (minPrice) {
-          const filteredByMinPrice = filtered.filter((item: Hotel) => getPrice(guests, item.price, daysDiff) > minPrice);
-          dispatch(otelsActions.addOtels(filteredByMinPrice));
-        }
-
-        if (maxPrice) {
-          const filteredByMaxPrice = filtered.filter((item: Hotel) => getPrice(guests, item.price, daysDiff) < maxPrice);
-          dispatch(otelsActions.addOtels(filteredByMaxPrice));
-        }
-
-        if (minPrice && maxPrice) {
-          const filteredByPriceRange = filtered.filter((item: Hotel) => {
-            const price = getPrice(guests, item.price, daysDiff);
-            return price >= minPrice && price <= maxPrice;
-          });
-          dispatch(otelsActions.addOtels(filteredByPriceRange));
-        }
-      
+        filter(filtered, dispatch, otelsActions, minPrice, maxPrice, guests, daysDiff);
     }
 
   }, [orderState, dispatch, minPrice, maxPrice, daysDiff, guests, response, data?.user?.email])
