@@ -13,14 +13,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Score } from "../Destinations/Score";
 import { useSession } from 'next-auth/react';
-import { MapComponent } from "./Map";
-import { Modal } from "./Modal";
-import { FavoriteButton } from "../FavoriteButton";
-import { HotelSkeleton } from "../CustomSkeleton/Hotel";
-import { BookButton } from "./Button";
-import { YMaps } from "@pbe/react-yandex-maps";
+import { YMapComponent } from "./Map";
+import { FavoriteButton, HotelSkeleton, BookButton, Modal } from ".";
 import { Hotel } from "@/types/types";
 import API_ROUTES from "@/routes/apiRoutes";
+import fetchData from "./fetch";
 
 const HotelItem = () => {
   const orderState = useSelector(selectOrder);
@@ -33,11 +30,11 @@ const HotelItem = () => {
   const {data} = useSession();
 
   const [hotel, setHotel] = useState<Hotel>();
-  const [isLoaded, setIsLoaded] = useState<boolean>(false)
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const [modalState, setModalState] = useState<'opened' | 'closed'>('closed');
 
-  const [isOrdered, setIsOrdered] = useState<boolean>(false)
+  const [isOrdered, setIsOrdered] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -45,14 +42,7 @@ const HotelItem = () => {
 
   useEffect(() => {
     if (id) {
-      const fetchData = async () => {
-        const res = await axios.get(`${API_ROUTES.URL}${API_ROUTES.DESTINATIONS}/${id}`);
-        console.log(res.data)
-        setHotel(res.data)
-        setIsLoaded(true)
-      }
-  
-      fetchData()
+      fetchData(setHotel, setIsLoaded, id as string);
     }
   }, [router.query, id]);
 
@@ -134,13 +124,7 @@ const HotelItem = () => {
           </div>
           <p className={styles.nights}>{`${daysDiff} nights, ${orderState.guestsNumber} adults`}</p>
         </div>
-        <YMaps
-          query={{
-            apikey: '2d5c8c9d-bc56-4a60-9db0-41ced8408eed'
-          }}
-        >
-          <MapComponent address={hotel.adress}/>
-        </YMaps>
+        <YMapComponent address={hotel.adress}/>
       </div>
     </section>
     {

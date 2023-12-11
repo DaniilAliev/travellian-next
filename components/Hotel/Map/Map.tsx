@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { useYMaps } from '@pbe/react-yandex-maps';
+import { YMaps, useYMaps } from '@pbe/react-yandex-maps';
 
-const MapComponent: FC<{address: string}> = ({ address }) => {
+const MapComponent: FC<{ address: string }> = ({ address }) => {
   const [mapState, setMapState] = useState({ center: [], zoom: 15 });
 
   const mapRef = useRef(null);
@@ -40,10 +40,22 @@ const MapComponent: FC<{address: string}> = ({ address }) => {
   }, [ymaps, address]);
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', paddingTop: '40px'}}>
-     <div ref={mapRef} style={{ maxWidth: '1000px', width: '100%', height: '300px' }} />
+    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
+      <div ref={mapRef} style={{ maxWidth: '1000px', width: '100%', height: '300px' }} />
     </div>
   );
 };
 
-export { MapComponent };
+const YMapComponent: FC<{ address: string }> = ({address}) => {
+  return (
+    <YMaps
+      query={{
+        apikey: '2d5c8c9d-bc56-4a60-9db0-41ced8408eed'
+      }}
+    >
+      <MapComponent address={address} />
+    </YMaps>
+  )
+}
+
+export { YMapComponent };
