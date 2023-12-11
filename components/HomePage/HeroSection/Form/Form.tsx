@@ -85,7 +85,7 @@ const Form = () => {
                     options={options}
                     className={`${styles.input} ${styles.customSelect}`}
                     styles={customStyles}
-                    defaultInputValue={orderState.destination}
+                    defaultInputValue={orderState.destination as string | undefined}
                   />
                 )}
               />
