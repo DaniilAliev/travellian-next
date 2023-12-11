@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import styles from './HotelItem.module.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import _ from "lodash";
-import 'swiper/css';
 import Image from 'next/image';
 import prevButton from '../../public/chevron-down.svg';
 import nextButton from '../../public/chevron-up.svg';
@@ -18,6 +15,7 @@ import { FavoriteButton, HotelSkeleton, BookButton, Modal } from ".";
 import { Hotel } from "@/types/types";
 import API_ROUTES from "@/routes/apiRoutes";
 import fetchData from "./fetch";
+import HotelSwiper from "./HotelSwiper";
 
 const HotelItem = () => {
   const orderState = useSelector(selectOrder);
@@ -100,20 +98,7 @@ const HotelItem = () => {
           </div>
         </div>
 
-        <Swiper
-          className={styles.swiper}
-          autoHeight
-          onSwiper={(swiper) => {
-            swiperNextRef.current = swiper;
-            swiperPrevRef.current = swiper;
-          }}
-        >
-          {hotel.pictures.map(picture =>
-            <SwiperSlide key={_.uniqueId()} className={styles.slide}>
-              <Image src={picture} width={10000} height={10000} alt="Hotel imge" />
-            </SwiperSlide>
-          )}
-        </Swiper>
+        <HotelSwiper styles={styles} swiperNextRef={swiperNextRef} swiperPrevRef={swiperPrevRef} hotel={hotel}/>
         <div className={styles['buttons-container']}>
           {buttons}
         </div>
