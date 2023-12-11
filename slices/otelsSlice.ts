@@ -1,4 +1,5 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
 export const otelsAdapter = createEntityAdapter();
 
@@ -25,6 +26,5 @@ const otelsSlice = createSlice({
 });
 
 export const { actions } = otelsSlice;
-export const selectors = otelsAdapter.getSelectors((state: any ) => state.otels);
-// export const selectOrder = (state: any) => state.otels;
+export const selectors = otelsAdapter.getSelectors((state: RootState ) => state.otels);
 export default otelsSlice.reducer;

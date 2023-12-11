@@ -1,4 +1,5 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
 export const favAdapter = createEntityAdapter();
 
@@ -15,5 +16,5 @@ const favSlice = createSlice({
   });
 
   export const { actions } = favSlice;
-	export const selectors = favAdapter.getSelectors((state: any ) => state.favourite);
+	export const selectors = favAdapter.getSelectors((state: RootState ) => state.favourite);
 	export default favSlice.reducer;

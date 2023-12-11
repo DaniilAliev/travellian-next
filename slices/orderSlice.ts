@@ -1,5 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import moment from 'moment';
+import { RootState } from './store';
 
 moment.locale('en');
 
@@ -61,5 +62,5 @@ const orderSlice = createSlice({
 });
 
 export const { actions } = orderSlice;
-export const selectOrder = (state: any) => state.order;
+export const selectOrder = (state: RootState) => state.order;
 export default orderSlice.reducer;

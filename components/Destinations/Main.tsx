@@ -14,17 +14,20 @@ import getPrice from './getPrice';
 import axios from 'axios';
 import { Hotel, HotelFavInfo } from '@/types/types';
 import API_ROUTES from '@/routes/apiRoutes';
+import sortHotels from './sortHotels';
 
 interface DestinationsProps {
   response: Hotel[];
 }
 
+export type YourOtelsActionsType = typeof otelsActions;
+
 const Main: FC<DestinationsProps> = ({ response }) => {
   const orderState = useSelector(selectOrder);
-  const minPrice = orderState.minPrice;
-  const maxPrice = orderState.maxPrice;
-  const guests = orderState.guestsNumber;
-  const daysDiff = orderState.daysDiff;
+  const minPrice = orderState.minPrice as number;
+  const maxPrice = orderState.maxPrice as number;
+  const guests = orderState.guestsNumber as string;
+  const daysDiff = orderState.daysDiff as number;
 
   const dispatch = useDispatch();
 
@@ -78,31 +81,7 @@ const Main: FC<DestinationsProps> = ({ response }) => {
   const handleSortChange = (selectedOption: any) => {
     if (selectedOption) {
       const selectedSortOrder = selectedOption.value;
-      sortHotels(hotels, selectedSortOrder);
-    }
-  };
-
-  const sortHotels = (hotels: Hotel[], sortOrder: string) => {
-    let sorted: Hotel[];
-    switch (sortOrder) {
-      case 'price-increase':
-        sorted = [...hotels].sort((a, b) => a.price - b.price);
-        dispatch(otelsActions.addOtels(sorted));
-        break;
-      case 'price-decrease':
-        sorted = [...hotels].sort((a, b) => b.price - a.price);
-        dispatch(otelsActions.addOtels(sorted));
-        break;
-      case 'rating-increase':
-        sorted = [...hotels].sort((a, b) => a.rating - b.rating);
-        dispatch(otelsActions.addOtels(sorted));
-        break;
-      case 'rating-decrease':
-        sorted = [...hotels].sort((a, b) => b.rating - a.rating);
-        dispatch(otelsActions.addOtels(sorted));
-        break;
-      default:
-        break;
+      sortHotels(hotels, selectedSortOrder, dispatch, otelsActions);
     }
   };
 
