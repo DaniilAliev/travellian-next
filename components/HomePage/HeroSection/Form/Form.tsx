@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { Button } from '../Button';
+import { MemoizedButton } from '../Button';
 import styles from './Form.module.scss';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,14 +17,12 @@ const Form = () => {
 
   const [startDate, setStartDate] = useState<Date | null>(
     new Date(moment(orderState.checkIn, 'DD/MM/YYYY').toDate())
-    );
+  );
   const [leaveDate, setLeaveDate] = useState<Date | null>(
     new Date(moment(orderState.checkOut, 'DD/MM/YYYY').toDate())
-    );
+  );
 
   const [isSubmit, setIsSubmit] = useState<boolean>(false)
-
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   const dispatch = useDispatch();
 
@@ -48,7 +46,7 @@ const Form = () => {
       minute: checkInDateMoment.minute(),
       second: checkInDateMoment.second(),
     });
-    
+
     const daysDiff = checkOutDateMoment.diff(checkInDateMoment, 'days');
 
     const dataToDispatch = {
@@ -110,7 +108,6 @@ const Form = () => {
                       selected={startDate}
                       onChange={(date) => {
                         field.onChange(date?.toLocaleString());
-                        console.log(date)
                         setStartDate(date);
                       }}
                       className={styles.datepicker}
@@ -141,7 +138,7 @@ const Form = () => {
               </div>
             </div>
           </div>
-          <Button isSubmit={isSubmit}/>
+          <MemoizedButton isSubmit={isSubmit} />
         </form>
       </div>
     </div>

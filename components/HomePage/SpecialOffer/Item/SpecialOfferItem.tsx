@@ -12,7 +12,6 @@ interface Item {
 
 const Item: FC<Item> = ({ item }) => {
   const dispatch = useDispatch()
-
   return (
   <div className={styles.card}>
     <div className={styles['image-container']}>

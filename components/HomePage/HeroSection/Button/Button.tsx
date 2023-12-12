@@ -1,7 +1,7 @@
 import styles from "./Button.module.scss";
 import Arrow from '../../../../public/Arrow1.svg';
 import Image from "next/image";
-import { FC } from "react";
+import { FC, memo } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 interface IsSubmit {
@@ -9,7 +9,6 @@ interface IsSubmit {
 }
 
 const Button: FC<IsSubmit> = ({ isSubmit }) => {
-
   return (
     <button className={styles.button} type="submit">
       <div className={styles.container}>
@@ -29,4 +28,6 @@ const Button: FC<IsSubmit> = ({ isSubmit }) => {
   )
 };
 
-export { Button };
+const MemoizedButton = memo(Button);
+
+export { MemoizedButton };
