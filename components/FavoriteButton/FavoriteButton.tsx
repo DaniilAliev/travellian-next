@@ -19,7 +19,6 @@ const FavoriteButton: FC<ItemProps>= ({ hotel, data }) => {
   const dispatch = useDispatch()
 
   const favs = useSelector(favSelectors.selectAll);
-  console.log(favs)
 
   useEffect(() => {
     const foundFav = favs.find((fav: unknown) => {
@@ -44,7 +43,6 @@ const FavoriteButton: FC<ItemProps>= ({ hotel, data }) => {
         }
 
         const res = await axios.post(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}`, dataToPost);
-        console.log(res.data)
         dispatch(favouriteActions.addFav(res.data))
       }
       

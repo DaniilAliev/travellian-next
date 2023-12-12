@@ -45,7 +45,6 @@ const HotelItem = () => {
   }, [router.query, id]);
 
   const handleClick = async () => {
-    console.log(data)
     if (!data) {
       setModalState('opened');
     } else {

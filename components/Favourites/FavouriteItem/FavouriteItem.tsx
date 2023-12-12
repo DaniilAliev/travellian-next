@@ -11,7 +11,6 @@ const FavouriteItem:FC<{ fav: Hotel, data: Session | null }> = ({fav, data}) => 
   const [isDeleted, setIsDeleted] = useState<boolean>(false)
 
   const handleClick = async () => {
-    console.log(fav.hotelId)
     await axios.delete(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}/${fav.id}`)
     setIsDeleted(true)
   }

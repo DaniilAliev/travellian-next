@@ -21,8 +21,6 @@ interface User {
 const HomePage = () => {
   const { data } = useSession();
 
-  console.log(data)
-
   const user = data?.user as User;
 
   const dispatch = useDispatch()

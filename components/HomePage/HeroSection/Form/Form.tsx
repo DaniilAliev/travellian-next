@@ -50,8 +50,6 @@ const Form = () => {
     });
     
     const daysDiff = checkOutDateMoment.diff(checkInDateMoment, 'days');
-    console.log(checkInDateMoment.toDate())
-    console.log(checkOutDateMoment.toDate())
 
     const dataToDispatch = {
       destination: data.destination,

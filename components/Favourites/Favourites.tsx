@@ -30,7 +30,6 @@ const Favourites = () => {
           const res = await axios.get(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}`)
 
           const filtered = res.data.filter((item: Hotel) => item.user === email)
-          console.log(filtered);
           dispatch(favouriteActions.addFavs(filtered))
           setIsLoaded(true);
         } catch (e) {

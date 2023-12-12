@@ -28,12 +28,10 @@ const Form = () => {
   })
 	
 	const handleChange = (option: Option) => {
-    console.log(option)
     setSelectedOption(option);
   };
 
   const submit = (data: DataForm) => {
-    console.log(data);
     if (data.destination) {
       dispatch(orderActions.changeCity(data.destination))
     } else {

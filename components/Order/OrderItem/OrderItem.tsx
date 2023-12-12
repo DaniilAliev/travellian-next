@@ -11,7 +11,6 @@ interface OrderItem {
 
 const OrderItem: FC<OrderItem> = ({ order }) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(false)
-  console.log(order);
 
   const handleClick = async () => {
     await axios.delete(`${API_ROUTES.URL}${API_ROUTES.ORDER}/${order.id}`)

@@ -27,9 +27,7 @@ const LoginForm = () => {
         password: data.password,
         action: 'login',
       }) ?? { error: null, status: 0 };
-
-      console.log(result)
-
+      
       if (!result.error) {
         router.push('/');
       } else if (result?.status) {

@@ -21,7 +21,6 @@ const SignupForm = () => {
   })
 
   const submit = async (data: MyForm) => {
-    console.log('submitted')
     try {
       setError(null);
       setLoading(true);
@@ -37,7 +36,6 @@ const SignupForm = () => {
         router.push('/');
       } 
       else if (result.status) {
-        console.log(result)
         setError('User with this email is already exists');
         setLoading(false);
       }

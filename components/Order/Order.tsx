@@ -25,7 +25,6 @@ const Order = () => {
           const res = await axios.get(`${API_ROUTES.URL}${API_ROUTES.ORDER}`)
 
           const filtered = res.data.filter((item: Hotel) => item.user === email)
-          console.log(filtered);
           setOrders(filtered);
           setIsLoaded(true)
         } catch (e) {
