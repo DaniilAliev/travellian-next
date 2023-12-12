@@ -30,31 +30,31 @@ const Form = () => {
 
   const router = useRouter();
 
-  const handleChange = (option: Option) => {
-    console.log(option)
-    setSelectedOption(option);
-  };
-
   const { control, register, handleSubmit, formState: { errors } } = useForm<MyForm>({
-    defaultValues: {},
+    defaultValues: {
+      destination: orderState.destination,
+      guestsNumber: orderState.guestsNumber,
+      checkIn: orderState.checkIn,
+      checkOut: orderState.checkOut
+    },
   })
 
-  const submit = (data: Data) => {
+  const submit = (data: MyForm) => {
     setIsSubmit(true)
 
-    const destination = data.destination ? data.destination : orderState.destination;
-    
-    const checkInDate = data.checkIn ? data.checkIn : orderState.checkIn;
-    
-    const checkOutDate = data.checkOut ? data.checkOut : orderState.checkOut;
-
-    const checkInDateMoment = moment(checkInDate, 'DD.MM.YYYY, HH:mm:ss');
-    const checkOutDateMoment = moment(checkOutDate, 'DD.MM.YYYY, HH:mm:ss');
+    const checkInDateMoment = moment(data.checkIn, 'DD.MM.YYYY, HH:mm:ss');
+    const checkOutDateMoment = moment(data.checkOut, 'DD.MM.YYYY, HH:mm:ss').clone().set({
+      hour: checkInDateMoment.hour(),
+      minute: checkInDateMoment.minute(),
+      second: checkInDateMoment.second(),
+    });
     
     const daysDiff = checkOutDateMoment.diff(checkInDateMoment, 'days');
+    console.log(checkInDateMoment.toDate())
+    console.log(checkOutDateMoment.toDate())
 
     const dataToDispatch = {
-      destination,
+      destination: data.destination,
       guestsNumber: data.guestsNumber,
       daysDiff,
       checkIn: checkInDateMoment,
@@ -79,7 +79,6 @@ const Form = () => {
                   <Select
                     onChange={(newValue) => {
                       const option: Option | null = newValue as Option;
-                      handleChange(option);
                       field.onChange(option?.value);
                     }}
                     options={options}
@@ -144,7 +143,6 @@ const Form = () => {
               </div>
             </div>
           </div>
-
           <Button isSubmit={isSubmit}/>
         </form>
       </div>

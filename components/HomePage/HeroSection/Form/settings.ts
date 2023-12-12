@@ -44,8 +44,8 @@ const customStyles = {
 };
 
 export interface MyForm {
-  destination: string,
-  guestsNumber: string,
+  destination: string | null,
+  guestsNumber: string | null,
   checkIn: any,
   checkOut:any,
 };
