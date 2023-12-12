@@ -1,3 +1,4 @@
+import { Styles } from '@/types/types';
 import { Session } from 'next-auth';
 import { ReactNode } from 'react';
 
@@ -15,4 +16,8 @@ export type State = {
 		isMobile: boolean | null,
 		authToken: string | null,
 	}
+}
+
+export interface StylesPropType {
+  styles: Styles,
 }

@@ -57,8 +57,8 @@ const HotelItem = () => {
           price: getPrice(guests, hotel.price, daysDiff),
           guests,
           daysDiff,
-          checkIn: checkIn,
-          checkOut: checkOut,
+          checkIn,
+          checkOut,
           hotelId: hotel.id,
         }
   

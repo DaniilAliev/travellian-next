@@ -2,11 +2,6 @@ import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 export const modalAdapter = createEntityAdapter();
 
-// type InitialState = {
-//   isMobile: boolean | null,
-//   authToken: string | null
-// }
-
 const initialState = {
 	type: null,
 	info: null,
@@ -28,6 +23,6 @@ const modalSlice = createSlice({
 });
 
 export const { actions } = modalSlice;
-export const selectors = modalAdapter.getSelectors((state: any ) => state.modal);
+export const selectors = modalAdapter.getSelectors((state: any) => state.modal);
 export default modalSlice.reducer;
 

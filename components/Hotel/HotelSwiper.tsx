@@ -2,12 +2,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import _ from "lodash";
 import 'swiper/css';
 import Image from 'next/image';
-import { Hotel } from '@/types/types';
-import { FC, ReactElement } from 'react';
-
-type Styles = {
-  [key: string]: string | undefined;
-};
+import { Hotel, Styles } from '@/types/types';
+import { FC } from 'react';
 
 interface HotelSwiper {
   styles: Styles,
