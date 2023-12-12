@@ -3,7 +3,7 @@ import { SpecialOffer } from "./SpecialOffer";
 import { OurBlog } from "./OurBlog";
 import { TripPlanners } from "./TripPlanners";
 import { DestinationGallery }from "./DestinationGallery"; 
-import { actions } from "@/slices/generalSlice";
+import { generalActions } from "@/slices";
 import { useDispatch } from "react-redux";
 import { Experience } from "./Experience";
 import { useSession } from 'next-auth/react';
@@ -30,7 +30,7 @@ const HomePage = () => {
   useEffect(() => {
     if (data) {
       const authToken = user.authToken as string;
-      dispatch(actions.setAuthToken(authToken))
+      dispatch(generalActions.setAuthToken(authToken))
     }
   }, [dispatch, data]);
 

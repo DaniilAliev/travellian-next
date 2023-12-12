@@ -5,8 +5,7 @@ import { Form } from './Form';
 import { Item } from './Item';
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { actions as otelsActions } from '@/slices/otelsSlice';
-import { actions as favActions } from '@/slices/favouriteSlice';
+import { otelsActions, favouriteActions } from '@/slices';
 import { selectors as otelsSelectors } from '@/slices/otelsSlice';
 import { useSession } from 'next-auth/react';
 import Select from 'react-select';
@@ -38,7 +37,7 @@ const Main: FC<DestinationsProps> = ({ response }) => {
     const fetchFav = async () => {
       const resFav = await axios.get(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}`);
       const filtered = resFav.data.filter((item: HotelFavInfo) => item.user === data?.user?.email)
-      dispatch(favActions.addFavs(filtered));
+      dispatch(favouriteActions.addFavs(filtered));
     }
 
     fetchFav();

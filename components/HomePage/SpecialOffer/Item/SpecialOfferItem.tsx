@@ -4,7 +4,7 @@ import Star from '../../../../public/star.svg';
 import { SpecialOfferData } from '../data';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
-import { actions as modalActions } from '@/slices/modalSlice';
+import { modalActions } from '@/slices';
 
 interface Item {
   item: SpecialOfferData,

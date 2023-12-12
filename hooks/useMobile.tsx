@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { actions as generalActions } from "@/slices/generalSlice";
+import { generalActions } from "@/slices";
 import { useDispatch } from "react-redux";
 
 let mobileSize: number = 860;

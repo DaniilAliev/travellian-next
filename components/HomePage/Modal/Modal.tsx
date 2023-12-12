@@ -2,7 +2,7 @@ import styles from './Modal.module.scss';
 import NewsletterModal from './Modals/NewsletterModal';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { actions as modalActions } from '@/slices/modalSlice';
+import { modalActions } from '@/slices';
 import ItemModal from './Modals/ItemModal';
 import { SpecialOfferData } from '../SpecialOffer/data';
 import { ReactElement } from 'react';

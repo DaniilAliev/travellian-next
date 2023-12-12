@@ -4,7 +4,8 @@ import { options, customStyles, Option } from '../../HomePage/HeroSection/Form/s
 import { useState } from 'react';
 import styles from './Form.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions as orderActions, selectOrder } from '@/slices/orderSlice';
+import { selectOrder } from '@/slices/orderSlice';
+import { orderActions } from '@/slices';
 
 type DataForm = {
   destination: string | null,

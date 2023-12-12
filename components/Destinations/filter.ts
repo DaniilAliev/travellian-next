@@ -4,14 +4,14 @@ import { AppDispatch } from "@/slices/store";
 import { OtelsActionsType } from ".";
 
 const filter = (
-		filtered: Hotel[], 
-		dispatch: AppDispatch, 
-		otelsActions: OtelsActionsType, 
-		minPrice: number, 
-		maxPrice: number, 
-		guests: string, 
-		daysDiff: number
-	) => {
+	filtered: Hotel[],
+	dispatch: AppDispatch,
+	otelsActions: OtelsActionsType,
+	minPrice: number,
+	maxPrice: number,
+	guests: string,
+	daysDiff: number
+) => {
 	if (minPrice) {
 		const filteredByMinPrice = filtered.filter((item: Hotel) => getPrice(guests, item.price, daysDiff) > minPrice);
 		dispatch(otelsActions.addOtels(filteredByMinPrice));

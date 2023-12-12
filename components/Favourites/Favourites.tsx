@@ -5,7 +5,7 @@ import styles from './Favoutites.module.scss';
 import { useRouter } from 'next/dist/client/router';
 import { FavouriteItem } from "./FavouriteItem";
 import { useDispatch, useSelector } from "react-redux";
-import { actions as favActions } from "@/slices/favouriteSlice";
+import { favouriteActions } from "@/slices";
 import { selectors } from "@/slices/favouriteSlice";
 import { CustomFavSkeleton } from "../CustomSkeleton/Favourites";
 import { Hotel } from "@/types/types";
@@ -31,7 +31,7 @@ const Favourites = () => {
 
           const filtered = res.data.filter((item: Hotel) => item.user === email)
           console.log(filtered);
-          dispatch(favActions.addFavs(filtered))
+          dispatch(favouriteActions.addFavs(filtered))
           setIsLoaded(true);
         } catch (e) {
           console.log(e)

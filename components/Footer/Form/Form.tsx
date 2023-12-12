@@ -3,7 +3,7 @@ import schema from './validation';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from 'react-hook-form'; 
 import { useDispatch } from 'react-redux';
-import { actions as modalActions } from '@/slices/modalSlice';
+import { modalActions } from '@/slices';
 
 interface Form {
   email: string,

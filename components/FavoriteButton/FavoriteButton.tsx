@@ -6,7 +6,7 @@ import { HotelFavInfo, ItemProps } from '@/types/types';
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectors as favSelectors } from "@/slices/favouriteSlice";
-import { actions as favActions } from "@/slices/favouriteSlice";
+import { favouriteActions } from "@/slices";
 import API_ROUTES from "@/routes/apiRoutes";
 
 const styles = {
@@ -45,7 +45,7 @@ const FavoriteButton: FC<ItemProps>= ({ hotel, data }) => {
 
         const res = await axios.post(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}`, dataToPost);
         console.log(res.data)
-        dispatch(favActions.addFav(res.data))
+        dispatch(favouriteActions.addFav(res.data))
       }
       
     } else if (isLiked) {
@@ -54,7 +54,7 @@ const FavoriteButton: FC<ItemProps>= ({ hotel, data }) => {
       if (data?.user?.email) {
         const filtered = resFav.data.filter((item: HotelFavInfo) => item.user === data?.user?.email);
         const [hotelToDelete] = filtered.filter((item: HotelFavInfo) => item.hotelId === hotel.id);
-        dispatch(favActions.removeFav(hotelToDelete.id))
+        dispatch(favouriteActions.removeFav(hotelToDelete.id))
         await axios.delete(`${API_ROUTES.URL}${API_ROUTES.FAVOURITE}/${hotelToDelete.id}`)
       }
     }

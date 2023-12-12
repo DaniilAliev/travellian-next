@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { actions } from '@/slices/generalSlice';
+import { generalActions } from '@/slices';
 
 type Menu = {
   setOpen: (state: true | false) => void
@@ -18,7 +18,7 @@ const Menu: FC<Menu> = ({setOpen}) => {
 
   const handleSignOut = () =>{
     signOut();
-    dispatch(actions.removeAuthToken())
+    dispatch(generalActions.removeAuthToken())
   }
 
   return (
