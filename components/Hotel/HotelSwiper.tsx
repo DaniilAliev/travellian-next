@@ -3,7 +3,7 @@ import _ from "lodash";
 import 'swiper/css';
 import Image from 'next/image';
 import { Hotel, Styles } from '@/types/types';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface HotelSwiper {
   styles: Styles,
@@ -31,4 +31,6 @@ const HotelSwiper: FC<HotelSwiper> = ({styles, swiperNextRef, swiperPrevRef, hot
   );
 }
 
-export default HotelSwiper;
+const MemoedHotelSwiper = memo(HotelSwiper);
+
+export default MemoedHotelSwiper;

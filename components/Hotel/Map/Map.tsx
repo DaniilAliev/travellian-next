@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, memo, useEffect, useRef, useState } from 'react';
 import { YMaps, useYMaps } from '@pbe/react-yandex-maps';
 
 const MapComponent: FC<{ address: string }> = ({ address }) => {
@@ -58,4 +58,6 @@ const YMapComponent: FC<{ address: string }> = ({address}) => {
   )
 }
 
-export { YMapComponent };
+const MemoedYMapComponent = memo(YMapComponent)
+
+export { MemoedYMapComponent };

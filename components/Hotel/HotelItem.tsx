@@ -10,12 +10,12 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Score } from "../Destinations/Score";
 import { useSession } from 'next-auth/react';
-import { YMapComponent } from "./Map";
+import { MemoedYMapComponent } from "./Map";
 import { FavoriteButton, HotelSkeleton, BookButton, Modal } from ".";
 import { Hotel } from "@/types/types";
 import API_ROUTES from "@/routes/apiRoutes";
 import fetchData from "./fetch";
-import HotelSwiper from "./HotelSwiper";
+import MemoedHotelSwiper from "./HotelSwiper";
 
 const HotelItem = () => {
   const orderState = useSelector(selectOrder);
@@ -66,6 +66,8 @@ const HotelItem = () => {
         if (post) {
           setIsOrdered(true);
         }
+
+        setIsOrdered(true);
       };
     }
   }
@@ -97,7 +99,7 @@ const HotelItem = () => {
           </div>
         </div>
 
-        <HotelSwiper styles={styles} swiperNextRef={swiperNextRef} swiperPrevRef={swiperPrevRef} hotel={hotel}/>
+        <MemoedHotelSwiper styles={styles} swiperNextRef={swiperNextRef} swiperPrevRef={swiperPrevRef} hotel={hotel}/>
         <div className={styles['buttons-container']}>
           {buttons}
         </div>
@@ -108,7 +110,7 @@ const HotelItem = () => {
           </div>
           <p className={styles.nights}>{`${daysDiff} nights, ${orderState.guestsNumber} adults`}</p>
         </div>
-        <YMapComponent address={hotel.adress}/>
+        <MemoedYMapComponent address={hotel.adress}/>
       </div>
     </section>
     {
