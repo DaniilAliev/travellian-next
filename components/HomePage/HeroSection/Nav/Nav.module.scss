@@ -82,6 +82,10 @@
         .signup-btn {
           background-color: $active-color;
           border-radius: 12px;
+
+          &:hover {
+            background-color: $hover-color;
+          }
         }
       }
     }
